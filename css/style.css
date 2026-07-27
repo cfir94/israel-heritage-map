@@ -353,13 +353,23 @@ button, input { font-family: inherit; }
 
 .hidden { display: none !important; }
 
-/* Leaflet popup RTL tweak */
-.leaflet-popup-content { direction: rtl; text-align: right; font-family: 'Rubik', sans-serif; }
-
-/* Bigger Leaflet zoom buttons for touch, restyled to match the palette */
-.leaflet-touch .leaflet-bar a { width: 40px; height: 40px; line-height: 40px; }
-.leaflet-bar a { background: var(--bg-panel); color: var(--text); border-color: var(--border) !important; }
-.leaflet-bar a:hover { background: var(--accent-2); }
+/* MapLibre controls restyled to match the palette, bigger for touch */
+.maplibregl-ctrl-group {
+  background: var(--bg-panel);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+.maplibregl-ctrl-group button { width: 40px; height: 40px; }
+.maplibregl-ctrl-group button:hover { background: var(--accent-2); }
+.maplibregl-ctrl-attrib {
+  font-family: 'Rubik', sans-serif;
+  background: rgba(255,255,255,0.85) !important;
+  border-radius: var(--radius-sm) !important;
+}
+.maplibregl-popup-content { direction: rtl; text-align: right; font-family: 'Rubik', sans-serif; }
+.maplibregl-ctrl-bottom-right { margin-bottom: max(4px, env(safe-area-inset-bottom)); }
 
 /* Mobile-first base above targets phones. From tablet/desktop up, switch back
    to a persistent side panel instead of bottom sheets. */
