@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover" />
   <title>מפת מורשת ישראל</title>
   <meta name="description" content="מפה אינטראקטיבית של ישראל בחלוקה לשכבות: אזורים, ציר זמן היסטורי ואתרי דת — כלי עבודה למורי דרך" />
-  <meta name="theme-color" content="#1b2a3a" />
+  <meta name="theme-color" content="#12968A" />
   <link rel="manifest" href="manifest.webmanifest" />
   <link rel="icon" href="icons/icon-192.png" />
   <link rel="apple-touch-icon" href="icons/icon-192.png" />
@@ -15,6 +15,7 @@
 <body>
   <header id="app-header">
     <button id="btn-toggle-sidebar" aria-label="תפריט שכבות" title="תפריט שכבות">☰</button>
+    <img class="logo" src="icons/svg/logo.svg" alt="" />
     <h1>מפת מורשת ישראל</h1>
     <div id="offline-indicator" class="hidden" title="את/ה במצב לא מקוון">אופליין</div>
     <button id="btn-toggle-route" aria-label="בניית מסלול" title="בניית מסלול">מסלול</button>
@@ -24,7 +25,7 @@
     <div id="sidebar-backdrop" class="hidden"></div>
     <aside id="sidebar">
       <section class="panel">
-        <h2>אזורים</h2>
+        <h2><img src="icons/svg/layer-regions.svg" alt="" />אזורים</h2>
         <label class="layer-toggle">
           <input type="checkbox" id="toggle-regions" />
           <span>הצג חלוקה לאזורים</span>
@@ -33,7 +34,20 @@
       </section>
 
       <section class="panel">
-        <h2>ציר זמן היסטורי</h2>
+        <h2><img src="icons/svg/layer-geology.svg" alt="" />מפה גיאולוגית</h2>
+        <label class="layer-toggle">
+          <input type="checkbox" id="toggle-geology" />
+          <span>הצג שכבה גיאולוגית</span>
+        </label>
+        <div id="geology-subtoggle" class="geology-subtoggle hidden">
+          <button id="btn-geology-basic" class="active" data-level="basic">בסיסי</button>
+          <button id="btn-geology-advanced" data-level="advanced">מעמיק</button>
+        </div>
+        <div id="geology-legend" class="legend hidden"></div>
+      </section>
+
+      <section class="panel">
+        <h2><img src="icons/svg/layer-timeline.svg" alt="" />ציר זמן היסטורי</h2>
         <label class="layer-toggle">
           <input type="checkbox" id="toggle-periods" checked />
           <span>הצג אתרים היסטוריים</span>
@@ -56,7 +70,7 @@
       </section>
 
       <section class="panel">
-        <h2>אתרי דת</h2>
+        <h2><img src="icons/svg/layer-religion.svg" alt="" />אתרי דת</h2>
         <label class="layer-toggle">
           <input type="checkbox" id="toggle-religions" />
           <span>הצג אתרי דת</span>

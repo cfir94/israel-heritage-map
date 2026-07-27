@@ -1,12 +1,21 @@
 /* מפת מורשת ישראל — לוגיקת האפליקציה הראשית (ללא build step, JS פשוט) */
 
 const ERA_COLORS = {
-  prehistoric: '#9b7653',
-  bronze: '#c98a3a',
-  biblical: '#c0392b',
-  classical: '#8e44ad',
-  medieval: '#2e6da4',
-  modern: '#1e8f5f'
+  prehistoric: '#A97142',
+  bronze: '#C98A3A',
+  biblical: '#B23A48',
+  classical: '#6E4C9E',
+  medieval: '#2A5C8A',
+  modern: '#3E7D44'
+};
+
+const ERA_ICONS = {
+  prehistoric: 'icons/svg/era-prehistoric.svg',
+  bronze: 'icons/svg/era-bronze.svg',
+  biblical: 'icons/svg/era-biblical.svg',
+  classical: 'icons/svg/era-classical.svg',
+  medieval: 'icons/svg/era-medieval.svg',
+  modern: 'icons/svg/era-modern.svg'
 };
 
 const state = {
@@ -14,6 +23,8 @@ const state = {
   regionsGeoJSON: null,
   religions: [],
   sitesGeoJSON: { type: 'FeatureCollection', features: [] },
+  geologyGeoJSON: { basic: null, advanced: null },
+  geologyLevel: 'basic',
   periodIndex: 0,
   showFirstTemple: false,
   showSecondTemple: false,
@@ -21,19 +32,24 @@ const state = {
   route: JSON.parse(localStorage.getItem('ihm_route') || '[]')
 };
 
-let map, regionsLayer, sitesLayer, religionsLayer, nearbyMarker;
+let map, regionsLayer, sitesLayer, religionsLayer, geologyLayer, nearbyMarker;
 
 async function loadData() {
-  const [periods, regions, religions, sites] = await Promise.all([
+  const empty = { type: 'FeatureCollection', features: [] };
+  const [periods, regions, religions, sites, geologyBasic, geologyAdvanced] = await Promise.all([
     fetch('js/data/periods.json').then(r => r.json()),
     fetch('js/data/regions.geojson').then(r => r.json()),
     fetch('js/data/religions.json').then(r => r.json()),
-    fetch('js/data/sites.geojson').then(r => r.json()).catch(() => ({ type: 'FeatureCollection', features: [] }))
+    fetch('js/data/sites.geojson').then(r => r.json()).catch(() => empty),
+    fetch('js/data/geology_basic.geojson').then(r => r.json()).catch(() => empty),
+    fetch('js/data/geology_advanced.geojson').then(r => r.json()).catch(() => empty)
   ]);
   state.periods = periods.sort((a, b) => a.order - b.order);
   state.regionsGeoJSON = regions;
   state.religions = religions;
   state.sitesGeoJSON = sites;
+  state.geologyGeoJSON.basic = geologyBasic;
+  state.geologyGeoJSON.advanced = geologyAdvanced;
   state.activeReligions = new Set(religions.map(r => r.id));
 }
 
@@ -47,9 +63,9 @@ function initMap() {
   regionsLayer = L.geoJSON(state.regionsGeoJSON, {
     style: f => ({
       color: f.properties.color,
-      weight: 1,
+      weight: 2,
       fillColor: f.properties.color,
-      fillOpacity: 0.25
+      fillOpacity: 0.35
     }),
     onEachFeature: (f, layer) => {
       layer.bindTooltip(f.properties.name_he, { sticky: true });
@@ -58,12 +74,14 @@ function initMap() {
 
   sitesLayer = L.layerGroup();
   religionsLayer = L.layerGroup();
+  geologyLayer = L.layerGroup();
 
   buildRegionsLegend();
   buildReligionFilters();
   buildPeriodSlider();
   refreshSitesLayer();
   refreshReligionsLayer();
+  refreshGeologyLayer();
   renderRoute();
 }
 
@@ -95,7 +113,9 @@ function buildPeriodSlider() {
 
 function updatePeriodLabel() {
   const p = state.periods[state.periodIndex];
-  document.getElementById('period-label').textContent = `${p.name_he} (${p.name_en})`;
+  const icon = ERA_ICONS[p.era] || '';
+  document.getElementById('period-label').innerHTML =
+    (icon ? `<img src="${icon}" alt="" />` : '') + `<span>${p.name_he} (${p.name_en})</span>`;
   document.getElementById('period-range').textContent = p.range_he + (p.note_he ? ` — ${p.note_he}` : '');
 }
 
@@ -142,14 +162,13 @@ function refreshSitesLayer() {
     if (!matches) return;
 
     const [lng, lat] = f.geometry.coordinates;
-    const color = ERA_COLORS[era] || '#4fb0a8';
-    const marker = L.circleMarker([lat, lng], {
-      radius: 7,
-      color: '#12202c',
-      weight: 1,
-      fillColor: color,
-      fillOpacity: 0.9
+    const color = ERA_COLORS[era] || '#12968A';
+    const icon = L.divIcon({
+      html: `<div style="width:20px;height:20px;border-radius:50%;background:${color};border:2.5px solid #FFFBF2;box-shadow:0 2px 6px rgba(46,36,24,0.35);"></div>`,
+      className: '',
+      iconSize: [20, 20]
     });
+    const marker = L.marker([lat, lng], { icon });
     marker.on('click', () => openInfoPanel(props, 'period'));
     marker.bindTooltip(props.name_he);
     sitesLayer.addLayer(marker);
@@ -167,15 +186,59 @@ function refreshReligionsLayer() {
     const [lng, lat] = f.geometry.coordinates;
     const primary = state.religions.find(r => r.id === active[0]);
     const icon = L.divIcon({
-      html: `<div style="background:${primary.color};color:#fff;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;font-size:12px;border:2px solid #12202c;">${primary.icon}</div>`,
+      html: `<div style="background:${primary.color};color:#fff;border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-size:13px;border:2.5px solid #FFFBF2;box-shadow:0 2px 6px rgba(46,36,24,0.35);">${primary.icon}</div>`,
       className: '',
-      iconSize: [22, 22]
+      iconSize: [24, 24]
     });
     const marker = L.marker([lat, lng], { icon });
     marker.on('click', () => openInfoPanel(props, 'religion'));
     marker.bindTooltip(props.name_he);
     religionsLayer.addLayer(marker);
   });
+}
+
+function refreshGeologyLayer() {
+  geologyLayer.clearLayers();
+  const data = state.geologyGeoJSON[state.geologyLevel];
+  if (!data) return;
+  L.geoJSON(data, {
+    style: f => ({
+      color: '#5A4325',
+      weight: 1.2,
+      fillColor: f.properties.color,
+      fillOpacity: 0.55
+    }),
+    onEachFeature: (f, layer) => {
+      layer.bindTooltip(f.properties.name_he, { sticky: true });
+      layer.on('click', () => {
+        const props = f.properties;
+        openInfoPanel({
+          id: props.id,
+          name_he: props.name_he,
+          name_en: props.name_en,
+          description_he: `<strong>${props.rock_summary_he || ''}</strong><br>${props.description_he || ''}`,
+          sources: props.sources || []
+        }, 'geology');
+      });
+    }
+  }).addTo(geologyLayer);
+  buildGeologyLegend();
+}
+
+function buildGeologyLegend() {
+  const el = document.getElementById('geology-legend');
+  const data = state.geologyGeoJSON[state.geologyLevel];
+  el.innerHTML = '';
+  if (!data) return;
+  data.features
+    .slice()
+    .sort((a, b) => a.properties.name_he.localeCompare(b.properties.name_he, 'he'))
+    .forEach(f => {
+      const item = document.createElement('div');
+      item.className = 'legend-item';
+      item.innerHTML = `<span class="swatch" style="background:${f.properties.color}"></span>${f.properties.name_he}`;
+      el.appendChild(item);
+    });
 }
 
 function openInfoPanel(props, context) {
@@ -335,6 +398,35 @@ function wireUI() {
   document.getElementById('toggle-regions').addEventListener('change', e => {
     if (e.target.checked) { regionsLayer.addTo(map); document.getElementById('regions-legend').classList.remove('hidden'); }
     else { map.removeLayer(regionsLayer); document.getElementById('regions-legend').classList.add('hidden'); }
+  });
+
+  document.getElementById('toggle-geology').addEventListener('change', e => {
+    const subtoggle = document.getElementById('geology-subtoggle');
+    const legend = document.getElementById('geology-legend');
+    if (e.target.checked) {
+      geologyLayer.addTo(map);
+      subtoggle.classList.remove('hidden');
+      legend.classList.remove('hidden');
+    } else {
+      map.removeLayer(geologyLayer);
+      subtoggle.classList.add('hidden');
+      legend.classList.add('hidden');
+    }
+  });
+
+  const geoBasicBtn = document.getElementById('btn-geology-basic');
+  const geoAdvancedBtn = document.getElementById('btn-geology-advanced');
+  geoBasicBtn.addEventListener('click', () => {
+    state.geologyLevel = 'basic';
+    geoBasicBtn.classList.add('active');
+    geoAdvancedBtn.classList.remove('active');
+    refreshGeologyLayer();
+  });
+  geoAdvancedBtn.addEventListener('click', () => {
+    state.geologyLevel = 'advanced';
+    geoAdvancedBtn.classList.add('active');
+    geoBasicBtn.classList.remove('active');
+    refreshGeologyLayer();
   });
 
   document.getElementById('toggle-periods').addEventListener('change', e => {
