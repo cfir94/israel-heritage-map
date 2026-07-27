@@ -88,6 +88,8 @@ const state = {
   geologyGeoJSON: { basic: null, advanced: null },
   natureGeoJSON: { type: 'FeatureCollection', features: [] },
   visitorGeoJSON: { type: 'FeatureCollection', features: [] },
+  species: {},
+  speciesAliases: {},
   activeOperators: new Set(['inpa', 'kkl']),
   activeNatureKinds: new Set(Object.keys({ birds:1, mammals:1, plants:1, mixed:1 })),
   geologyLevel: 'basic',
@@ -112,7 +114,7 @@ function absDir() {
 
 async function loadData() {
   const empty = { type: 'FeatureCollection', features: [] };
-  const [periods, regions, religions, sites, geologyBasic, geologyAdvanced, nature, visitor] = await Promise.all([
+  const [periods, regions, religions, sites, geologyBasic, geologyAdvanced, nature, visitor, species] = await Promise.all([
     fetch('js/data/periods.json').then(r => r.json()),
     fetch('js/data/regions.geojson').then(r => r.json()),
     fetch('js/data/religions.json').then(r => r.json()),
@@ -120,7 +122,8 @@ async function loadData() {
     fetch('js/data/geology_basic.geojson').then(r => r.json()).catch(() => empty),
     fetch('js/data/geology_advanced.geojson').then(r => r.json()).catch(() => empty),
     fetch('js/data/nature.geojson').then(r => r.json()).catch(() => empty),
-    fetch('js/data/visitor_sites.geojson').then(r => r.json()).catch(() => empty)
+    fetch('js/data/visitor_sites.geojson').then(r => r.json()).catch(() => empty),
+    fetch('js/data/species.json').then(r => r.json()).catch(() => ({ species: {}, aliases: {} }))
   ]);
   state.periods = periods.sort((a, b) => a.order - b.order);
   state.regionsGeoJSON = regions;
@@ -130,6 +133,8 @@ async function loadData() {
   state.geologyGeoJSON.advanced = geologyAdvanced;
   state.natureGeoJSON = nature;
   state.visitorGeoJSON = visitor;
+  state.species = species.species || {};
+  state.speciesAliases = species.aliases || {};
   state.activeReligions = new Set(religions.map(r => r.id));
 }
 
@@ -147,6 +152,47 @@ function religionColorMatchExpression() {
   state.religions.forEach(r => expr.push(r.id, r.color));
   expr.push('#12968A');
   return expr;
+}
+
+const MAP_ICONS = {
+  'ic-judaism':     'icons/svg/religion-judaism.svg',
+  'ic-christianity':'icons/svg/religion-christianity.svg',
+  'ic-islam':       'icons/svg/religion-islam.svg',
+  'ic-inpa':        'icons/svg/op-inpa.svg',
+  'ic-kkl':         'icons/svg/op-kkl.svg',
+  'ic-birds':       'icons/svg/nature-birds.svg',
+  'ic-mammals':     'icons/svg/nature-mammals.svg',
+  'ic-plants':      'icons/svg/nature-plants.svg',
+  'ic-mixed':       'icons/svg/nature-mixed.svg'
+};
+
+// SVG has to be rasterised before MapLibre can use it as a symbol image.
+function loadMapIcons() {
+  const dpr = Math.min(2, window.devicePixelRatio || 1);
+  const size = 44;
+  return Promise.all(Object.entries(MAP_ICONS).map(([id, path]) => new Promise(resolve => {
+    const img = new Image();
+    img.onload = () => {
+      const c = document.createElement('canvas');
+      c.width = c.height = Math.round(size * dpr);
+      const ctx = c.getContext('2d');
+      // a soft disc behind the glyph so it stays legible over any layer colour
+      ctx.beginPath();
+      ctx.arc(c.width / 2, c.height / 2, c.width / 2 - dpr, 0, Math.PI * 2);
+      ctx.fillStyle = '#FFFBF2';
+      ctx.fill();
+      ctx.lineWidth = 2 * dpr;
+      ctx.strokeStyle = 'rgba(46,36,24,0.28)';
+      ctx.stroke();
+      const pad = 9 * dpr;
+      ctx.drawImage(img, pad, pad, c.width - pad * 2, c.height - pad * 2);
+      const data = ctx.getImageData(0, 0, c.width, c.height);
+      if (!map.hasImage(id)) map.addImage(id, data, { pixelRatio: dpr });
+      resolve();
+    };
+    img.onerror = () => resolve();   // a missing icon must not stall map load
+    img.src = abs(path);
+  })));
 }
 
 function operatorColorMatchExpression() {
@@ -227,6 +273,10 @@ async function initMap() {
   wireUI();
 
   await new Promise(resolve => map.on('load', resolve));
+
+  // Icons make the map readable at a glance: a cross, a crescent, a Star of
+  // David, an ibex or a tree says what a coloured dot cannot.
+  await loadMapIcons();
 
   // Terrain relief. Our own elevation tileset (terrarium-encoded, zoom 0-11);
   // MapLibre overzooms past 11, which is fine because hillshade is a soft
@@ -351,13 +401,14 @@ async function initMap() {
     }
   });
   map.addLayer({
-    id: 'sites-religions', type: 'circle', source: 'sites',
+    id: 'sites-religions', type: 'symbol', source: 'sites',
     filter: ['==', ['literal', false], ['literal', true]],
-    paint: {
-      'circle-radius': 9,
-      'circle-color': religionColorMatchExpression(),
-      'circle-stroke-color': '#FFFBF2',
-      'circle-stroke-width': 2.5
+    layout: {
+      'icon-image': ['match', ['at', 0, ['get', 'religions']],
+        'judaism', 'ic-judaism', 'christianity', 'ic-christianity', 'islam', 'ic-islam',
+        'ic-judaism'],
+      'icon-size': 0.62,
+      'icon-allow-overlap': true
     }
   });
 
@@ -391,27 +442,26 @@ async function initMap() {
     paint: { 'text-color': '#FFFBF2' }
   });
   map.addLayer({
-    id: 'visitor-points', type: 'circle', source: 'visitor',
+    id: 'visitor-points', type: 'symbol', source: 'visitor',
     filter: ['!', ['has', 'point_count']],
-    layout: { visibility: 'none' },
-    paint: {
-      'circle-radius': 7,
-      'circle-color': operatorColorMatchExpression(),
-      'circle-stroke-color': '#FFFBF2',
-      'circle-stroke-width': 2
+    layout: {
+      visibility: 'none',
+      'icon-image': ['match', ['get', 'operator'], 'inpa', 'ic-inpa', 'kkl', 'ic-kkl', 'ic-inpa'],
+      'icon-size': 0.55,
+      'icon-allow-overlap': true
     }
   });
 
   // Nature sightings — vulture lookouts, blooms, wildlife reserves.
   map.addSource('nature', { type: 'geojson', data: state.natureGeoJSON });
   map.addLayer({
-    id: 'nature-points', type: 'circle', source: 'nature',
-    layout: { visibility: 'none' },
-    paint: {
-      'circle-radius': 9,
-      'circle-color': natureColorMatchExpression(),
-      'circle-stroke-color': '#FFFBF2',
-      'circle-stroke-width': 2.5
+    id: 'nature-points', type: 'symbol', source: 'nature',
+    layout: {
+      visibility: 'none',
+      'icon-image': ['match', ['get', 'kind'],
+        'birds', 'ic-birds', 'mammals', 'ic-mammals', 'plants', 'ic-plants', 'ic-mixed'],
+      'icon-size': 0.62,
+      'icon-allow-overlap': true
     }
   });
 
@@ -955,11 +1005,65 @@ function closeSearch() {
   document.getElementById('search-overlay').classList.add('hidden');
 }
 
+function lookupSpecies(name) {
+  const key = state.speciesAliases[name] || name;
+  return state.species[key] || null;
+}
+
+const SPECIES_KIND_ICON = {
+  birds: 'icons/svg/nature-birds.svg',
+  mammals: 'icons/svg/nature-mammals.svg',
+  plants: 'icons/svg/nature-plants.svg',
+  mixed: 'icons/svg/nature-mixed.svg'
+};
+
+// A species the dictionary knows becomes a button; one it doesn't stays plain
+// text, so a missing entry degrades quietly instead of offering a dead tap.
+function speciesChipsHtml(names) {
+  if (!names.length) return '';
+  return `<div class="species-list">${names.map(n => {
+    const sp = lookupSpecies(n);
+    if (!sp) return `<span class="species-chip">${n}</span>`;
+    const icon = SPECIES_KIND_ICON[sp.kind] || SPECIES_KIND_ICON.mixed;
+    return `<button type="button" class="species-chip known" data-species="${n}">
+      <img src="${icon}" alt="" />${n}</button>`;
+  }).join('')}</div>`;
+}
+
+function openSpeciesCard(name, backTo) {
+  const sp = lookupSpecies(name);
+  if (!sp) return;
+  const content = document.getElementById('info-content');
+  const photo = sp.photo;
+  const credit = photo ? [photo.author, photo.license].filter(Boolean).join(' · ') : '';
+  const sources = (sp.sources || [])
+    .map(x => `<a href="${x.url}" target="_blank" rel="noopener">${x.title}</a>`).join('');
+  content.innerHTML = `
+    <button type="button" class="species-back">→ חזרה</button>
+    <h3><img class="kind-icon" src="${SPECIES_KIND_ICON[sp.kind] || SPECIES_KIND_ICON.mixed}" alt="" />${sp.name_he}</h3>
+    <div class="meta">${sp.name_sci || ''}</div>
+    ${photo ? `<figure class="rock-photo">
+        <img src="${photo.file}" alt="${sp.name_he}" loading="lazy" />
+        <figcaption><span class="credit">${photo.page ? `<a href="${photo.page}" target="_blank" rel="noopener">${credit}</a>` : credit}</span></figcaption>
+      </figure>` : ''}
+    <p>${sp.description_he}</p>
+    ${sp.guide_he ? `<div class="guide-note"><strong>מה להראות בהדרכה</strong><p>${sp.guide_he}</p></div>` : ''}
+    ${sources ? `<div class="sources"><strong>מקורות:</strong>${sources}</div>` : ''}`;
+  const back = content.querySelector('.species-back');
+  if (back) back.addEventListener('click', () => backTo && backTo());
+  document.getElementById('info-panel').classList.remove('hidden');
+  content.scrollTop = 0;
+}
+
+function wireSpeciesChips(reopen) {
+  document.querySelectorAll('#info-content .species-chip.known').forEach(btn => {
+    btn.addEventListener('click', () => openSpeciesCard(btn.dataset.species, reopen));
+  });
+}
+
 function openNaturePanel(p) {
   const species = parseMaybeJSON(p.species_he);
-  const speciesHtml = species.length
-    ? `<div class="species-list">${species.map(s => `<span class="species-chip">${s}</span>`).join('')}</div>`
-    : '';
+  const speciesHtml = speciesChipsHtml(species);
   openInfoPanel({
     id: p.id,
     name_he: p.name_he,
@@ -968,6 +1072,7 @@ function openNaturePanel(p) {
     description_he: p.description_he || '',
     sources: parseMaybeJSON(p.sources)
   }, 'nature');
+  wireSpeciesChips(() => openNaturePanel(p));
 }
 
 function openGeologyPanel(props) {

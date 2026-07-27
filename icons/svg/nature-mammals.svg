@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <!-- gazelle in profile: body, neck, head, horns, legs -->
+  <path d="M6.5 15 c0-2.2 1.8-3.6 4-3.6 h7.5 c2 0 3.4 1.3 3.6 3.2 l.4 3.6 c.2 2-1.2 3.6-3.2 3.6 H10 c-2 0-3.5-1.5-3.5-3.5 Z" fill="#B06A2C"/>
+  <path d="M20.4 12.6 l3.4-5.4 c.5-.8 1.6-1 2.3-.4 .7.6.8 1.6.2 2.3 l-3.4 4.3" fill="#B06A2C"/>
+  <path d="M25.6 7.2 l1.4-4.2 M27.4 8 l3.2-2.6" stroke="#8A5220" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+  <path d="M9 21.8 v6 M13 21.8 v6 M17.6 21.8 v6 M21 21.8 v5" stroke="#B06A2C" stroke-width="2.2" stroke-linecap="round"/>
+  <circle cx="25.2" cy="8.9" r=".95" fill="#FFFBF2"/>
+</svg>

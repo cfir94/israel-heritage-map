@@ -640,3 +640,51 @@ button, input { font-family: inherit; }
 /* the master toggle being off does not hide the chips — it just makes it
    obvious they are not doing anything yet */
 .operator-chips.dimmed, .operator-actions.dimmed { opacity: 0.55; }
+
+
+/* ---- Species chips & card ---- */
+.species-chip.known {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  font-family: inherit;
+  color: var(--text);
+  border-color: var(--accent);
+  background: rgba(18, 150, 138, 0.08);
+  min-height: 34px;
+  transition: background .15s ease, transform .12s ease;
+}
+.species-chip.known img { width: 17px; height: 17px; flex-shrink: 0; }
+.species-chip.known:hover { background: rgba(18, 150, 138, 0.18); }
+.species-chip.known:active { transform: scale(0.96); }
+.species-chip.known::after { content: "›"; color: var(--accent); font-weight: 700; }
+
+.species-back {
+  background: var(--bg-panel-2);
+  border: 1.5px solid var(--border);
+  border-radius: 999px;
+  padding: 7px 14px;
+  min-height: 38px;
+  font-family: inherit;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text);
+  cursor: pointer;
+  margin-bottom: 8px;
+}
+.species-back:hover { border-color: var(--accent); color: var(--accent); }
+
+#info-content h3 .kind-icon {
+  width: 26px; height: 26px; vertical-align: -5px; margin-left: 7px;
+}
+
+.guide-note {
+  margin-top: 12px;
+  padding: 11px 13px;
+  background: #FFF4DE;
+  border: 1px solid #E8C98A;
+  border-radius: 12px;
+}
+.guide-note strong { display: block; font-size: 0.82rem; color: #8A5F1E; margin-bottom: 4px; }
+.guide-note p { margin: 0; font-size: 0.87rem; line-height: 1.6; }
