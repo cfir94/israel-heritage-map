@@ -1,0 +1,20 @@
+[
+  { "id": "paleolithic",    "order": 1,  "era": "prehistoric", "name_he": "תקופת האבן הפליאוליתית", "name_en": "Paleolithic",        "range_he": "כ-1,500,000–20,000 לפנה\"ס" },
+  { "id": "epipaleolithic", "order": 2,  "era": "prehistoric", "name_he": "תקופת האבן האפיפליאוליתית (נטופית)", "name_en": "Epipaleolithic (Natufian)", "range_he": "כ-20,000–8,500 לפנה\"ס" },
+  { "id": "neolithic",      "order": 3,  "era": "prehistoric", "name_he": "תקופת האבן הניאוליתית", "name_en": "Neolithic",          "range_he": "כ-8,500–4,500 לפנה\"ס" },
+  { "id": "chalcolithic",   "order": 4,  "era": "prehistoric", "name_he": "התקופה הכלקוליתית", "name_en": "Chalcolithic",       "range_he": "כ-4,500–3,300 לפנה\"ס" },
+  { "id": "bronze-early",   "order": 5,  "era": "bronze",      "name_he": "תקופת הברונזה הקדומה", "name_en": "Early Bronze Age",   "range_he": "כ-3,300–2,200 לפנה\"ס" },
+  { "id": "bronze-middle",  "order": 6,  "era": "bronze",      "name_he": "תקופת הברונזה התיכונה", "name_en": "Middle Bronze Age",  "range_he": "כ-2,200–1,550 לפנה\"ס" },
+  { "id": "bronze-late",    "order": 7,  "era": "bronze",      "name_he": "תקופת הברונזה המאוחרת", "name_en": "Late Bronze Age",    "range_he": "כ-1,550–1,200 לפנה\"ס" },
+  { "id": "iron-age",       "order": 8,  "era": "biblical",    "name_he": "תקופת הברזל (תקופת המקרא / הישראלית)", "name_en": "Iron Age (Biblical / Israelite period)", "range_he": "כ-1,200–586 לפנה\"ס", "note_he": "תקופת בית ראשון" },
+  { "id": "persian",        "order": 9,  "era": "classical",   "name_he": "התקופה הפרסית", "name_en": "Persian period",     "range_he": "539–332 לפנה\"ס", "note_he": "תחילת תקופת בית שני" },
+  { "id": "hellenistic",    "order": 10, "era": "classical",   "name_he": "התקופה ההלניסטית", "name_en": "Hellenistic period", "range_he": "332–63 לפנה\"ס", "note_he": "תקופת בית שני" },
+  { "id": "roman",          "order": 11, "era": "classical",   "name_he": "התקופה הרומית", "name_en": "Roman period",       "range_he": "63 לפנה\"ס–324 לספירה", "note_he": "עד 70 לספירה: סוף תקופת בית שני" },
+  { "id": "byzantine",      "order": 12, "era": "classical",   "name_he": "התקופה הביזנטית", "name_en": "Byzantine period",   "range_he": "324–638 לספירה" },
+  { "id": "early-arab",     "order": 13, "era": "medieval",    "name_he": "התקופה הערבית הקדומה (אומיית-עבאסית)", "name_en": "Early Arab period (Umayyad-Abbasid)", "range_he": "638–1099 לספירה" },
+  { "id": "crusader",       "order": 14, "era": "medieval",    "name_he": "התקופה הצלבנית", "name_en": "Crusader period",    "range_he": "1099–1291 לספירה" },
+  { "id": "mamluk",         "order": 15, "era": "medieval",    "name_he": "התקופה הממלוכית", "name_en": "Mamluk period",      "range_he": "1260–1516 לספירה" },
+  { "id": "ottoman",        "order": 16, "era": "modern",      "name_he": "התקופה העות'מאנית", "name_en": "Ottoman period",     "range_he": "1517–1917 לספירה" },
+  { "id": "mandate",        "order": 17, "era": "modern",      "name_he": "התקופה המנדטורית", "name_en": "British Mandate",    "range_he": "1917–1948 לספירה" },
+  { "id": "israeli",        "order": 18, "era": "modern",      "name_he": "התקופה הישראלית (מדינת ישראל)", "name_en": "State of Israel", "range_he": "1948–היום" }
+]

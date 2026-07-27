@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover" />
+  <title>מפת מורשת ישראל</title>
+  <meta name="description" content="מפה אינטראקטיבית של ישראל בחלוקה לשכבות: אזורים, ציר זמן היסטורי ואתרי דת — כלי עבודה למורי דרך" />
+  <meta name="theme-color" content="#1b2a3a" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="icon" href="icons/icon-192.png" />
+  <link rel="apple-touch-icon" href="icons/icon-192.png" />
+  <link rel="stylesheet" href="vendor/leaflet/leaflet.css" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header id="app-header">
+    <button id="btn-toggle-sidebar" aria-label="תפריט שכבות" title="תפריט שכבות">☰</button>
+    <h1>מפת מורשת ישראל</h1>
+    <div id="offline-indicator" class="hidden" title="את/ה במצב לא מקוון">אופליין</div>
+    <button id="btn-toggle-route" aria-label="בניית מסלול" title="בניית מסלול">מסלול</button>
+  </header>
+
+  <div id="app-body">
+    <aside id="sidebar">
+      <section class="panel">
+        <h2>אזורים</h2>
+        <label class="layer-toggle">
+          <input type="checkbox" id="toggle-regions" />
+          <span>הצג חלוקה לאזורים</span>
+        </label>
+        <div id="regions-legend" class="legend hidden"></div>
+      </section>
+
+      <section class="panel">
+        <h2>ציר זמן היסטורי</h2>
+        <label class="layer-toggle">
+          <input type="checkbox" id="toggle-periods" checked />
+          <span>הצג אתרים היסטוריים</span>
+        </label>
+        <div id="period-slider-wrap">
+          <input type="range" id="period-slider" min="0" max="17" value="0" step="1" />
+          <div id="period-label" class="period-label"></div>
+          <div id="period-range" class="period-range"></div>
+        </div>
+        <div id="temple-era-filters">
+          <label class="chip">
+            <input type="checkbox" id="toggle-first-temple" />
+            <span>סמן אתרי בית ראשון</span>
+          </label>
+          <label class="chip">
+            <input type="checkbox" id="toggle-second-temple" />
+            <span>סמן אתרי בית שני</span>
+          </label>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>אתרי דת</h2>
+        <label class="layer-toggle">
+          <input type="checkbox" id="toggle-religions" />
+          <span>הצג אתרי דת</span>
+        </label>
+        <div id="religion-filters" class="religion-filters"></div>
+      </section>
+
+      <section class="panel">
+        <h2>מסלול סיור</h2>
+        <p class="hint">לחץ על "הוסף למסלול" בכרטיס של כל אתר. הרשימה נשמרת גם ללא חיבור לאינטרנט.</p>
+        <ol id="route-list"></ol>
+        <div class="route-actions">
+          <button id="btn-clear-route" class="btn-secondary">נקה מסלול</button>
+          <button id="btn-nearby" class="btn-secondary">מה יש כאן?</button>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>מצב מפה</h2>
+        <button id="btn-cache-area" class="btn-primary">שמור את האזור הנוכחי לשימוש אופליין</button>
+        <div id="cache-status" class="hint"></div>
+      </section>
+    </aside>
+
+    <main id="map"></main>
+
+    <div id="info-panel" class="hidden">
+      <button id="btn-close-info" aria-label="סגור">✕</button>
+      <div id="info-content"></div>
+    </div>
+  </div>
+
+  <script src="vendor/leaflet/leaflet.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

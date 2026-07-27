@@ -1,0 +1,5 @@
+[
+  { "id": "judaism",     "name_he": "יהדות",  "name_en": "Judaism",     "color": "#3b6bd6", "icon": "✡" },
+  { "id": "christianity","name_he": "נצרות",  "name_en": "Christianity","color": "#c0392b", "icon": "✝" },
+  { "id": "islam",       "name_he": "אסלאם",  "name_en": "Islam",      "color": "#1e8f5f", "icon": "☾" }
+]
