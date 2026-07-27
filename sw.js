@@ -1,4 +1,4 @@
-const CACHE_NAME = 'ihm-cache-v4';
+const CACHE_NAME = 'ihm-cache-v5';
 const MAP_CACHE_NAME = 'ihm-map-v1';
 const PMTILES_URL_SUFFIX = '/data/israel.pmtiles';
 
