@@ -34,6 +34,18 @@
       </section>
 
       <section class="panel">
+        <h2><img src="icons/svg/layer-topo.svg" alt="" />טופוגרפיה</h2>
+        <label class="layer-toggle">
+          <input type="checkbox" id="toggle-topo" />
+          <span>הצג הצללת הרים</span>
+        </label>
+        <label class="layer-toggle hidden" id="topo-strong-row">
+          <input type="checkbox" id="toggle-topo-strong" />
+          <span>הדגשה חזקה (לאזורי הר)</span>
+        </label>
+      </section>
+
+      <section class="panel">
         <h2><img src="icons/svg/layer-geology.svg" alt="" />מפה גיאולוגית</h2>
         <label class="layer-toggle">
           <input type="checkbox" id="toggle-geology" />
@@ -82,6 +94,7 @@
         <h2>מסלול סיור</h2>
         <p class="hint">לחץ על "הוסף למסלול" בכרטיס של כל אתר. הרשימה נשמרת גם ללא חיבור לאינטרנט.</p>
         <ol id="route-list"></ol>
+        <div id="route-summary" class="route-summary hidden"></div>
         <div class="route-actions">
           <button id="btn-clear-route" class="btn-secondary">נקה מסלול</button>
           <button id="btn-nearby" class="btn-secondary">מה יש כאן?</button>

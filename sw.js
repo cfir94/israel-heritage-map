@@ -1,6 +1,9 @@
-const CACHE_NAME = 'ihm-cache-v5';
+const CACHE_NAME = 'ihm-cache-v6';
 const MAP_CACHE_NAME = 'ihm-map-v1';
-const PMTILES_URL_SUFFIX = '/data/israel.pmtiles';
+// Every self-hosted tile archive. These are the only files served by Range
+// request, so they take the byte-slicing path below rather than plain caching.
+const PMTILES_FILES = ['data/israel.pmtiles', 'data/israel-terrain.pmtiles'];
+const isPmtilesUrl = url => PMTILES_FILES.some(f => url.endsWith('/' + f));
 
 const APP_SHELL = [
   './',
@@ -40,6 +43,7 @@ const APP_SHELL = [
   'icons/svg/layer-timeline.svg',
   'icons/svg/layer-religion.svg',
   'icons/svg/layer-geology.svg',
+  'icons/svg/layer-topo.svg',
   'manifest.webmanifest',
   'icons/icon-192.png',
   'icons/icon-512.png'
@@ -60,33 +64,53 @@ self.addEventListener('activate', event => {
 });
 
 /* ---- Explicit whole-map download, triggered by the "download for offline" button ---- */
-async function cacheWholeMapFile(client) {
-  const pmtilesUrl = new URL('data/israel.pmtiles', self.registration.scope).href;
-  try {
-    const response = await fetch(pmtilesUrl);
-    const total = Number(response.headers.get('content-length')) || 0;
-    const reader = response.body.getReader();
-    const chunks = [];
-    let received = 0;
-    while (true) {
-      const { done, value } = await reader.read();
-      if (done) break;
-      chunks.push(value);
-      received += value.length;
-      if (total && client) {
-        client.postMessage({ type: 'cache-map-progress', percent: Math.round((received / total) * 100) });
-      }
+async function cacheOneArchive(file, client, onProgress) {
+  const url = new URL(file, self.registration.scope).href;
+  const response = await fetch(url);
+  if (!response.ok) throw new Error(`${file}: ${response.status}`);
+  const total = Number(response.headers.get('content-length')) || 0;
+  const reader = response.body.getReader();
+  const chunks = [];
+  let received = 0;
+  while (true) {
+    const { done, value } = await reader.read();
+    if (done) break;
+    chunks.push(value);
+    received += value.length;
+    if (total) onProgress(received, total);
+  }
+  const blob = new Blob(chunks);
+  const cache = await caches.open(MAP_CACHE_NAME);
+  await cache.put(url, new Response(blob, {
+    headers: {
+      'Content-Type': 'application/octet-stream',
+      'Content-Length': String(blob.size),
+      'Accept-Ranges': 'bytes'
     }
-    const blob = new Blob(chunks);
-    const fullResponse = new Response(blob, {
-      headers: {
-        'Content-Type': 'application/octet-stream',
-        'Content-Length': String(blob.size),
-        'Accept-Ranges': 'bytes'
-      }
-    });
-    const cache = await caches.open(MAP_CACHE_NAME);
-    await cache.put(pmtilesUrl, fullResponse);
+  }));
+}
+
+// Progress is reported across both archives together, so the bar reflects the
+// whole download rather than restarting when the terrain file begins.
+async function cacheWholeMapFile(client) {
+  try {
+    const sizes = await Promise.all(PMTILES_FILES.map(async f => {
+      const r = await fetch(new URL(f, self.registration.scope).href, { method: 'HEAD' });
+      return Number(r.headers.get('content-length')) || 0;
+    }));
+    const grandTotal = sizes.reduce((a, b) => a + b, 0);
+    let done = 0;
+    for (let i = 0; i < PMTILES_FILES.length; i++) {
+      await cacheOneArchive(PMTILES_FILES[i], client, received => {
+        if (client && grandTotal) {
+          client.postMessage({
+            type: 'cache-map-progress',
+            percent: Math.min(100, Math.round(((done + received) / grandTotal) * 100))
+          });
+        }
+      });
+      done += sizes[i];
+    }
     if (client) client.postMessage({ type: 'cache-map-done', ok: true });
   } catch (err) {
     if (client) client.postMessage({ type: 'cache-map-done', ok: false, error: err.message });
@@ -133,7 +157,7 @@ self.addEventListener('fetch', event => {
   if (request.method !== 'GET') return;
   const url = request.url;
 
-  if (url.endsWith(PMTILES_URL_SUFFIX)) {
+  if (isPmtilesUrl(url)) {
     event.respondWith(
       servePmtilesRange(request).then(cachedResponse => cachedResponse || fetch(request))
     );

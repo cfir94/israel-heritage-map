@@ -50,6 +50,12 @@ const THEMATIC_DECLUTTER_LAYERS = [
 // city names the map is meant to be read by.
 const THEMATIC_INSERT_BEFORE = 'water';
 
+// Hillshade goes *above* the thematic fills but still below boundaries and
+// labels, so relief reads through the rock colours the way it does on a printed
+// geological map. Putting it under them instead left the country looking flat
+// while the hills across the border stayed dramatic.
+const HILLSHADE_INSERT_BEFORE = 'boundary_state';
+
 // Place labels sit on saturated fills once a thematic layer is on, so the halo
 // has to work harder than it does over plain paper.
 const PLACE_LABEL_LAYERS = ['place_other', 'place_suburb', 'place_village', 'place_town', 'place_city', 'place_capital', 'place_city_large'];
@@ -157,6 +163,28 @@ async function initMap() {
 
   await new Promise(resolve => map.on('load', resolve));
 
+  // Terrain relief. Our own elevation tileset (terrarium-encoded, zoom 0-11);
+  // MapLibre overzooms past 11, which is fine because hillshade is a soft
+  // shading effect rather than something you read detail off.
+  map.addSource('terrain', {
+    type: 'raster-dem',
+    url: 'pmtiles://' + abs('data/israel-terrain.pmtiles'),
+    encoding: 'terrarium',
+    tileSize: 256,
+    maxzoom: 11,
+    attribution: 'Elevation: Mapzen / Amazon Terrain Tiles'
+  });
+  map.addLayer({
+    id: 'hillshade', type: 'hillshade', source: 'terrain',
+    layout: { visibility: 'none' },
+    paint: {
+      'hillshade-exaggeration': 0.45,
+      'hillshade-shadow-color': '#6B5636',
+      'hillshade-highlight-color': '#FFF6E4',
+      'hillshade-accent-color': '#8A7350'
+    }
+  }, HILLSHADE_INSERT_BEFORE);
+
   map.addSource('regions', { type: 'geojson', data: state.regionsGeoJSON });
   map.addLayer({
     id: 'regions-fill', type: 'fill', source: 'regions',
@@ -181,6 +209,23 @@ async function initMap() {
     paint: { 'line-color': '#5A4325', 'line-width': 1.2, 'line-opacity': 0.55 }
   }, THEMATIC_INSERT_BEFORE);
 
+  // Route line sits above the thematic fills but below the site markers, so a
+  // stop never disappears under its own route.
+  const EMPTY_FC = { type: 'FeatureCollection', features: [] };
+  map.addSource('route', { type: 'geojson', data: EMPTY_FC });
+  map.addLayer({
+    id: 'route-casing', type: 'line', source: 'route',
+    layout: { 'line-cap': 'round', 'line-join': 'round' },
+    paint: { 'line-color': '#FFFBF2', 'line-width': 9, 'line-opacity': 0.9 }
+  }, HILLSHADE_INSERT_BEFORE);
+  // line-dasharray is not data-driven in MapLibre, so the dashed "estimated"
+  // styling is applied from JS in drawRoute() instead of via an expression.
+  map.addLayer({
+    id: 'route-line', type: 'line', source: 'route',
+    layout: { 'line-cap': 'round', 'line-join': 'round' },
+    paint: { 'line-color': '#EF6F53', 'line-width': 5 }
+  }, HILLSHADE_INSERT_BEFORE);
+
   map.addSource('sites', { type: 'geojson', data: state.sitesGeoJSON });
   map.addLayer({
     id: 'sites-periods', type: 'circle', source: 'sites',
@@ -203,6 +248,28 @@ async function initMap() {
     }
   });
 
+  // Numbered stops, drawn last so they stay on top of every other layer.
+  map.addSource('route-stops', { type: 'geojson', data: EMPTY_FC });
+  map.addLayer({
+    id: 'route-stops', type: 'circle', source: 'route-stops',
+    paint: {
+      'circle-radius': 13,
+      'circle-color': '#EF6F53',
+      'circle-stroke-color': '#FFFBF2',
+      'circle-stroke-width': 3
+    }
+  });
+  map.addLayer({
+    id: 'route-stop-labels', type: 'symbol', source: 'route-stops',
+    layout: {
+      'text-field': ['get', 'label'],
+      'text-font': ['Noto Sans Regular'],
+      'text-size': 13,
+      'text-allow-overlap': true
+    },
+    paint: { 'text-color': '#FFFBF2' }
+  });
+
   ['regions-fill', 'geology-fill', 'sites-periods', 'sites-religions'].forEach(id => {
     map.on('mouseenter', id, () => { map.getCanvas().style.cursor = 'pointer'; });
     map.on('mouseleave', id, () => { map.getCanvas().style.cursor = ''; });
@@ -223,6 +290,9 @@ async function initMap() {
 
   refreshSitesLayer();
   refreshReligionsLayer();
+  // The saved route was rendered into the sidebar before the map finished
+  // loading, so draw it now that the route layers actually exist.
+  updateRouteOnMap();
 }
 
 // GeoJSON sources round-trip array/object properties as JSON strings once
@@ -345,6 +415,13 @@ function buildGeologyLegend() {
       item.innerHTML = `<span class="swatch" style="background:${f.properties.color}"></span>${f.properties.name_he}`;
       el.appendChild(item);
     });
+
+  // The map now covers the whole country, and it should be clear why that is
+  // safe to teach from but not safe to quote as survey data.
+  const note = document.createElement('p');
+  note.className = 'legend-note';
+  note.textContent = 'תחומי היחידות סכמטיים — הכללה להוראה, לא מיפוי מדויק בשטח. הרכב הסלע והגיל של כל יחידה מגובים במקורות (לחיצה על אזור במפה).';
+  el.appendChild(note);
 }
 
 function openInfoPanel(props, context) {
@@ -409,6 +486,124 @@ function renderRoute() {
     });
     list.appendChild(li);
   });
+  updateRouteOnMap();
+}
+
+/* ---- Route drawing & driving time ---------------------------------------
+   Real road routing needs a routing service, which needs a connection. When
+   there is one we ask OSRM and cache the answer; when there isn't we fall back
+   to straight lines between stops with an openly-labelled time estimate, so the
+   route builder still works in the field with no signal. */
+
+const ROUTE_CACHE_PREFIX = 'ihm_route_geom_';
+const OSRM_URL = 'https://router.project-osrm.org/route/v1/driving/';
+// Straight-line km underestimate real road distance; this is the usual fudge
+// factor for mixed Israeli roads, paired with a conservative average speed.
+const ROAD_WINDING_FACTOR = 1.3;
+const ESTIMATED_AVG_KMH = 65;
+
+function routeStopCoords() {
+  const byId = new Map(state.sitesGeoJSON.features.map(f => [f.properties.id, f.geometry.coordinates]));
+  return state.route.map(r => ({ id: r.id, name_he: r.name_he, coord: byId.get(r.id) }))
+                    .filter(s => Array.isArray(s.coord));
+}
+
+function straightLineRoute(stops) {
+  let km = 0;
+  for (let i = 1; i < stops.length; i++) {
+    km += haversine(stops[i - 1].coord[1], stops[i - 1].coord[0], stops[i].coord[1], stops[i].coord[0]);
+  }
+  km *= ROAD_WINDING_FACTOR;
+  return {
+    estimated: true,
+    distanceKm: km,
+    durationMin: (km / ESTIMATED_AVG_KMH) * 60,
+    geometry: { type: 'LineString', coordinates: stops.map(s => s.coord) }
+  };
+}
+
+async function fetchOsrmRoute(stops) {
+  const path = stops.map(s => `${s.coord[0]},${s.coord[1]}`).join(';');
+  const cacheKey = ROUTE_CACHE_PREFIX + path;
+  const cached = localStorage.getItem(cacheKey);
+  if (cached) {
+    try { return JSON.parse(cached); } catch (e) { /* fall through and refetch */ }
+  }
+  const res = await fetch(`${OSRM_URL}${path}?overview=full&geometries=geojson`);
+  if (!res.ok) throw new Error('routing service returned ' + res.status);
+  const data = await res.json();
+  if (data.code !== 'Ok' || !data.routes || !data.routes.length) throw new Error('no route found');
+  const r = data.routes[0];
+  const result = {
+    estimated: false,
+    distanceKm: r.distance / 1000,
+    durationMin: r.duration / 60,
+    geometry: r.geometry
+  };
+  try { localStorage.setItem(cacheKey, JSON.stringify(result)); } catch (e) { /* quota, not fatal */ }
+  return result;
+}
+
+function drawRoute(result, stops) {
+  if (!map || !map.getSource('route')) return;
+  map.getSource('route').setData({
+    type: 'FeatureCollection',
+    features: result ? [{ type: 'Feature', properties: {}, geometry: result.geometry }] : []
+  });
+  map.getSource('route-stops').setData({
+    type: 'FeatureCollection',
+    features: stops.map((s, i) => ({
+      type: 'Feature',
+      properties: { label: String(i + 1), name_he: s.name_he },
+      geometry: { type: 'Point', coordinates: s.coord }
+    }))
+  });
+  if (map.getLayer('route-line')) {
+    map.setPaintProperty('route-line', 'line-dasharray', result && result.estimated ? [1.6, 1.2] : [1, 0]);
+  }
+}
+
+function formatDuration(min) {
+  const h = Math.floor(min / 60);
+  const m = Math.round(min % 60);
+  return h ? `${h} שע' ${m} דק'` : `${m} דק'`;
+}
+
+function renderRouteSummary(result, stopCount) {
+  const el = document.getElementById('route-summary');
+  if (!el) return;
+  if (!result || stopCount < 2) { el.textContent = ''; el.classList.add('hidden'); return; }
+  el.classList.remove('hidden');
+  const head = `${Math.round(result.distanceKm)} ק"מ · ${formatDuration(result.durationMin)} נסיעה`;
+  el.innerHTML = result.estimated
+    ? `<strong>${head}</strong><span class="route-note">הערכה בלבד — קו אווירי, בלי חיבור לאינטרנט אין חישוב לפי כבישים בפועל.</span>`
+    : `<strong>${head}</strong><span class="route-note">לפי כבישים בפועל (OSRM). לא כולל זמני עצירה בכל אתר.</span>`;
+}
+
+let routeRequestToken = 0;
+async function updateRouteOnMap() {
+  const stops = routeStopCoords();
+  const token = ++routeRequestToken;
+  if (stops.length < 2) {
+    drawRoute(null, stops);
+    renderRouteSummary(null, stops.length);
+    return;
+  }
+  // Show the straight-line version immediately so the map never sits empty
+  // while the routing request is in flight.
+  const fallback = straightLineRoute(stops);
+  drawRoute(fallback, stops);
+  renderRouteSummary(fallback, stops.length);
+
+  if (!navigator.onLine) return;
+  try {
+    const real = await fetchOsrmRoute(stops);
+    if (token !== routeRequestToken) return;   // a newer edit already superseded this
+    drawRoute(real, stops);
+    renderRouteSummary(real, stops.length);
+  } catch (err) {
+    console.warn('Routing unavailable, keeping straight-line estimate:', err.message);
+  }
 }
 
 function haversine(lat1, lng1, lat2, lng2) {
@@ -467,7 +662,7 @@ async function cacheWholeMap() {
     status.textContent = 'ה-Service Worker עדיין לא פעיל, נסה/י לרענן את הדף ולנסות שוב.';
     return;
   }
-  status.textContent = 'מוריד את המפה (כ-95MB, פעם אחת בלבד)...';
+  status.textContent = 'מוריד את המפה ונתוני הגובה (כ-116MB, פעם אחת בלבד)...';
   navigator.serviceWorker.addEventListener('message', function handler(e) {
     if (e.data && e.data.type === 'cache-map-progress') {
       status.textContent = `מוריד את המפה... ${e.data.percent}%`;
@@ -512,6 +707,16 @@ function wireUI() {
     setLayerVisibility('regions-line', e.target.checked);
     document.getElementById('regions-legend').classList.toggle('hidden', !e.target.checked);
     updateBaseMapDeclutter();
+  });
+
+  const topoStrong = document.getElementById('toggle-topo-strong');
+  document.getElementById('toggle-topo').addEventListener('change', e => {
+    setLayerVisibility('hillshade', e.target.checked);
+    document.getElementById('topo-strong-row').classList.toggle('hidden', !e.target.checked);
+  });
+  topoStrong.addEventListener('change', e => {
+    if (!map.getLayer('hillshade')) return;
+    map.setPaintProperty('hillshade', 'hillshade-exaggeration', e.target.checked ? 0.85 : 0.45);
   });
 
   document.getElementById('toggle-geology').addEventListener('change', e => {
