@@ -1,4 +1,3895 @@
 {
   "type": "FeatureCollection",
-  "features": []
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ubeidiya",
+        "name_he": "עוּבֵּיידִיָּה",
+        "name_en": "Ubeidiya",
+        "periods": [
+          "paleolithic"
+        ],
+        "religions": [],
+        "temple_era": null,
+        "region": null,
+        "description_he": "אתר פרהיסטורי בעמק הירדן התיכון, סמוך לקיבוץ אפיקים, המתוארך לכ-1.5 מיליון שנה - מהאתרים הקדומים ביותר בעולם מחוץ לאפריקה. באתר נמצאו כלי צור מתרבות האשלית וכן שרידי בעלי חיים, המעידים על נוכחות מוקדמת של המין האנושי (הומו ארקטוס) בדרך יציאתו מאפריקה. החפירות בהובלת פרופ' משה שטקליס משנת 1960 הפכו את האתר לאבן דרך בהבנת התפשטות האדם הקדמון לאסיה.",
+        "sources": [
+          {
+            "title": "עובדייה - ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/%D7%A2%D7%95%D7%91%D7%93%D7%99%D7%99%D7%94"
+          },
+          {
+            "title": "האוניברסיטה העברית - כלי אבן מעובדייה",
+            "url": "https://new.huji.ac.il/news/%D7%A0%D7%99%D7%AA%D7%95%D7%97-%D7%A9%D7%9C-%D7%9B%D7%9C%D7%99-%D7%90%D7%91%D7%9F-%D7%9E%D7%90%D7%AA%D7%A8-%D7%A4%D7%A8%D7%94-%D7%94%D7%99%D7%A1%D7%98%D7%95%D7%A8%D7%99-%D7%91%D7%A2%D7%9E%D7%A7-%D7%94%D7%99%D7%A8%D7%93%D7%9F-%D7%94%D7%95%D7%91%D7%99%D7%9C-%D7%9C%D7%96%D7%99%D7%94%D7%95%D7%99-%D7%94%D7%9E%D7%95%D7%A4%D7%A2-%D7%94%D7%A7%D7%93%D7%95%D7%9D-%D7%91%D7%99%D7%95%D7%AA%D7%A8-%D7%A9%D7%9C-%D7%99%D7%9B%D7%95%D7%9C%D7%95%D7%AA"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.5486,
+          32.7033
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "tabun-nahal-mearot",
+        "name_he": "מערת הטבון, נחל מערות",
+        "name_en": "Tabun Cave, Nahal Me'arot",
+        "periods": [
+          "paleolithic"
+        ],
+        "religions": [],
+        "temple_era": null,
+        "region": null,
+        "description_he": "מערכת מערות בדרום-מערב הכרמל (טבון, גמל, נחל/אל-ואד וגדי/סחול) המתעדת יישוב אנושי רצוף במשך יותר מחצי מיליון שנה, כולל שרידי ניאנדרתלים והומו סאפיינס קדום. מערת הטבון סיפקה את הרצף הסטרטיגרפי הארוך ביותר בעולם לתקופה הפליאוליתית התחתונה והתיכונה. בזכות חשיבותה המדעית הוכרז האתר ב-2012 כאתר מורשת עולמית של אונסק׳א.",
+        "sources": [
+          {
+            "title": "שמורת טבע נחל המערות - רשות הטבע והגנים",
+            "url": "https://www.parks.org.il/reserve-park/%D7%A9%D7%9E%D7%95%D7%A8%D7%AA-%D7%98%D7%91%D7%A2-%D7%A0%D7%97%D7%9C-%D7%94%D7%9E%D7%A2%D7%A8%D7%95%D7%AA/"
+          },
+          {
+            "title": "נחל מערות - ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/%D7%A0%D7%97%D7%9C_%D7%9E%D7%A2%D7%A8%D7%95%D7%AA"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.9694,
+          32.6683
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "gesher-benot-yaaqov",
+        "name_he": "גשר בנות יעקב",
+        "name_en": "Gesher Benot Ya'aqov",
+        "periods": [
+          "paleolithic"
+        ],
+        "religions": [],
+        "temple_era": null,
+        "region": null,
+        "description_he": "אתר אשלי על גדת הירדן, דרומית לגשר בנות יעקב, המתוארך לכ-780,000 שנה. באתר נמצאו עדויות לשימוש מבוקר באש - מהמוקדמות בעולם - לצד כלי צור ובזלת ועצמות פיל ישר-חט שנטבח בידי אדם קדמון. הממצאים מלמדים על יכולות קוגניטיביות וטכנולוגיות מתקדמות בטרם צאתו הסופי של האדם מאפריקה.",
+        "sources": [
+          {
+            "title": "גשר בנות יעקב (אתר ארכאולוגי) - ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/%D7%92%D7%A9%D7%A8_%D7%91%D7%A0%D7%95%D7%AA_%D7%99%D7%A2%D7%A7%D7%91_(%D7%90%D7%AA%D7%A8_%D7%90%D7%A8%D7%9B%D7%90%D7%95%D7%9C%D7%95%D7%92%D7%99)"
+          },
+          {
+            "title": "רשות הטבע והגנים - ממצאים חדשים בגשר בנות יעקב",
+            "url": "https://www.parks.org.il/new/palaeoloxodon-antiquus/"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.6206,
+          33.0053
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "kebara-cave",
+        "name_he": "מערת כברה",
+        "name_en": "Kebara Cave",
+        "periods": [
+          "paleolithic"
+        ],
+        "religions": [],
+        "temple_era": null,
+        "region": null,
+        "description_he": "מערה בדרום הכרמל, מדרום לנחל מערות, בה התגלה ב-1983 שלד ניאנדרתלי כמעט שלם (״כברה 2״) הכולל עצם לשון (היואיד) נדירה השופכת אור על יכולת הדיבור של הניאנדרתלים. המערה נחפרה כבר בשנות ה-30 וה-50 של המאה ה-20 וסיפקה רצף עשיר משכבות מוסטריות (פליאוליתי תיכון) עד שכבות נטופיות. האתר נחשב למרכזי בחקר האדם הניאנדרטלי בלבנט.",
+        "sources": [
+          {
+            "title": "מערת כברה - ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/%D7%9E%D7%A2%D7%A8%D7%AA_%D7%9B%D7%91%D7%A8%D7%94"
+          },
+          {
+            "title": "Kebara Cave - Wikipedia (English)",
+            "url": "https://en.wikipedia.org/wiki/Kebara_Cave"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.9661,
+          32.6169
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "qesem-cave",
+        "name_he": "מערת קסם",
+        "name_en": "Qesem Cave",
+        "periods": [
+          "paleolithic"
+        ],
+        "religions": [],
+        "temple_era": null,
+        "region": null,
+        "description_he": "מערה סמוך לראש העין שהתגלתה במקרה בשנת 2000 בעבודות סלילת כביש, ונחפרת מאז על ידי אוניברסיטת תל אביב. שכבותיה, מהתרבות האשל-יברודית, מתוארכות ל-420,000-200,000 שנה, ובה נמצאו עדויות למוקדי אש קבועים מהמוקדמות שהתגלו בעולם, לצד שיני אדם קדום. הממצאים מספקים תובנות ייחודיות על התנהגות חברתית, תזונה ושימוש באש בפליאוליתי התחתון-תיכון.",
+        "sources": [
+          {
+            "title": "מערת קסם - ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/%D7%9E%D7%A2%D7%A8%D7%AA_%D7%A7%D7%A1%D7%9D"
+          },
+          {
+            "title": "Qesem Cave - Wikipedia (English)",
+            "url": "https://en.wikipedia.org/wiki/Qesem_Cave"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.9739,
+          32.1022
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "eynan-ein-mallaha",
+        "name_he": "עינן (עין מלאחה)",
+        "name_en": "Eynan / Ein Mallaha",
+        "periods": [
+          "epipaleolithic"
+        ],
+        "religions": [],
+        "temple_era": null,
+        "region": null,
+        "description_he": "אחד האתרים המרכזיים והגדולים ביותר של התרבות הנטופית בעמק החולה, מיושב לאורך כל תקופת קיומה של התרבות (כ-12,500-10,000 לפני הספירה). באתר התגלו בתי מגורים עגולים בנויי אבן, קברים עשירים בתכשיטים, וקבר הכלב הקדום ביותר שהתגלה בעולם - אישה קבורה לצד גור כלב או זאב. הממצאים מעידים על מעבר מחיי ציד-לקט נודדים לישיבת קבע, ערב המהפכה החקלאית.",
+        "sources": [
+          {
+            "title": "עינן - ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/%D7%A2%D7%99%D7%A0%D7%9F"
+          },
+          {
+            "title": "רשות העתיקות - עינות עינן",
+            "url": "https://hadashot.iaa.org.il/report_detail.aspx?id=24927&mag_id=124"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.5719,
+          33.0192
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "raqefet-cave",
+        "name_he": "מערת רקפת",
+        "name_en": "Raqefet Cave",
+        "periods": [
+          "epipaleolithic"
+        ],
+        "religions": [],
+        "temple_era": null,
+        "region": null,
+        "description_he": "מערה בדרום-מזרח הכרמל ששימשה בית קברות נטופי ייחודי לפני כ-13,000 שנה, ובו נקברו כשלושים בני אדם בסמיכות למכתשי סלע רבים. באתר התגלו העדויות הקדומות בעולם לייצור בירה ולסעודות קבורה טקסיות, וכן קבורה על מצע פרחים ריחניים. הממצאים ממחישים את המורכבות הטקסית והחברתית של החברה הנטופית בטרם המהפכה החקלאית.",
+        "sources": [
+          {
+            "title": "מערת רקפת - ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/%D7%9E%D7%A2%D7%A8%D7%AA_%D7%A8%D7%A7%D7%A4%D7%AA"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.0408,
+          32.7156
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "nahal-oren-terrace",
+        "name_he": "מדרגת נחל אורן",
+        "name_en": "Nahal Oren Terrace",
+        "periods": [
+          "epipaleolithic"
+        ],
+        "religions": [],
+        "temple_era": null,
+        "region": null,
+        "description_he": "מדרגה טבעית בפתח נחל אורן במורדות הכרמל, בה התגלה יישוב נטופי עם מבני אבן וקברים רבים, שהמשיך להתיישבות בתחילת התקופה הניאוליתית. האתר, שנחפר החל משנות ה-50, מספק רצף חשוב להבנת המעבר מחיי ציד-לקט לחקלאות מוקדמת באזור הכרמל. הוא נחשב לאחד ממוקדי המחקר הקלאסיים של התרבות הנטופית.",
+        "sources": [
+          {
+            "title": "Nahal Oren - Wikipedia (English)",
+            "url": "https://en.wikipedia.org/wiki/Nahal_Oren"
+          },
+          {
+            "title": "שמורת טבע נחל המערות - רשות הטבע והגנים",
+            "url": "https://www.parks.org.il/reserve-park/%D7%A9%D7%9E%D7%95%D7%A8%D7%AA-%D7%98%D7%91%D7%A2-%D7%A0%D7%97%D7%9C-%D7%94%D7%9E%D7%A2%D7%A8%D7%95%D7%AA/"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.96,
+          32.7167
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "el-wad-cave",
+        "name_he": "מערת הנחל (אל-ואד)",
+        "name_en": "El-Wad Cave",
+        "periods": [
+          "epipaleolithic"
+        ],
+        "religions": [],
+        "temple_era": null,
+        "region": null,
+        "description_he": "מערה במתחם נחל מערות בכרמל, ששימשה מחנה בסיס נטופי מרכזי עם שכבות התיישבות עשירות, בורות אחסון וקברים רבים. הממצאים מתעדים חיי קבע מוקדמים, כלי צור ועצם מפותחים ותכשיטי צדפים וחרוזים. יחד עם מערות טבון, גמל וגדי, מהווה המערה חלק מאתר המורשת העולמית של אונסק׳א בנחל מערות.",
+        "sources": [
+          {
+            "title": "נחל מערות - ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/%D7%A0%D7%97%D7%9C_%D7%9E%D7%A2%D7%A8%D7%95%D7%AA"
+          },
+          {
+            "title": "שמורת טבע נחל המערות - רשות הטבע והגנים",
+            "url": "https://www.parks.org.il/reserve-park/%D7%A9%D7%9E%D7%95%D7%A8%D7%AA-%D7%98%D7%91%D7%A2-%D7%A0%D7%97%D7%9C-%D7%94%D7%9E%D7%A2%D7%A8%D7%95%D7%AA/"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.969,
+          32.6675
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "hayonim-cave",
+        "name_he": "מערת חיונים",
+        "name_en": "Hayonim Cave",
+        "periods": [
+          "epipaleolithic"
+        ],
+        "religions": [],
+        "temple_era": null,
+        "region": null,
+        "description_he": "מערה בגליל המערבי, ליד נחל חילזון, המתעדת רצף התיישבות ארוך מהפליאוליתי התיכון ועד לתקופה הנטופית. בשכבותיה הנטופיות נמצאו מבני אבן, קברים ואוסף כלים עשיר המעיד על ישיבת קבע מוקדמת. האתר, יחד עם המדרגה שלפני המערה (Hayonim Terrace), הוא ממוקדי המחקר החשובים על ראשית ההתיישבות הקבועה בגליל.",
+        "sources": [
+          {
+            "title": "Hayonim Cave - Wikipedia (English)",
+            "url": "https://en.wikipedia.org/wiki/Hayonim_Cave"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.2394,
+          32.9944
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "jericho-tel-es-sultan",
+        "name_he": "יריחו (תל א-סולטן)",
+        "name_en": "Jericho / Tel es-Sultan",
+        "periods": [
+          "neolithic"
+        ],
+        "religions": [],
+        "temple_era": null,
+        "region": null,
+        "description_he": "אחד היישובים הקבועים העתיקים ביותר בעולם, המיושב ברציפות כבר מהתקופה הנטופית ובעיקר מהתקופה הניאוליתית קדם-קרמית א' (כ-8000 לפנה\"ס). באתר נחשפו חומה ומגדל אבן אדירים בני כ-11,000 שנה - ביצורי האבן הקדומים ביותר שהתגלו בעולם - וכן מבנה מגורים דחוסים וגולגלות מסויידות. יריחו ממחישה את המעבר המהפכני מחברת ציידים-לקטים לחיי חקלאות וישיבת קבע בעלת ארגון חברתי מורכב.",
+        "sources": [
+          {
+            "title": "יריחו - ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/%D7%99%D7%A8%D7%99%D7%97%D7%95"
+          },
+          {
+            "title": "Tell es-Sultan - UNESCO Tentative List",
+            "url": "https://whc.unesco.org/en/tentativelists/5405/"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.4437,
+          31.8706
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "shaar-hagolan",
+        "name_he": "שער הגולן",
+        "name_en": "Sha'ar Hagolan",
+        "periods": [
+          "neolithic"
+        ],
+        "religions": [],
+        "temple_era": null,
+        "region": null,
+        "description_he": "אתר הענק וההגדרה של התרבות הירמוכית (כ-6400-5800 לפנה׳ס), הגדול והמפותח ביותר בעולם מסוג זה בתקופה הניאוליתית הקרמית. באתר, הסמוך לקיבוץ שער הגולן בעמק הירדן, נחשפו שכונות מגורים מתוכננות סביב חצרות, ומאות פסלוני חרס וקרקע ייחודיים בדמות נשים (״ונוסים״), המעידים על עולם פולחני עשיר. האתר נחפר החל מ-1949 בידי משה שטקליס.",
+        "sources": [
+          {
+            "title": "שער הגולן - ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/%D7%A9%D7%A2%D7%A8_%D7%94%D7%92%D7%95%D7%9C%D7%9F"
+          },
+          {
+            "title": "התרבות הירמוכית - ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/%D7%94%D7%AA%D7%A8%D7%91%D7%95%D7%AA_%D7%94%D7%99%D7%A8%D7%9E%D7%95%D7%9B%D7%99%D7%AA"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.6103,
+          32.6975
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "nahal-hemar-cave",
+        "name_he": "מערת נחל חימר",
+        "name_en": "Nahal Hemar Cave",
+        "periods": [
+          "neolithic"
+        ],
+        "religions": [],
+        "temple_era": null,
+        "region": null,
+        "description_he": "מערה במדבר יהודה הדרומי, סמוך לים המלח, בה נשתמרו הודות ליובש הקיצוני ממצאים אורגניים נדירים מהתקופה הקדם-קרמית ב' (כ-8500-7000 לפנה\"ס): טקסטיל וסלים קלועים, גולגלות אדם מסויידות ומעוטרות, ומסכות אבן. הממצאים הנדירים מספקים חלון יוצא דופן לפולחן המתים ולתרבות החומרית של תחילת עידן החקלאות. מיקום המערה המדויק הוא באזור נחל חימר בדרום מדבר יהודה, ליד ים המלח.",
+        "sources": [
+          {
+            "title": "נחל חימר - ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/%D7%A0%D7%97%D7%9C_%D7%97%D7%99%D7%9E%D7%A8"
+          },
+          {
+            "title": "Israel Museum - Nahal Hemar Cave finds",
+            "url": "https://www.imj.org.il/en"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.3833,
+          31.1
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "kfar-hahoresh",
+        "name_he": "כפר החורש",
+        "name_en": "Kfar HaHoresh",
+        "periods": [
+          "neolithic"
+        ],
+        "religions": [],
+        "temple_era": null,
+        "region": null,
+        "description_he": "אתר פולחני-קבורתי מיוחד מהתקופה הקדם-קרמית ב' (כ-9000 שנה), הממוקם ליד נצרת ומכיל שלבים מכל שלבי התקופה. בניגוד ליישובי מגורים רגילים, האתר שימש בעיקר כמרכז טקסי לקבורה משנית של יחידים ושל קבוצות, עם ממצאי קבורה עשירים כגון צדפים וגולגלות מטופלות. הממצאים תורמים להבנת הפולחן והאמונות בראשית עידן החקלאות בגליל התחתון.",
+        "sources": [
+          {
+            "title": "Kfar HaHoresh - Wikipedia (English)",
+            "url": "https://en.wikipedia.org/wiki/Kfar_HaHoresh"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.2622,
+          32.7139
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "munhata",
+        "name_he": "מוניחתה",
+        "name_en": "Munhata",
+        "periods": [
+          "neolithic"
+        ],
+        "religions": [],
+        "temple_era": null,
+        "region": null,
+        "description_he": "אתר יישוב בעמק הירדן, דרומית לכנרת, המתעד רצף התיישבות מהתקופה הקדם-קרמית ב' ועד לתקופה הירמוכית. בחפירותיו של ז'אן פרו התגלו מבני מגורים, כלי צור ואבן וממצאים פולחניים, המלמדים על התפתחות הכפר החקלאי המוקדם בעמק הירדן. האתר משלים את התמונה שמספק שער הגולן הסמוך על התרבות הירמוכית באזור.",
+        "sources": [
+          {
+            "title": "Munhata - Wikipedia (English)",
+            "url": "https://en.wikipedia.org/wiki/Munhata"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.5836,
+          32.6494
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "nahal-mishmar-cave-of-treasure",
+        "name_he": "מערת האוצר, נחל משמר",
+        "name_en": "Cave of the Treasure, Nahal Mishmar",
+        "periods": [
+          "chalcolithic"
+        ],
+        "religions": [],
+        "temple_era": null,
+        "region": null,
+        "description_he": "מערה גבוהה ונידחת בצוק הצפוני של נחל משמר במדבר יהודה, בה התגלה ב-1961 מטמון פולחני יוצא דופן מהתקופה הכלקוליתית (כ-4500-3800 לפנה\"ס) - 442 חפצים, רובם עשויים נחושת (שרביטים, כתרים וכלים) ואף שנהב, עטופים במחצלת קנים. המטמון, המיוחס למקדש עין גדי הסמוך, מעיד על רמת אומנות מתכת מתקדמת ועל מערכת פולחנית מפותחת בתקופה הכלקוליתית.",
+        "sources": [
+          {
+            "title": "נחל משמר - ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/%D7%A0%D7%97%D7%9C_%D7%9E%D7%A9%D7%9E%D7%A8"
+          },
+          {
+            "title": "שמורת טבע מדבר יהודה - רשות הטבע והגנים",
+            "url": "https://www.parks.org.il/reserve-park/%D7%A9%D7%9E%D7%95%D7%A8%D7%AA-%D7%98%D7%91%D7%A2-%D7%9E%D7%93%D7%91%D7%A8-%D7%99%D7%94%D7%95%D7%93%D7%94/"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.3643,
+          31.3809
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "gilat",
+        "name_he": "גילת",
+        "name_en": "Gilat",
+        "periods": [
+          "chalcolithic"
+        ],
+        "religions": [],
+        "temple_era": null,
+        "region": null,
+        "description_he": "יישוב מרכזי בנגב המערבי בתקופה הכלקוליתית, בו נחשפו מצבות אבן, מזבחות, אגני פולחן ומחסני תבואה, לצד חדרים ששימשו ככל הנראה כמקדש וחצרות שקלטו עולי רגל. באתר נמצאו שני פסלוני החרס המפורסמים ״כבש גילת״ ו״גבירת גילת״ - דמות אישה בהריון היושבת עירומה על שרפרף לידה. גילת נחשב לאחד ממרכזי הפולחן והייצור החשובים של התרבות הכלקוליתית בדרום הארץ.",
+        "sources": [
+          {
+            "title": "גילת - ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/%D7%92%D7%99%D7%9C%D7%AA"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.665,
+          31.3283
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ein-gedi-chalcolithic-temple",
+        "name_he": "מקדש עין גדי",
+        "name_en": "Ein Gedi Chalcolithic Temple",
+        "periods": [
+          "chalcolithic"
+        ],
+        "religions": [],
+        "temple_era": null,
+        "region": null,
+        "description_he": "מתחם מקדש כלקוליתי מוקף חומה, הבנוי מעל נאות המדבר של עין גדי ליד ים המלח, מהמבנים הפולחניים המרשימים והמשומרים ביותר מתקופה זו בישראל. במרכז המתחם חצר עגולה ומזבח, וחוקרים רבים מקשרים בין המקדש למטמון הפולחני שהתגלה במערת נחל משמר הסמוכה. האתר, החולש על הנוף לים המלח, ממחיש את מרכזיותה הדתית של עין גדי כבר באלף הרביעי לפנה\"ס.",
+        "sources": [
+          {
+            "title": "עין גדי - ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/%D7%A2%D7%99%D7%9F_%D7%92%D7%93%D7%99"
+          },
+          {
+            "title": "שמורת עין גדי - רשות הטבע והגנים",
+            "url": "https://www.parks.org.il/reserve-park/%D7%A9%D7%9E%D7%95%D7%A8%D7%AA-%D7%A2%D7%99%D7%9F-%D7%92%D7%93%D7%99/"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.3822,
+          31.461
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "peqiin-chalcolithic-cave",
+        "name_he": "מערת הקבורה הכלקוליתית בפקיעין",
+        "name_en": "Peqi'in Chalcolithic Burial Cave",
+        "periods": [
+          "chalcolithic"
+        ],
+        "religions": [],
+        "temple_era": null,
+        "region": null,
+        "description_he": "מערת קבורה כלקוליתית בגליל העליון, שהתגלתה במקרה ונחפרה החל מ-2006, ובה נמצאו עצמות מאות נקברים בקבורה משנית בתוך קנקנים וגלוסקמאות טין מעוטרות בפנים אדם. עד לגילוי המערה נחשב הגליל ההררי לשולי בהתיישבות הכלקוליתית, אך הממצאים - כולל עדויות ל-DNA קדום המצביעות על הגירה מאיראן ואנטוליה - שינו את התמונה. האתר נחשב לאחד הגילויים החשובים ביותר של תקופת הכלקוליתית בצפון הארץ.",
+        "sources": [
+          {
+            "title": "מערת הקבורה הכלקוליתית בפקיעין - ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/%D7%9E%D7%A2%D7%A8%D7%AA_%D7%A7%D7%91%D7%95%D7%A8%D7%94_%D7%9B%D7%9C%D7%A7%D7%95%D7%9C%D7%99%D7%AA%D7%99%D7%AA_%D7%91%D7%A4%D7%A7%D7%99%D7%A2%D7%99%D7%9F"
+          },
+          {
+            "title": "רשות העתיקות - מערת קבורה כלקוליתית בפקיעין",
+            "url": "https://antiquities.org.il/site_Item_heb.aspx?id=68"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.33,
+          32.9958
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "shiqmim",
+        "name_he": "שקמים",
+        "name_en": "Shiqmim",
+        "periods": [
+          "chalcolithic"
+        ],
+        "religions": [],
+        "temple_era": null,
+        "region": null,
+        "description_he": "אחד היישובים הכלקוליתיים הגדולים והחשובים בנגב, לאורך נחל באר שבע, שנחפר בהובלת פרופ' תומס לוי החל משנות ה-80. באתר התגלו מבני מגורים תת-קרקעיים (\"סובטרניים\"), מערכות אחסון ועדויות לייצור נחושת מוקדם, המלמדות על כלכלה מפותחת של מיצוב ומסחר בנגב. שקמים משמש כאתר מפתח להבנת ארגון החברה הכלקוליתית באזורים הצחיחים של הארץ.",
+        "sources": [
+          {
+            "title": "Shiqmim - Wikipedia (English)",
+            "url": "https://en.wikipedia.org/wiki/Shiqmim"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.622,
+          31.283
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "tel-megiddo-bronze-early",
+        "name_he": "תל מגידו - מקדש הענק מהברונזה הקדומה",
+        "name_en": "Tel Megiddo - Great Temple, Early Bronze Age",
+        "periods": [
+          "bronze-early"
+        ],
+        "religions": [],
+        "temple_era": null,
+        "region": null,
+        "description_he": "כבר בתקופת הברונזה הקדומה (האלף ה-4-3 לפנה׳ס) שימש מגידו מרכז פולחני מרכזי, ובו נחשף ״המקדש הענק״ - מבנה הפולחן הגדול ביותר שהתגלה בארץ ישראל מתקופה זו, לצד במות ומזבחות. מיקומו של מגידו על ציר ״דרך הים״ בין מצרים למסופוטמיה הפך אותו כבר בעת העתיקה למוקד כלכלי ואסטרטגי מרכזי. האתר, שכבותיו העשירות הפכו אותו לאחד התלים המתוארכים ביותר בעולם, נכלל ברשימת המורשת העולמית של אונסק׳א.",
+        "sources": [
+          {
+            "title": "תל מגידו - ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/%D7%9E%D7%92%D7%99%D7%93%D7%95"
+          },
+          {
+            "title": "גן לאומי מגידו - רשות הטבע והגנים",
+            "url": "https://www.parks.org.il/reserve-park/%D7%92%D7%9F-%D7%9C%D7%90%D7%95%D7%9E%D7%99-%D7%9E%D7%92%D7%99%D7%93%D7%95/"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.183,
+          32.585
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "tel-arad-early-bronze",
+        "name_he": "תל ערד - העיר הכנענית",
+        "name_en": "Tel Arad - Canaanite City",
+        "periods": [
+          "bronze-early"
+        ],
+        "religions": [],
+        "temple_era": null,
+        "region": null,
+        "description_he": "עיר כנענית מבוצרת מתקופת הברונזה הקדומה ב׳ (כ-2900-2650 לפנה׳ס), הפרושה על שטח נרחב וכוללת חומת אבן עגולה, שערים, בתי מגורים ומקדש (״בית האספסוף״). ערד שגשגה בזכות מסחר עם מצרים, כפי שמעידים כלי חרס מצריים וכתובת פרעה נערמר שנמצאה באתר. לצד התל הכנעני ניצבת המצודה הישראלית מתקופת הברזל, המאפשרת השוואה בין שתי תקופות התיישבות שונות באותו מקום.",
+        "sources": [
+          {
+            "title": "תל ערד - ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/%D7%AA%D7%9C_%D7%A2%D7%A8%D7%93"
+          },
+          {
+            "title": "גן לאומי תל ערד - רשות הטבע והגנים",
+            "url": "https://www.parks.org.il/reserve-park/%D7%92%D7%9F-%D7%9C%D7%90%D7%95%D7%9E%D7%99-%D7%AA%D7%9C-%D7%A2%D7%A8%D7%93/"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.1267,
+          31.281
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "tel-yarmuth",
+        "name_he": "תל ירמות",
+        "name_en": "Tel Yarmuth",
+        "periods": [
+          "bronze-early"
+        ],
+        "religions": [],
+        "temple_era": null,
+        "region": null,
+        "description_he": "אחת הערים המבוצרות הגדולות והמרשימות ביותר מתקופת הברונזה הקדומה ג׳ בשפלת יהודה, סמוך לבית שמש, הכוללת חומת אבן ענקית וארמון מונומנטלי. חפירות ממושכות (מ-1970) בהובלת המשלחת הצרפתית חשפו גם שדה חקלאי עתיק ששימר סימני עיבוד קרקע - עדות ראשונה מסוגה בעולם. תל ירמות מלמד על תהליכי העיור המוקדמים ועל המורכבות החברתית-כלכלית של ערי הברונזה הקדומה בארץ.",
+        "sources": [
+          {
+            "title": "תל ירמות - ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/%D7%AA%D7%9C_%D7%99%D7%A8%D7%9E%D7%95%D7%AA"
+          },
+          {
+            "title": "רשות העתיקות - תל ירמות",
+            "url": "https://hadashot.iaa.org.il/report_detail.aspx?id=25508&mag_id=126"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.9667,
+          31.7167
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ai-et-tell",
+        "name_he": "העי (א-תל)",
+        "name_en": "Ai (et-Tell)",
+        "periods": [
+          "bronze-early"
+        ],
+        "religions": [],
+        "temple_era": null,
+        "region": null,
+        "description_he": "עיר כנענית מבוצרת מתקופת הברונזה הקדומה, ליד דיר דיבואן שבבנימין, המזוהה במחקר עם העיר ״העי״ המקראית שנכבשה על-פי ספר יהושע לאחר יריחו. חפירות מ-1933 ואילך חשפו חומה, ארמון, מאגר מים ומקדשים - עיר משגשגת שנחרבה כ-2200 לפנה׳ס. הפער בין מועד חורבן האתר לבין תקופת הכיבוש המקראי המשוערת הפך את העי לאחד ממוקדי הדיון המרכזיים בזיקה שבין הארכיאולוגיה למקרא.",
+        "sources": [
+          {
+            "title": "העי - ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/%D7%94%D7%A2%D7%99"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.2664,
+          31.9319
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "tel-erani",
+        "name_he": "תל עראני",
+        "name_en": "Tel Erani",
+        "periods": [
+          "bronze-early"
+        ],
+        "religions": [],
+        "temple_era": null,
+        "region": null,
+        "description_he": "תל גדול בן שתי גבעות ליד קריית גת, המכיל שכבות עשירות מהברונזה הקדומה (מכ-3700 לפנה\"ס) ועד התקופה העות'מאנית. בשכבות הברונזה הקדומה נחשפו חומה רחבה, תכנון עירוני מסודר ומבני ציבור, יחד עם כלי חרס מצריים רבים הנושאים שמות פרעונים - עדות למגעים ענפים בין כנען למצרים. האתר, המכונה בפי מקומיים \"הר גוליית\", נחשב לאחת הערים העירוניות המוקדמות והחשובות בדרום הארץ.",
+        "sources": [
+          {
+            "title": "רשות העתיקות - תקופת הברונזה הקדומה",
+            "url": "https://www.iaa.org.il/page_periods/page/%D7%91%D7%A8%D7%95%D7%A0%D7%96%D7%94-%D7%A7%D7%93%D7%95%D7%9E%D7%94"
+          },
+          {
+            "title": "תל עראני - עמוד ענן",
+            "url": "https://amudanan.co.il/w/P966100"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.7994,
+          31.5928
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "tel-hazor-middle-bronze",
+        "name_he": "תל חצור - עיר הממלכה הכנענית",
+        "name_en": "Tel Hazor - Middle Bronze Canaanite City",
+        "periods": [
+          "bronze-middle"
+        ],
+        "religions": [],
+        "temple_era": null,
+        "region": null,
+        "description_he": "התל הגדול ביותר בישראל בשטחו, ובתקופת הברונזה התיכונה (כ-1750 לפנה\"ס) עיר הממלכה הכנענית החשובה והמאוכלסת ביותר בארץ ישראל, הנזכרת גם בתעודות מארי וב-מצרים העתיקה כמעצמה אזורית. בעיר התחתונה הענקית נבנו חומות עפר גדולות, שערים וארמונות, המעידים על ארגון מדיני ומסחרי מפותח. חצור נחפרת החל מ-1955 בידי יגאל ידין, ונכללת ברשימת המורשת העולמית של אונסק\"א יחד עם מגידו ובאר שבע.",
+        "sources": [
+          {
+            "title": "תל חצור - ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/%D7%AA%D7%9C_%D7%97%D7%A6%D7%95%D7%A8"
+          },
+          {
+            "title": "גן לאומי תל חצור - רשות הטבע והגנים",
+            "url": "https://www.parks.org.il/reserve-park/%D7%92%D7%9F-%D7%9C%D7%90%D7%95%D7%9E%D7%99-%D7%AA%D7%9C-%D7%97%D7%A6%D7%95%D7%A8/"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.5678,
+          33.0181
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "shechem-tel-balata",
+        "name_he": "שכם (תל בלאטה)",
+        "name_en": "Shechem / Tel Balata",
+        "periods": [
+          "bronze-middle"
+        ],
+        "religions": [],
+        "temple_era": null,
+        "region": null,
+        "description_he": "עיר כנענית מרכזית בלב הרי שומרון, בשולי שכם המודרנית-נבּלוּס, שהגיעה לשיא פריחתה בברונזה התיכונה עם ביצור עוצמתי וה״מקדש-מגדל״ המונומנטלי שהתגלה בשעריה. שכם מוזכרת בסיפורי האבות במקרא (יעקב, שכם בן חמור) ומהווה אחת הערים הכנעניות המתועדות ביותר גם בתעודות מצריות. האתר, המנוהל כיום כגן ארכיאולוגי, מציג את אחד המקדשים הכנעניים המרשימים ביותר שהשתמרו בארץ.",
+        "sources": [
+          {
+            "title": "שכם - ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/%D7%A9%D7%9B%D7%9D"
+          },
+          {
+            "title": "Tell Balata Archaeological Park - Wikipedia",
+            "url": "https://en.wikipedia.org/wiki/Tell_Balata"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.2853,
+          32.2136
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "tel-dan-middle-bronze",
+        "name_he": "תל דן - השער הכנעני",
+        "name_en": "Tel Dan - Canaanite Mudbrick Gate",
+        "periods": [
+          "bronze-middle"
+        ],
+        "religions": [],
+        "temple_era": null,
+        "region": null,
+        "description_he": "בתל דן, בצפון עמק החולה, התגלה שער עירוני כנעני עשוי לבני בוץ מהברונזה התיכונה (כ-1750 לפנה׳ס), המשומר בגובה יוצא דופן ונחשב לאחד השערים הקדומים המשומרים ביותר בעולם - מכונה לעיתים ״שער אברהם״ בשל תיארוכו הקרוב לתקופת האבות המקראית. השער בעל שלוש הקשתות מדגים טכניקת בנייה מתקדמת בכנען הקדם-ישראלית. באתר נמשכת התיישבות עוד לפני שהעיר לויש הכנענית הפכה לימים לעיר ״דן״ הישראלית.",
+        "sources": [
+          {
+            "title": "תל דן - ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/%D7%AA%D7%9C_%D7%93%D7%9F"
+          },
+          {
+            "title": "שמורת תל דן - רשות הטבע והגנים",
+            "url": "https://www.parks.org.il/reserve-park/%D7%A9%D7%9E%D7%95%D7%A8%D7%AA-%D7%AA%D7%9C-%D7%93%D7%9F/"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.6519,
+          33.2489
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "tel-ashkelon-middle-bronze",
+        "name_he": "תל אשקלון - החומה והשער הכנעני",
+        "name_en": "Tel Ashkelon - Middle Bronze Rampart and Gate",
+        "periods": [
+          "bronze-middle"
+        ],
+        "religions": [],
+        "temple_era": null,
+        "region": null,
+        "description_he": "עיר נמל כנענית גדולה על חוף הים התיכון, שבברונזה התיכונה (כ-1850 לפנה\"ס) הוקפה בסוללת עפר ובשער לבני בוץ קמור - השער הקמור העתיק ביותר שהתגלה בעולם ששרד עד היום. באתר נחשפה גם \"עגל הכסף\" - פסלון ברונזה מצופה כסף שהתגלה בחדר קודש קטן, המעיד על עולם פולחני עשיר. אשקלון הכנענית הייתה מהערים החשובות והמבוצרות ביותר בדרום הארץ בתקופת הברונזה התיכונה.",
+        "sources": [
+          {
+            "title": "תל אשקלון - ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/%D7%AA%D7%9C_%D7%90%D7%A9%D7%A7%D7%9C%D7%95%D7%9F"
+          },
+          {
+            "title": "הגן הלאומי תל אשקלון - רשות הטבע והגנים",
+            "url": "https://www.parks.org.il/reserve-park/%D7%92%D7%9F-%D7%9C%D7%90%D7%95%D7%9E%D7%99-%D7%AA%D7%9C-%D7%90%D7%A9%D7%A7%D7%9C%D7%95%D7%9F/"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.5463,
+          31.6688
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "tel-kabri",
+        "name_he": "תל כברי",
+        "name_en": "Tel Kabri",
+        "periods": [
+          "bronze-middle"
+        ],
+        "religions": [],
+        "temple_era": null,
+        "region": null,
+        "description_he": "אתר בשטחי קיבוץ כברי בגליל המערבי, ששימש בתקופת הברונזה התיכונה ה-2 את היישוב העירוני השלישי בגודלו בארץ ישראל, אחרי חצור ואשקלון. בארמון הכנעני שהתגלה בו נמצא הפרסקו היחיד בסגנון מינואי (אגאי) שהתגלה בישראל, וכן מחסן יין מלכותי בן כ-3,700 שנה עם למעלה מ-3,000 קנקנים - העתיק שהתגלה במזרח התיכון. מחקר עדכני של אוניברסיטת חיפה קבע כי הארמון המפואר ננטש בפתאומיות בעקבות רעידת אדמה.",
+        "sources": [
+          {
+            "title": "תל כברי - ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/%D7%AA%D7%9C_%D7%9B%D7%91%D7%A8%D7%99"
+          },
+          {
+            "title": "Ynet - נחשף מדוע ארמון כנעני בגליל ננטש לפני 3,800 שנה",
+            "url": "https://www.ynet.co.il/environment-science/article/SySQYzsEv"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.1519,
+          33.0072
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "tel-lachish-late-bronze",
+        "name_he": "תל לכיש - העיר הכנענית ומקדשיה",
+        "name_en": "Tel Lachish - Late Bronze Canaanite City",
+        "periods": [
+          "bronze-late"
+        ],
+        "religions": [],
+        "temple_era": null,
+        "region": null,
+        "description_he": "בתקופת הברונזה המאוחרת הייתה לכיש עיר כנענית משגשגת בעלת קשרי מסחר ענפים עם מצרים, כפי שמעידות אגרות אל-עמארנה ששלחו מלכי לכיש לפרעה. באתר נחשפו מקדשים כנעניים עם כלי פולחן עשירים, ובהם \"מקדש הפוסה\" בעל שכבות שימוש רצופות. שרידי הכנעניים בלכיש מספקים רקע חשוב להבנת עולם ה\"עמארנה\" ולמעמדה של כנען כפרובינציה מצרית טרם התבססות הישראלים באזור.",
+        "sources": [
+          {
+            "title": "תל לכיש - ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/%D7%AA%D7%9C_%D7%9C%D7%9B%D7%99%D7%A9"
+          },
+          {
+            "title": "גן לאומי תל לכיש - רשות הטבע והגנים",
+            "url": "https://www.parks.org.il/reserve-park/lachish/"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.8478,
+          31.5646
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "tel-megiddo-late-bronze",
+        "name_he": "תל מגידו - קרב תחותמס השלישי",
+        "name_en": "Tel Megiddo - Battle of Thutmose III",
+        "periods": [
+          "bronze-late"
+        ],
+        "religions": [],
+        "temple_era": null,
+        "region": null,
+        "description_he": "מגידו הכנענית בברונזה המאוחרת הייתה זירת אחת הקרבות המתועדים הראשונים בהיסטוריה - ניצחון פרעה תחותמס השלישי על קואליציה כנענית בשנת 1457 לפנה\"ס לערך, המתואר בפירוט בכתובות מקדש כרנך במצרים. העיר המשיכה לשמש מרכז שלטון כנעני-מצרי חשוב, כפי שמעידות אגרות אל-עמארנה שנשלחו ממנה. מיקומה האסטרטגי על \"דרך הים\" הפך את מגידו לאחד ממוקדי העימות המרכזיים בין האימפריות בתקופת הברונזה המאוחרת.",
+        "sources": [
+          {
+            "title": "תל מגידו - ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/%D7%9E%D7%92%D7%99%D7%93%D7%95"
+          },
+          {
+            "title": "גן לאומי מגידו - רשות הטבע והגנים",
+            "url": "https://www.parks.org.il/reserve-park/%D7%92%D7%9F-%D7%9C%D7%90%D7%95%D7%9E%D7%99-%D7%9E%D7%92%D7%99%D7%93%D7%95/"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.183,
+          32.585
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "tel-beit-shean-canaanite",
+        "name_he": "תל בית שאן - המרכז המצרי-כנעני",
+        "name_en": "Tel Beit She'an - Egyptian-Canaanite Center",
+        "periods": [
+          "bronze-late"
+        ],
+        "religions": [],
+        "temple_era": null,
+        "region": null,
+        "description_he": "בית שאן הכנענית שימשה בתקופת הברונזה המאוחרת מרכז מנהל מצרי מרכזי בכנען, ובה נבנו מקדשים כנעניים ומצריים ואף מצבת ניצחון מצרית. שכבות רבות מגלות נוכחות מצרית ישירה, כולל ארמון נציב מצרי וכתובות בכתב חרטומים, המעידות על שליטה ישירה של האימפריה המצרית באזור עמק הירדן. האתר ממחיש את מעמדה הגיאופוליטי הייחודי של בית שאן כצומת בין מצרים לכנען ולסוריה.",
+        "sources": [
+          {
+            "title": "תל בית שאן - ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/%D7%AA%D7%9C_%D7%91%D7%99%D7%AA_%D7%A9%D7%90%D7%9F"
+          },
+          {
+            "title": "הגן הלאומי בית שאן - רשות הטבע והגנים",
+            "url": "https://www.parks.org.il/reserve-park/%D7%92%D7%9F-%D7%9C%D7%90%D7%95%D7%9E%D7%99-%D7%91%D7%99%D7%AA-%D7%A9%D7%90%D7%9F/"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.5028,
+          32.4994
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "tel-gezer-late-bronze",
+        "name_he": "תל גזר - עיר האמארנה",
+        "name_en": "Tel Gezer - Amarna-Era City",
+        "periods": [
+          "bronze-late"
+        ],
+        "religions": [],
+        "temple_era": null,
+        "region": null,
+        "description_he": "גזר הכנענית, בשפלה מול עמק איילון, הייתה עיר-מדינה חשובה שמלכיה שלחו כתשע אגרות לפרעה במסגרת ארכיון אל-עמארנה, המתעדות את חששם מפני חדירת ה״חבירו״ (עברים) לאזור. באתר נחשפה גם ״הבמה הגבוהה הכנענית״ - שורת עשר מצבות מגלית גדולות ששימשה כנראה למקדש פולחני פתוח. גזר תמשיך לשמש עיר מפתח גם בתקופת הברזל, אז תבוצר על ידי שלמה המלך.",
+        "sources": [
+          {
+            "title": "תל גזר - ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/%D7%AA%D7%9C_%D7%92%D7%96%D7%A8"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.92,
+          31.926
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "tel-hazor-late-bronze",
+        "name_he": "תל חצור - שכבת החורבן הכנענית",
+        "name_en": "Tel Hazor - Late Bronze Destruction Layer",
+        "periods": [
+          "bronze-late"
+        ],
+        "religions": [],
+        "temple_era": null,
+        "region": null,
+        "description_he": "בברונזה המאוחרת המשיכה חצור לשמש עיר הממלכה הכנענית הגדולה בצפון הארץ, עם ארמון וכמה מקדשים כנעניים מרשימים שנחשפו בעיר העליונה והתחתונה. העיר נחרבה בשריפה עזה במאה ה-13 לפנה׳ס, שכבת חורבן שיגאל ידין ייחס לכיבוש הישראלי המתואר בספר יהושע (״ואת חצור לבדה שרף יהושע״). שכבת החורבן ומקדשי הפולחן שהתגלו בה נותרים אחד ממוקדי הדיון המרכזיים בזיקה בין הארכיאולוגיה לסיפור הכיבוש המקראי.",
+        "sources": [
+          {
+            "title": "תל חצור - ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/%D7%AA%D7%9C_%D7%97%D7%A6%D7%95%D7%A8"
+          },
+          {
+            "title": "גן לאומי תל חצור - רשות הטבע והגנים",
+            "url": "https://www.parks.org.il/reserve-park/%D7%92%D7%9F-%D7%9C%D7%90%D7%95%D7%9E%D7%99-%D7%AA%D7%9C-%D7%97%D7%A6%D7%95%D7%A8/"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.5678,
+          33.0181
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "city-of-david",
+        "name_he": "עיר דוד",
+        "name_en": "City of David",
+        "periods": [
+          "iron-age"
+        ],
+        "religions": [],
+        "temple_era": "first-temple",
+        "region": null,
+        "description_he": "הגרעין הקדום של ירושלים, על גבעת עופל מדרום להר הבית, שהפך לבירת ממלכת דוד ושלמה ולאחר מכן לבירת ממלכת יהודה עד חורבן בית המקדש הראשון ב-586 לפנה׳ס. באתר נחשפו מבנים מלכותיים, ״המבנה המדורג״ ו״המבנה בעל האבנים הגדולות״ המזוהים אפשרות עם ארמון דוד, וכן מנהרת חזקיהו ובריכת השילוח שנבנו כהיערכות מפני מצור סנחריב (מלכים ב׳ כ). האתר, המנוהל כגן לאומי, הוא אחד ממוקדי הארכיאולוגיה המקראית המרכזיים בעולם.",
+        "sources": [
+          {
+            "title": "עיר דוד - ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/%D7%A2%D7%99%D7%A8_%D7%93%D7%95%D7%93"
+          },
+          {
+            "title": "עיר דוד - רשות הטבע והגנים",
+            "url": "https://www.parks.org.il/reserve-park/%D7%92%D7%9F-%D7%9C%D7%90%D7%95%D7%9E%D7%99-%D7%A2%D7%99%D7%A8-%D7%93%D7%95%D7%93/"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.2358,
+          31.7739
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "tel-dan-iron-age",
+        "name_he": "תל דן - הבמה והשער הישראלי",
+        "name_en": "Tel Dan - Israelite High Place and Gate",
+        "periods": [
+          "iron-age"
+        ],
+        "religions": [],
+        "temple_era": "first-temple",
+        "region": null,
+        "description_he": "דן שימשה עיר הגבול הצפונית של ממלכת ישראל, ובה בנה ירבעם בן נבט ״במה״ פולחנית עם מזבח, כתחליף לעלייה לרגל לירושלים (מלכים א׳ י״ב). באתר נחשפו מזבח וקרני מזבח, שער עירוני ישראלי מפואר בעל מושבים לזקני העיר, ובעיקר ״כתובת בית דוד״ - שבר מצבה ארמית מהמאה ה-9 לפנה׳ס המזכירה לראשונה מחוץ למקרא את ״בית דוד״ ואת ״מלך ישראל״. הממצא נחשב לאחת התגליות המכריעות בביסוס ההיסטוריות של שושלת דוד.",
+        "sources": [
+          {
+            "title": "תל דן - ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/%D7%AA%D7%9C_%D7%93%D7%9F"
+          },
+          {
+            "title": "שמורת תל דן - רשות הטבע והגנים",
+            "url": "https://www.parks.org.il/reserve-park/%D7%A9%D7%9E%D7%95%D7%A8%D7%AA-%D7%AA%D7%9C-%D7%93%D7%9F/"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.6519,
+          33.2489
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "tel-beer-sheva",
+        "name_he": "תל באר שבע",
+        "name_en": "Tel Beer Sheva",
+        "periods": [
+          "iron-age"
+        ],
+        "religions": [],
+        "temple_era": "first-temple",
+        "region": null,
+        "description_he": "עיר מנהל ישראלית מבוצרת ומתוכננת היטב מהמאה ה-8 לפנה\"ס, המזוהה כמרכז המנהלי הדרומי של ממלכת יהודה על גבול הנגב, ומופיעה במקרא כסימן לגבול הדרומי של הארץ (\"מדן ועד באר שבע\"). באתר נחשפו מערכת מים תת-קרקעית מרשימה, מחסנים, ומזבח קרניים גדול שפורק - ממצא הנקשר למדיניות ריכוזיות הפולחן של המלך חזקיהו. התל, אחד משלושה תלים מקראיים שהוכרזו אתר מורשת עולמית של אונסק\"א, מנוהל כגן לאומי.",
+        "sources": [
+          {
+            "title": "תל באר שבע - ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/%D7%AA%D7%9C_%D7%91%D7%90%D7%A8_%D7%A9%D7%91%D7%A2"
+          },
+          {
+            "title": "גן לאומי תל באר שבע - רשות הטבע והגנים",
+            "url": "https://www.parks.org.il/reserve-park/%D7%92%D7%9F-%D7%9C%D7%90%D7%95%D7%9E%D7%99-%D7%AA%D7%9C-%D7%91%D7%90%D7%A8-%D7%A9%D7%91%D7%A2/"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.8388,
+          31.2437
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "samaria-sebastia",
+        "name_he": "שומרון (סבסטיה)",
+        "name_en": "Samaria / Sebastia",
+        "periods": [
+          "iron-age"
+        ],
+        "religions": [],
+        "temple_era": "first-temple",
+        "region": null,
+        "description_he": "בירת ממלכת ישראל שהוקמה על ידי המלך עמרי במאה ה-9 לפנה׳ס ובוצרה והורחבה על ידי בנו אחאב, כמתואר בספר מלכים א׳. בחפירות נחשף ארמון מלכותי מפואר, ועליו נמצאו ״שנהבי שומרון״ המעוטרים בסגנון פיניקי, וכן מאות ״אוסטרקוני שומרון״ - שברי חרס עם רישומי מנהל בכתב עברי עתיק. שומרון שימשה בירת ממלכת ישראל עד חורבנה בידי האשורים ב-722 לפנה׳ס, ומהווה אתר מפתח להבנת התרבות החומרית והמנהל של הממלכה הצפונית.",
+        "sources": [
+          {
+            "title": "שומרון (עיר) - ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/%D7%A9%D7%95%D7%9E%D7%A8%D7%95%D7%9F_(%D7%A2%D7%99%D7%A8)"
+          },
+          {
+            "title": "פארק גן לאומי שומרון (סבסטיה) - רשות הטבע והגנים",
+            "url": "https://www.parks.org.il/reserve-park/%D7%A4%D7%90%D7%A8%D7%A7-%D7%92%D7%9F-%D7%9C%D7%90%D7%95%D7%9E%D7%99-%D7%A9%D7%95%D7%9E%D7%A8%D7%95%D7%9F-%D7%A1%D7%91%D7%A1%D7%98%D7%99%D7%94/"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.1928,
+          32.2769
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "tel-megiddo-iron-age",
+        "name_he": "תל מגידו - שערי המלוכה ואורוות",
+        "name_en": "Tel Megiddo - Royal Gate and Stables",
+        "periods": [
+          "iron-age"
+        ],
+        "religions": [],
+        "temple_era": "first-temple",
+        "region": null,
+        "description_he": "בתקופת הברזל שימש מגידו אחד מערי המפתח של ממלכת ישראל, ובו נחשפו שער עירוני בעל שישה תאים המיוחס לתקופת שלמה המלך (מלכים א׳ ט׳), וכן מבנים המשמשים כאורוות סוסים גדולות מתקופת ירבעם השני או אחאב. באתר נחשף גם מנהרת מים תת-קרקעית מרשימה מהמאה ה-9 לפנה׳ס, שהזרימה מים אל תוך העיר המבוצרת בעת מצור. מגידו נכבשה ב-732 לפנה׳ס בידי האשורים, אירוע ההופך אותה לאחד מסמלי מפלת ממלכת ישראל.",
+        "sources": [
+          {
+            "title": "תל מגידו - ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/%D7%9E%D7%92%D7%99%D7%93%D7%95"
+          },
+          {
+            "title": "גן לאומי מגידו - רשות הטבע והגנים",
+            "url": "https://www.parks.org.il/reserve-park/%D7%92%D7%9F-%D7%9C%D7%90%D7%95%D7%9E%D7%99-%D7%9E%D7%92%D7%99%D7%93%D7%95/"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.183,
+          32.585
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "tel-lachish-iron-age",
+        "name_he": "תל לכיש - מצור סנחריב",
+        "name_en": "Tel Lachish - Siege of Sennacherib",
+        "periods": [
+          "iron-age"
+        ],
+        "religions": [],
+        "temple_era": "first-temple",
+        "region": null,
+        "description_he": "לכיש שימשה בתקופת הברזל העיר השנייה בחשיבותה בממלכת יהודה אחרי ירושלים, ונכבשה במצור אכזרי בידי סנחריב מלך אשור ב-701 לפנה׳ס - אירוע המתועד הן במקרא (מלכים ב׳ י׳ח) והן בתבליטי סנחריב המפורסמים מארמונו בנינוה. בתל נחשפו הסוללה האשורית לכיבוש העיר, שער העיר, וארמון-מצודה גדול, וכן ״אגרות לכיש״ - כתובות חרס עבריות מהימים האחרונים של הממלכה, ערב חורבן בית ראשון בידי הבבלים. האתר מהווה עדות ארכיאולוגית-היסטורית נדירה המשלימה את התיאור המקראי.",
+        "sources": [
+          {
+            "title": "תל לכיש - ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/%D7%AA%D7%9C_%D7%9C%D7%9B%D7%99%D7%A9"
+          },
+          {
+            "title": "גן לאומי תל לכיש - רשות הטבע והגנים",
+            "url": "https://www.parks.org.il/reserve-park/lachish/"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.8478,
+          31.5646
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "city-of-david-nehemiah-wall",
+        "name_he": "עיר דוד – חומת נחמיה",
+        "name_en": "City of David – Nehemiah's Wall",
+        "periods": [
+          "persian"
+        ],
+        "religions": [],
+        "temple_era": "second-temple",
+        "region": null,
+        "description_he": "לאחר הכרזת כורש (538 לפנה\"ס) שבו יהודים גולי בבל וחידשו את היישוב על גבעת עיר דוד. בשנת 445 לפנה\"ס הגיע נחמיה בן חכליה מבבל ובנה מחדש את חומות ירושלים החרבות, כמתואר בספר נחמיה. בחפירות עיר דוד נחשפו שרידי חומה ומגדל מהתקופה הפרסית המיוחסים לבנייתו, לצד עדויות להתיישבות מצומצמת יחסית בירושלים באותה תקופה.",
+        "sources": [
+          {
+            "title": "עיר דוד – ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/עיר_דוד"
+          },
+          {
+            "title": "עיר דוד – רקע כללי",
+            "url": "https://cityofdavid.org.il/city-of-david-general-background/"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.2359,
+          31.7739
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ramat-rachel-persian-palace",
+        "name_he": "רמת רחל – ארמון התקופה הפרסית",
+        "name_en": "Ramat Rachel – Persian Period Palace",
+        "periods": [
+          "persian"
+        ],
+        "religions": [],
+        "temple_era": "second-temple",
+        "region": null,
+        "description_he": "רמת רחל, הממוקמת בין ירושלים לבית לחם, שימשה כמרכז מנהלי מלכותי חשוב לאורך התקופות האשורית, הבבלית והפרסית. באתר התגלה ארמון מפואר עם גנים מושקים, ולמעלה מ-280 חותמות \"יהוד\" מהתקופה הפרסית נמצאו כאן – כ-85% מכלל החותמות מסוג זה שנמצאו ביהודה, המעידות על תפקידו כמרכז גביית מסים ואספקה של פחוות יהוד תחת השלטון הפרסי.",
+        "sources": [
+          {
+            "title": "Ramat Rachel – BibleWalks",
+            "url": "https://www.biblewalks.com/ramatrachel/"
+          },
+          {
+            "title": "The kibbutz outside Jerusalem built atop an ancient palace – Times of Israel",
+            "url": "https://www.timesofisrael.com/the-kibbutz-outside-jerusalem-built-atop-an-ancient-palace/"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.2144,
+          31.7364
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "tel-dor-persian",
+        "name_he": "תל דור – נמל התקופה הפרסית",
+        "name_en": "Tel Dor – Persian Period Port City",
+        "periods": [
+          "persian"
+        ],
+        "religions": [],
+        "temple_era": null,
+        "region": null,
+        "description_he": "תל דור, על חוף הכרמל, היה עיר נמל פיניקית-פרסית מרכזית בתקופה הפרסית, ששימשה בסיס לצי הפרסי ולסחר הימי בין החוף הארץ-ישראלי לעולם הפיניקי והיווני. בתקופה זו נקבעה תוכנית העיר ורחובותיה, ששרדו עד התקופה הרומית, ואופיין שינוי בשיטות הבנייה לשימוש באבני גזית. השם 'דור' השתנה בהדרגה ל'דורה' היוונית, המעיד על ההשפעה ההלניסטית ההולכת וגוברת בסוף התקופה.",
+        "sources": [
+          {
+            "title": "תל דור – ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/תל_דור"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.9167,
+          32.6167
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "tel-lachish-persian",
+        "name_he": "תל לכיש – מבצר הבירה הפרסי",
+        "name_en": "Tel Lachish – Persian Period Residency",
+        "periods": [
+          "persian"
+        ],
+        "religions": [],
+        "temple_era": null,
+        "region": null,
+        "description_he": "לאחר חורבנה בידי הבבלים, יושבה לכיש מחדש בתקופה הפרסית ושימשה כבירת מחוז (מדינה) בתוך פחוות יהוד, עם מבנה מנהלי מרכזי המכונה בספרות המחקרית \"הארמון-מקדש\" או \"מקדש השמש\". באתר נמצאו ממצאים המעידים על קשר למינהל הפרסי, ובהם שבר קרמי נדיר עם שמו של דריווש ובנו אחשוורוש, המחזק את הזיקה ההיסטורית לשלטון האימפריה האח'מנית באזור.",
+        "sources": [
+          {
+            "title": "תל לכיש – ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/תל_לכיש"
+          },
+          {
+            "title": "דש מדריווש: נחשפה כתובת נדירה בתל לכיש – וואלה תיירות",
+            "url": "https://travel.walla.co.il/item/3562311"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.8514,
+          31.5644
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "tel-megiddo-persian",
+        "name_he": "תל מגידו – מצודת התקופה הפרסית",
+        "name_en": "Tel Megiddo – Persian Period Level",
+        "periods": [
+          "persian"
+        ],
+        "religions": [],
+        "temple_era": null,
+        "region": null,
+        "description_he": "תל מגידו, אתר מורשת עולמית של אונסק\"ו הנמצא על דרך הים החוצה את עמק יזרעאל, מגלה רצף התיישבות בן אלפי שנים עם למעלה מעשרים שכבות. השכבה הפרסית (שכבה I, מאות 6–4 לפנה\"ס) מלמדת שהעיר הצטמצמה למצודה קטנה ששימשה תחנת דרך ומעוז לצבא הפרסי בעת מסעותיו לאורך דרך הים לכיוון מצרים.",
+        "sources": [
+          {
+            "title": "תל מגידו – ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/תל_מגידו"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.1833,
+          32.5853
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "tel-arad-persian",
+        "name_he": "תל ערד – המצודה בתקופה הפרסית",
+        "name_en": "Tel Arad – Persian Period Fortress",
+        "periods": [
+          "persian"
+        ],
+        "religions": [],
+        "temple_era": null,
+        "region": null,
+        "description_he": "בתל ערד, בקצה מדבר יהודה, נחשפה מצודה שהוקמה בתקופת הברזל והמשיכה להתקיים גם בתקופה הפרסית כתחנת דרך שסיפקה לנוסעים בשליחות רשמית מזון – בעיקר שמן, קמח ויין. באתר התגלו כ-88 אוסטרקונים (חרסי כתובת) בעברית עתיקה, המהווים מקור חשוב להבנת המינהל והחיים הכלכליים באזור הנגב הצפוני בשלהי תקופת בית ראשון ובתקופה הפרסית.",
+        "sources": [
+          {
+            "title": "מכתבי ערד – ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/מכתבי_ערד"
+          },
+          {
+            "title": "תל ערד – ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/תל_ערד"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.1264,
+          31.2811
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "modiin-maccabees",
+        "name_he": "מודיעין – עיר המכבים",
+        "name_en": "Modi'in – Hometown of the Maccabees",
+        "periods": [
+          "hellenistic"
+        ],
+        "religions": [],
+        "temple_era": null,
+        "region": null,
+        "description_he": "מודיעין הייתה ביתה של משפחת הכהנים החשמונאים, ובה פרץ ב-167 לפנה\"ס המרד נגד גזירות אנטיוכוס הרביעי כאשר מתתיהו הכהן סירב להקריב קרבן לאלילים והרג חייל יווני ומתייוון. מהאירוע הזה יצא המרד שהוביל בנו יהודה המכבי, שהחזיר את השלטון העצמאי היהודי וטיהר את בית המקדש – אירוע המצוין עד היום בחג החנוכה. באזור מודיעין המודרנית נחפרו אתרים המיוחסים לתקופה החשמונאית, ובהם אום אל-עומדאן.",
+        "sources": [
+          {
+            "title": "מכבים – ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/מכבים"
+          },
+          {
+            "title": "חשמונאים – ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/החשמונאים"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.0181,
+          31.8969
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "tel-maresha-beit-guvrin",
+        "name_he": "תל מראשה (בית גוברין) – עיר הלניסטית",
+        "name_en": "Tel Maresha – Hellenistic City",
+        "periods": [
+          "hellenistic"
+        ],
+        "religions": [],
+        "temple_era": null,
+        "region": null,
+        "description_he": "מראשה הייתה עיר אדומית-סידונית-הלניסטית פורחת בשפלת יהודה בתקופה ההלניסטית, ששימשה מרכז מסחרי בין החוף להר. באתר, המהווה חלק מגן לאומי בית גוברין-מראשה שהוכרז אתר מורשת עולמית, התגלו מערות מלאכותיות ומערות קבורה עשירות בכיתובים וציורים יווניים המעידות על אוכלוסייה מעורבת שהתקיימה עד כיבושה על ידי יוחנן הורקנוס החשמונאי בסוף המאה ה-2 לפנה\"ס.",
+        "sources": [
+          {
+            "title": "מרשה – ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/מרשה"
+          },
+          {
+            "title": "גן לאומי בית גוברין - מרשה – רשות הטבע והגנים",
+            "url": "https://www.parks.org.il/reserve-park/גן-לאומי-בית-גוברין-מרשה/"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.8994,
+          31.6017
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "hasmonean-jerusalem-city-of-david",
+        "name_he": "עיר דוד – ירושלים החשמונאית",
+        "name_en": "Hasmonean Jerusalem – City of David",
+        "periods": [
+          "hellenistic"
+        ],
+        "religions": [],
+        "temple_era": null,
+        "region": null,
+        "description_he": "לאחר טיהור בית המקדש ב-164 לפנה\"ס והקמת השלטון החשמונאי העצמאי, התרחבה ירושלים משמעותית מעבר לגבולות עיר דוד הקטנה, ונבנתה \"החומה הראשונה\" שהקיפה את העיר העליונה. בעיר דוד עצמה נחשפים שרידי מבנים ומערכות מים מהתקופה החשמונאית, המעידים על התחדשות היישוב היהודי בירושלים לאחר תקופת השלטון הסלווקי וגזירותיו.",
+        "sources": [
+          {
+            "title": "חשמונאים – ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/החשמונאים"
+          },
+          {
+            "title": "עיר דוד – ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/עיר_דוד"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.2359,
+          31.7739
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "tel-gezer-hellenistic",
+        "name_he": "תל גזר – מבצר סלווקי בשפלה",
+        "name_en": "Tel Gezer – Hellenistic/Seleucid Fortress",
+        "periods": [
+          "hellenistic"
+        ],
+        "religions": [],
+        "temple_era": null,
+        "region": null,
+        "description_he": "בתקופה ההלניסטית הפכה גזר, השולטת על צומת הדרכים בין השפלה להר יהודה, למרכז כוחות סלווקי מבוצר שממנו יצאו הכוחות היווניים להילחם ביהודה המכבי, בין השאר בקרב בית חורון. לאחר תבוסות נוספות, ובהן קרב אמאוס, נסוגו היוונים לגזר, עד שהעיר נכבשה סופית בידי שמעון החשמונאי – אירוע שסימן את השלמת השחרור מהשלטון הסלווקי בשפלה.",
+        "sources": [
+          {
+            "title": "תל גזר – ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/תל_גזר"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.9256,
+          31.8583
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "jericho-hasmonean-winter-palaces",
+        "name_he": "ארמונות החורף החשמונאיים ביריחו",
+        "name_en": "Hasmonean Winter Palaces, Jericho",
+        "periods": [
+          "hellenistic"
+        ],
+        "religions": [],
+        "temple_era": null,
+        "region": null,
+        "description_he": "במערב בקעת יריחו, סמוך לנחל פרת ולדרך הרומית העתיקה מירושלים ליריחו, בנו מלכי בית חשמונאי (ובהמשך גם הורדוס) מתחם ארמונות חורף מפואר. הארמונות כללו בריכות שחייה, בתי מרחץ וגנים נרחבים, ושיקפו את אורח החיים המלכותי של המשפחה החשמונאית והייתה זו נקודת מפגש חשובה בין ירושלים לבקעת הירדן, במרחק כמה שעות הליכה מהבירה.",
+        "sources": [
+          {
+            "title": "ארמונות החורף ואחוזת המלך ביריחו – ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/ארמונות_החורף_ואחוזת_המלך_ביריחו"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.4235,
+          31.871
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "beit-shean-hellenistic",
+        "name_he": "בית שאן (סקיתופוליס) – היסוד ההלניסטי",
+        "name_en": "Beit She'an (Scythopolis) – Hellenistic Foundation",
+        "periods": [
+          "hellenistic"
+        ],
+        "religions": [],
+        "temple_era": null,
+        "region": null,
+        "description_he": "לאחר כיבושי אלכסנדר מוקדון יושבה בית שאן מחדש כעיר הלניסטית בשם ניסה-סקיתופוליס, והפכה למרכז אורבני יווני עם תכנון עירוני, מקדשים ומוסדות פוליס. תושביה היווניים-סורים היו לעיתים במתיחות עם התושבים היהודים בסביבה, עד שהעיר נכבשה בידי אלכסנדר ינאי החשמונאי בתחילת המאה ה-1 לפנה\"ס, וחזרה לשגשג רק בתקופה הרומית שלאחר מכן כחברה בדקאפוליס.",
+        "sources": [
+          {
+            "title": "בית שאן – ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/בית_שאן"
+          },
+          {
+            "title": "גן לאומי בית שאן – רשות הטבע והגנים",
+            "url": "https://www.parks.org.il/reserve-park/גן-לאומי-בית-שאן/"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.5008,
+          32.4996
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "masada",
+        "name_he": "מצדה",
+        "name_en": "Masada",
+        "periods": [
+          "roman"
+        ],
+        "religions": [],
+        "temple_era": "second-temple",
+        "region": null,
+        "description_he": "מצדה, מצוק סלע מבודד מעל ים המלח, שופצה והוקמה כארמון-מבצר מפואר בידי הורדוס בשנים 37–31 לפנה\"ס. בשנות המרד הגדול ברומאים (66–73/74 לספירה) התבצרו בה קנאים יהודים, ובסיום המצור הרומי הממושך, לפי תיאורו של יוספוס בן מתתיהו, בחרו המגינים בהתאבדות קולקטיבית על פני כניעה. האתר, המוכרז מורשת עולמית של אונסק\"ו, הפך לסמל לגבורה ולעצמאות יהודית.",
+        "sources": [
+          {
+            "title": "מצדה – רשות הטבע והגנים",
+            "url": "https://www.parks.org.il/new/masada/"
+          },
+          {
+            "title": "מצדה – ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/מצדה"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.3536,
+          31.3156
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "herodium",
+        "name_he": "הרודיון",
+        "name_en": "Herodium",
+        "periods": [
+          "roman"
+        ],
+        "religions": [],
+        "temple_era": "second-temple",
+        "region": null,
+        "description_he": "הרודיון, כ-12 ק\"מ דרומית לירושלים, הוא מבצר-ארמון מלאכותי שהקים הורדוס בין השנים 22–15 לפנה\"ס, הכולל מצודה עגולה על פסגת גבעה מלאכותית ולמרגלותיה \"הרודיון התחתון\" עם ארמון, בריכת שחייה ומבני טקס. יוספוס פלביוס מספר כי הורדוס נקבר במקום בטקס מפואר, וקברו התגלה בפועל ב-2007 בידי הארכיאולוג אהוד נצר. באתר נמצאו גם עדויות להתבצרות מורדים בתקופת המרד הגדול ומרד בר כוכבא.",
+        "sources": [
+          {
+            "title": "הרודיון – ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/הרודיון"
+          },
+          {
+            "title": "גן לאומי הרודיון – רשות הטבע והגנים",
+            "url": "https://www.parks.org.il/reserve-park/פארק-גן-לאומי-הרודיון/"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.2469,
+          31.6664
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "temple-mount-southern-wall-jerusalem",
+        "name_he": "הר הבית והחפירות הדרומיות – ירושלים",
+        "name_en": "Temple Mount & Southern Wall Excavations, Jerusalem",
+        "periods": [
+          "roman"
+        ],
+        "religions": [],
+        "temple_era": "second-temple",
+        "region": null,
+        "description_he": "הורדוס הרחיב את הר הבית והקים סביבו רחבה ענקית תמוכה בקירות תמך אדירים, ובהם הכותל המערבי, ובנה מחדש את בית המקדש בפאר רב. בחפירות הארכיאולוגיות הדרומיות והמערביות, הכוללות את קשת רובינסון ואת המדרגות המובילות לכניסות המקדש, נחשפו רחוב עלייה לרגל, חנויות ואבנים עצומות מהרס המקדש בידי הרומאים בשנת 70 לספירה, המהוות עדות ארכיאולוגית ישירה לחורבן בית שני.",
+        "sources": [
+          {
+            "title": "קשת רובינסון – ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/קשת_רובינסון"
+          },
+          {
+            "title": "הכותל הדרומי – ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/הכותל_הדרומי"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.2345,
+          31.7761
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "qumran",
+        "name_he": "קומראן",
+        "name_en": "Qumran",
+        "periods": [
+          "roman"
+        ],
+        "religions": [],
+        "temple_era": "second-temple",
+        "region": null,
+        "description_he": "בקומראן, על גדות ים המלח הצפון-מערביות, התיישבה החל מהמאה ה-2 לפנה\"ס כת מדברית (המזוהה לרוב עם האיסיים) שקיימה אורח חיים סגפני וכתבה טקסטים דתיים. במערות הסמוכות לאתר התגלו מגילות ים המלח – האוסף העתיק ביותר שנמצא של כתבי המקרא וטקסטים כיתתיים מתקופת הבית השני, הנחשב לאחד הממצאים הארכיאולוגיים החשובים ביותר של המאה ה-20.",
+        "sources": [
+          {
+            "title": "קומראן – ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/קומראן"
+          },
+          {
+            "title": "גן לאומי קומראן – רשות הטבע והגנים",
+            "url": "https://www.parks.org.il/reserve-park/פארק-גן-לאומי-קומראן/"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.4592,
+          31.7415
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "gamla",
+        "name_he": "גמלא",
+        "name_en": "Gamla",
+        "periods": [
+          "roman"
+        ],
+        "religions": [],
+        "temple_era": "second-temple",
+        "region": null,
+        "description_he": "גמלא, עיר יהודית על רכס תלול ברמת הגולן שכינויה נגזר מצורתה כגמל, הייתה אחת המעוזים המרכזיים של המורדים היהודים בגליל ובגולן במרד הגדול נגד רומא. בשנת 67 לספירה נכבשה העיר לאחר מצור קשה בידי הלגיונות הרומיים בפיקוד אספסיאנוס, ולפי יוספוס פלביוס בחרו רבים מתושביה לקפוץ מהצוק ולמות ולא ליפול בשבי – מה שהעניק לאתר את הכינוי \"מצדה הגלילית\".",
+        "sources": [
+          {
+            "title": "גמלא (יישוב עתיק) – ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/גמלא_(יישוב_עתיק)"
+          },
+          {
+            "title": "שמורת גמלא – רשות הטבע והגנים",
+            "url": "https://www.parks.org.il/reserve-park/שמורת-גמלא/"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.7469,
+          32.9036
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "caesarea-roman",
+        "name_he": "קיסריה – העיר הרומית",
+        "name_en": "Caesarea Maritima – Roman City",
+        "periods": [
+          "roman"
+        ],
+        "religions": [],
+        "temple_era": null,
+        "region": null,
+        "description_he": "קיסריה נוסדה בידי הורדוס בין השנים 25–13 לפנה\"ס ככל נמל מלאכותי ועיר מפוארת שקרא על שם הקיסר אוגוסטוס. לאחר גירוש הורדוס ארכלאוס (6 לספירה) הפכה קיסריה למרכז המנהלי הרומי של פרובינקיית יהודה ומקום מושבם של הנציבים הרומיים, ובהם פונטיוס פילטוס. באתר, המנוהל כיום כגן לאומי, נחשפו תיאטרון רומי, היפודרום, אמת מים ושרידי נמל ענקי, המעידים על מעמדה כעיר מפתח בעולם הרומי.",
+        "sources": [
+          {
+            "title": "קיסריה – ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/קיסריה"
+          },
+          {
+            "title": "גן לאומי קיסריה – רשות הטבע והגנים",
+            "url": "https://www.parks.org.il/reserve-park/גן-לאומי-קיסריה/"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.8917,
+          32.5
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "betar-bar-kochba",
+        "name_he": "ביתר – מעוזו האחרון של בר כוכבא",
+        "name_en": "Betar – Bar Kokhba's Last Stronghold",
+        "periods": [
+          "roman"
+        ],
+        "religions": [],
+        "temple_era": null,
+        "region": null,
+        "description_he": "ביתר, הנמצאת סמוך לכפר בתיר שבהרי ירושלים, שימשה כמעוז המבוצר האחרון של לוחמי מרד בר כוכבא (132–135 לספירה) ושל המנהיג שמעון בר כוסבא (בר כוכבא) עצמו. נפילת ביתר בפני הרומאים, לאחר מצור ממושך, סימנה את דיכוי המרד היהודי השלישי והאחרון נגד רומא, ובעקבותיה הוגלו יהודים רבים מיהודה ושונה שם הפרובינקיה ל\"סוריה-פלשתינה\".",
+        "sources": [
+          {
+            "title": "מרד בר כוכבא – ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/מרד_בר_כוכבא"
+          },
+          {
+            "title": "ביתר – ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/ביתר"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.1367,
+          31.7239
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "holy-sepulchre-byzantine",
+        "name_he": "כנסיית הקבר – ירושלים",
+        "name_en": "Church of the Holy Sepulchre",
+        "periods": [
+          "byzantine"
+        ],
+        "religions": [],
+        "temple_era": null,
+        "region": null,
+        "description_he": "כנסיית הקבר נבנתה במאה ה-4 בעקבות ביקורה של הלנה, אם הקיסר קונסטנטינוס, שזיהתה במקום את אתרי הצליבה והקבורה של ישו. המבנה היה החשוב והמרכזי ביותר בירושלים הביזנטית, כפי שמתועד במפת מידבא מהמאה ה-6, ושופץ בהרחבה בידי הקיסר יוסטיניאנוס הראשון. הכנסייה מסמלת את הפיכת ירושלים למרכז עלייה לרגל נוצרי מרכזי בתקופה הביזנטית.",
+        "sources": [
+          {
+            "title": "כנסיית הקבר – ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/כנסיית_הקבר"
+          },
+          {
+            "title": "ירושלים בתקופה הביזנטית – ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/ירושלים_בתקופה_הביזנטית"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.2297,
+          31.7784
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "nativity-church-bethlehem",
+        "name_he": "כנסיית המולד – בית לחם",
+        "name_en": "Church of the Nativity, Bethlehem",
+        "periods": [
+          "byzantine"
+        ],
+        "religions": [],
+        "temple_era": null,
+        "region": null,
+        "description_he": "כנסיית המולד הוקמה לראשונה במאה ה-4 מעל המערה המזוהה במסורת הנוצרית כמקום הולדתו של ישו, והיא אחת הכנסיות הפעילות העתיקות בעולם. חלקים ניכרים מהמבנה הנוכחי נבנו מחדש בידי הקיסר יוסטיניאנוס במאה ה-6, ושרידי פסיפס ביזנטי מתקופה זו עדיין נראים מעל אזור הכוכב במערת המולד. הכנסייה הוכרזה ב-2012 לאתר מורשת עולמית ראשון של אונסק\"ו בשטחי הרשות הפלסטינית.",
+        "sources": [
+          {
+            "title": "כנסיית המולד – ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/כנסיית_המולד"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.2076,
+          31.7043
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "beit-alfa-synagogue",
+        "name_he": "בית הכנסת בבית אלפא",
+        "name_en": "Beit Alfa Synagogue Mosaic",
+        "periods": [
+          "byzantine"
+        ],
+        "religions": [],
+        "temple_era": null,
+        "region": null,
+        "description_he": "בית הכנסת בבית אלפא, שנבנה במאה ה-5 לספירה ורוצף בפסיפס בשנים 518–527 בערך, מציג את אחד הפסיפסים היהודיים המרהיבים ביותר שהתגלו בישראל. הפסיפס כולל שלושה חלקים: ארון קודש עם מנורות, גלגל מזלות עם דמות הליוס אל השמש היווני במרכזו ושמות המזלות בעברית, ותיאור עקדת יצחק – עדות ייחודית למפגש בין המסורת היהודית לאמנות ולתרבות ההלניסטית-ביזנטית בתקופה זו.",
+        "sources": [
+          {
+            "title": "בית הכנסת בבית אלפא – ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/בית_הכנסת_בבית_אלפא"
+          },
+          {
+            "title": "גן לאומי בית אלפא – רשות הטבע והגנים",
+            "url": "https://www.parks.org.il/reserve-park/גן-לאומי-בית-אלפא/"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.4256,
+          32.5083
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "tzippori-byzantine-mosaics",
+        "name_he": "ציפורי – פסיפסי התקופה הביזנטית",
+        "name_en": "Tzippori (Sepphoris) – Byzantine Mosaics",
+        "periods": [
+          "byzantine"
+        ],
+        "religions": [],
+        "temple_era": null,
+        "region": null,
+        "description_he": "ציפורי, ששימשה בעבר בירת הגליל ומקום מושבה של הסנהדרין וחתימת המשנה, המשיכה לשגשג גם בתקופה הביזנטית כעיר מעורבת יהודית-נוצרית עם קהילה יהודית משמעותית. באתר נחשפו עשרות פסיפסים מרהיבים מהתקופה הרומית והביזנטית, ובהם פסיפס \"בית חג הנילוס\" המתאר את חגיגות עליית הנילוס במצרים וכנסייה ביזנטית, מה שהעניק לציפורי את הכינוי \"עיר הפסיפסים\".",
+        "sources": [
+          {
+            "title": "גן לאומי ציפורי – רשות הטבע והגנים",
+            "url": "https://www.parks.org.il/reserve-park/גן-לאומי-ציפורי/"
+          },
+          {
+            "title": "ציפורי (יישוב עתיק) – ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/ציפורי_(יישוב_עתיק)"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.2825,
+          32.7522
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "avdat-byzantine",
+        "name_he": "עבדת – עיר נבטית-ביזנטית בנגב",
+        "name_en": "Avdat – Nabatean/Byzantine Negev City",
+        "periods": [
+          "byzantine"
+        ],
+        "religions": [],
+        "temple_era": null,
+        "region": null,
+        "description_he": "עבדת הייתה תחנת מפתח על דרך הבשמים הנבטית שקישרה בין פטרה לנמל עזה, ובתקופה הביזנטית הפכה מעיר מסחר נבטית ליישוב חקלאי-נוצרי משגשג עם כנסיות, מנזר ומערכות חקלאיות מתקדמות לניצול מי נגר במדבר. בשנת 2005 הוכרזה עבדת, יחד עם ממשית, שבטה וחלוצה, לאתר מורשת עולמית של אונסק\"ו במסגרת \"ערי הבשמים הנבטיות בנגב\", המדגים את יכולת ההתיישבות וההסתגלות לתנאי המדבר בשלהי העת העתיקה.",
+        "sources": [
+          {
+            "title": "עבדת – ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/עבדת"
+          },
+          {
+            "title": "גן לאומי עבדת – רשות הטבע והגנים",
+            "url": "https://www.parks.org.il/activity/גן-לאומי-עבדת-סיור-באתר-מורשת-עולמית/"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.7719,
+          30.7906
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "shivta-byzantine",
+        "name_he": "שבטה – עיר חקלאית ביזנטית בנגב",
+        "name_en": "Shivta – Byzantine Agricultural City",
+        "periods": [
+          "byzantine"
+        ],
+        "religions": [],
+        "temple_era": null,
+        "region": null,
+        "description_he": "שבטה, השוכנת בין ניצנה לשדה בוקר בנגב, יושבה החל מהמאה ה-1 והגיעה לשיא פריחתה בתקופה הביזנטית כיישוב חקלאי-נוצרי המבוסס על שיטות קציר נגר מתוחכמות שאפשרו גידולי כרם ומטע במדבר. באתר, המשומר להפליא, נחשפות שלוש כנסיות ביזנטיות, בתי מגורים ומערכות מים, וב-2005 הוכרזה שבטה יחד עם עבדת, ממשית וחלוצה לאתר מורשת עולמית של אונסק\"ו במסגרת \"דרך הבשמים – ערי המדבר בנגב\".",
+        "sources": [
+          {
+            "title": "שבטה – ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/שבטה"
+          },
+          {
+            "title": "ברוכים הבאים לגן לאומי שבטה – רשות הטבע והגנים",
+            "url": "https://www.parks.org.il/article/shivta-2/"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.6306,
+          30.8797
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "dome-of-the-rock",
+        "name_he": "כיפת הסלע",
+        "name_en": "Dome of the Rock",
+        "periods": [
+          "early-arab"
+        ],
+        "religions": [],
+        "temple_era": null,
+        "region": null,
+        "description_he": "כיפת הסלע נבנתה בשנת 691-692 לספירה ביוזמת הח׳ליף האומיי עבד אל-מלכ בן מרואן, מעל אבן השתייה שבהר הבית. זהו המבנה האסלאמי העתיק ביותר ששרד בשלמותו, וסימן את ביסוס השלטון האומיי בירושלים ואת מעמדה הקדוש של העיר באסלאם. הכיפה התמוטטה ברעידת אדמה ב-1016 ונבנתה מחדש, ולאחר כיבוש צלאח א-דין ב-1187 שבה לשמש מקום קדוש למוסלמים.",
+        "sources": [
+          {
+            "title": "כיפת הסלע – ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/כיפת_הסלע"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.2354,
+          31.778
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "al-aqsa-mosque",
+        "name_he": "מסגד אל-אקצא",
+        "name_en": "Al-Aqsa Mosque",
+        "periods": [
+          "early-arab"
+        ],
+        "religions": [],
+        "temple_era": null,
+        "region": null,
+        "description_he": "מסגד אל-אקצא נבנה בתחילת המאה ה-8 בידי הח׳ליפים האומיים, כמסגד הראשי בהר הבית ואחד משלושת המקומות הקדושים ביותר באסלאם. המסגד נהרס ושוקם מספר פעמים בעקבות רעידות אדמה בתקופה האומיית והעבאסית. מעמדו ההיסטורי משקף את הפיכת ירושלים למוקד עלייה לרגל מוסלמי כבר בתקופה הערבית הקדומה.",
+        "sources": [
+          {
+            "title": "מסגד אל-אקצא – ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/מסגד_אל-אקצא"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.2358,
+          31.7761
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ramla-pool-of-arches",
+        "name_he": "בריכת הקשתות ומייסוד רמלה",
+        "name_en": "Ramla – Pool of the Arches (Birkat al-Anaziya)",
+        "periods": [
+          "early-arab"
+        ],
+        "religions": [],
+        "temple_era": null,
+        "region": null,
+        "description_he": "רמלה נוסדה בשנת 715 לספירה בידי הח׳ליף האומיי סולימאן בן עבד אל-מלכ, כעיר בירה מוסלמית מתוכננת מראש – מקרה חריג בתולדות הארץ. בריכת הקשתות, מאגר מים תת-קרקעי מפואר, נבנתה בתקופה העבאסית בשנת 789 בפקודת הח׳ליף הארון א-רשיד, והיא המבנה היחיד בישראל המיוחס בוודאות לתקופה העבאסית. שיטת הקשת המחודדת ששימשה בבנייתה נחשבת למבשרת הקשת הגותית האירופית.",
+        "sources": [
+          {
+            "title": "בריכת הקשתות – ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/בריכת_הקשתות"
+          },
+          {
+            "title": "רמלה – ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/רמלה"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.8635,
+          31.927
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "khirbat-al-minya",
+        "name_he": "חורבת מנים (ארמון אומיי)",
+        "name_en": "Khirbat al-Minya",
+        "periods": [
+          "early-arab"
+        ],
+        "religions": [],
+        "temple_era": null,
+        "region": null,
+        "description_he": "חורבת מנים היא שרידי ארמון חורף אומיי מהמאה ה-8, הבנוי על שפת הכנרת הצפונית-מערבית ליד קיבוץ גינוסר. הארמון נבנה ביוזמת הח׳ליף אל-וליד הראשון או השני, אך בנייתו לא הושלמה והמבנה נחרב ככל הנראה ברעידת האדמה של שנת 749. האתר ממחיש את ההתיישבות האומיית המפוארת סביב הכנרת בתקופה הערבית הקדומה, ובניגוד לחירבת אל-מפג׳ר אינו מוסדר כיום לביקור.",
+        "sources": [
+          {
+            "title": "חורבת מנים – ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/חורבת_מנים"
+          },
+          {
+            "title": "Khirbet al-Minya – Wikipedia",
+            "url": "https://en.wikipedia.org/wiki/Khirbet_al-Minya"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.5362,
+          32.8649
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "hishams-palace",
+        "name_he": "ארמון הישאם (ח׳רבת אל-מפג׳ר)",
+        "name_en": "Hisham's Palace (Khirbat al-Mafjar)",
+        "periods": [
+          "early-arab"
+        ],
+        "religions": [],
+        "temple_era": null,
+        "region": null,
+        "description_he": "ארמון הישאם, הידוע בערבית כח׳רבת אל-מפג׳ר, נבנה כ-5 ק\"מ צפונית ליריחו בשנים 743-744 בידי הנסיך האומיי אל-וליד בן יזיד, כבית חורף אימפריאלי מפואר הכולל מסגד ובית מרחץ עשיר בפסיפסים. הארמון נהרס ברעידת האדמה הגדולה של שנת 747, זמן קצר לאחר השלמתו. הפסיפס המפורסם \"עץ החיים\" מבית המרחץ נחשב לאחד מפסיפסי הרצפה המרשימים ביותר מהעולם האסלאמי הקדום, והאתר משמש כדוגמה מרכזית לאמנות החצר האומיית.",
+        "sources": [
+          {
+            "title": "ארמון הישאם – מכון ישראלי לארכיאולוגיה",
+            "url": "https://www.israeliarchaeology.org/ארמון-הישאם-בערבית-חרבת-אל-מפגר/"
+          },
+          {
+            "title": "Hisham's Palace – Wikipedia",
+            "url": "https://en.wikipedia.org/wiki/Hisham%27s_Palace"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.4597,
+          31.8825
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "akko-crusader-city",
+        "name_he": "העיר העתיקה של עכו ומצודת ההוספיטלרים",
+        "name_en": "Old City of Acre – Hospitaller Fortress",
+        "periods": [
+          "crusader"
+        ],
+        "religions": [],
+        "temple_era": null,
+        "region": null,
+        "description_he": "עכו הייתה הבירה הצלבנית ונמל הפעילות המרכזי של ממלכת ירושלים לאחר נפילת ירושלים ב-1187, ושימשה כמעוז האחרון של הצלבנים בארץ הקודש עד לנפילתה לממלוכים ב-1291. מצודת ההוספיטלרים (\"אולמות האבירים\") ששרדה מתחת לעיר העות׳מאנית כוללת אולמות, מטבח, אולם אוכל ומרפאה, ומעידה על עוצמת מסדר ההוספיטלרים בעיר. אתר זה, המשוקם כיום לביקור, הוא אחד המכלולים הצלבניים המרשימים והשלמים בעולם.",
+        "sources": [
+          {
+            "title": "העיר העתיקה של עכו – ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/העיר_העתיקה_של_עכו"
+          },
+          {
+            "title": "Old City of Acre – Wikipedia",
+            "url": "https://en.wikipedia.org/wiki/Old_City_of_Acre"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.068,
+          32.9235
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "belvoir-fortress",
+        "name_he": "מבצר בלווואר (כוכב הירדן)",
+        "name_en": "Belvoir Fortress",
+        "periods": [
+          "crusader"
+        ],
+        "religions": [],
+        "temple_era": null,
+        "region": null,
+        "description_he": "מבצר כוכב הירדן, שנקרא בפי הצלבנים \"בלווואר\" (נוף יפה), נבנה בשנת 1168 בידי מסדר ההוספיטלרים על גבעה השולטת על עמק הירדן. המבצר בנוי בתכנון גיאומטרי מתקדם של שתי חומות מרובעות זו בתוך זו, ונחשב לדוגמה המושלמת ביותר לארכיטקטורה הצבאית הצלבנית ששרדה בישראל. לאחר קרבות קשים מול צלאח א-דין בשנים 1181-1183, החזיק המבצר מעמד במצור ממושך עד כניעתו בינואר 1189.",
+        "sources": [
+          {
+            "title": "גן לאומי כוכב הירדן – רשות הטבע והגנים",
+            "url": "https://www.parks.org.il/reserve-park/גן-לאומי-כוכב-הירדן/"
+          },
+          {
+            "title": "כוכב הירדן – ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/כוכב_הירדן"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.5214,
+          32.5956
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "nimrod-fortress",
+        "name_he": "מבצר נמרוד",
+        "name_en": "Nimrod Fortress",
+        "periods": [
+          "crusader"
+        ],
+        "religions": [],
+        "temple_era": null,
+        "region": null,
+        "description_he": "מבצר נמרוד נבנה בשנת 1228 בידי אל-עזיז עות׳מאן, אחיינו של צלאח א-דין מבית איוב, כדי לחסום את דרכי הגישה של הצלבנים מעכו לכיוון דמשק בעת מסע הצלב השישי. הסולטאן הממלוכי בייברס הרחיב וחיזק משמעותית את המבצר סביב שנת 1275 לאחר ניצחון הממלוכים על המונגולים, והוא נחשב למבצר הימי-ביניימי הגדול ביותר ששרד בישראל. אף שלא נבנה בידי הצלבנים עצמם, המבצר קשור באופן הדוק לעימות הצלבני-איובי-ממלוכי על שליטה בגליל ובדרך לדמשק.",
+        "sources": [
+          {
+            "title": "גן לאומי מבצר נמרוד – רשות הטבע והגנים",
+            "url": "https://www.parks.org.il/reserve-park/גן-לאומי-מבצר-נמרוד-קלעת-נמרוד/"
+          },
+          {
+            "title": "מבצר נמרוד – ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/מצודת_נמרוד"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.7147,
+          33.2528
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "caesarea-crusader-walls",
+        "name_he": "קיסריה – חומות ותעלת המצור הצלבנית",
+        "name_en": "Caesarea – Crusader Walls",
+        "periods": [
+          "crusader"
+        ],
+        "religions": [],
+        "temple_era": null,
+        "region": null,
+        "description_he": "קיסריה נכבשה בידי הצלבנים ב-1101 והפכה למרכז נוצרי חשוב, שבו לפי המסורת נשמר \"הגביע הקדוש\". לאחר הריסתה בידי בייברס ב-1265, המלך לואי התשיעי מצרפת ביצר מחדש את העיר בשנת 1251 בבניית חומות גבוהות ותעלת מגן עמוקה שחלקים ניכרים מהן שרדו עד היום. חומות אלו, המקיפות את הגן הלאומי, מדגימות את שיא הביצור הצלבני בערי החוף לפני נפילתן הסופית לממלוכים.",
+        "sources": [
+          {
+            "title": "גן לאומי קיסריה – רשות הטבע והגנים",
+            "url": "https://www.parks.org.il/reserve-park/גן-לאומי-קיסריה/"
+          },
+          {
+            "title": "קיסריה – ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/קיסריה"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.8917,
+          32.5
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "holy-sepulchre-crusader",
+        "name_he": "כנסיית הקבר – הבנייה הצלבנית",
+        "name_en": "Church of the Holy Sepulchre – Crusader Rebuilding",
+        "periods": [
+          "crusader"
+        ],
+        "religions": [],
+        "temple_era": null,
+        "region": null,
+        "description_he": "לאחר כיבוש ירושלים ב-1099, איחדו הצלבנים את הרוטונדה שמעל קבר ישו עם כנסיית הקבר הביזנטית המזרחית למבנה אחד גדול, בסגנון רומנסקי, שהוקדש מחדש בשנת 1149 – במלאת 50 שנה לכיבוש. גופרי מבויון הוכרז ל\"מגן הקבר הקדוש\" והפטריארך הלטיני עמד בראש הכנסייה שהפכה למוקד עלייה לרגל מרכזי לצלבנים. גם לאחר כיבוש צלאח א-דין ב-1187 הוחלט להותיר את הכנסייה על כנה, והתכנון הצלבני שלה נשמר במידה רבה עד ימינו.",
+        "sources": [
+          {
+            "title": "כנסיית הקבר – ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/כנסיית_הקבר"
+          },
+          {
+            "title": "ירושלים בתקופה הצלבנית – ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/ירושלים_בתקופה_הצלבנית"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.2297,
+          31.7784
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "nabi-musa",
+        "name_he": "נבי מוסא",
+        "name_en": "Nabi Musa",
+        "periods": [
+          "mamluk"
+        ],
+        "religions": [],
+        "temple_era": null,
+        "region": null,
+        "description_he": "נבי מוסא הוא מתחם מסגד ומקאם במדבר יהודה, כ-10 ק\"מ דרומית ליריחו, המזוהה במסורת המוסלמית כמקום קבורתו או תפילתו של משה. הסולטאן הממלוכי בייברס הקים כאן מבנה קדוש בשנת 1269 (668 להג׳רה), במסגרת מדיניותו לחזק אתרי עלייה לרגל מוסלמיים באזור מול נוכחות נוצרית וצלבנית. החל מהתקופה הממלוכית וביתר שאת בתקופה העות׳מאנית, התפתח כאן מנהג עלייה לרגל שנתי המוני (מוסם נבי מוסא) שהפך לאירוע דתי-פוליטי מרכזי.",
+        "sources": [
+          {
+            "title": "נבי מוסא – ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/נבי_מוסא"
+          },
+          {
+            "title": "Nabi Musa – Wikipedia",
+            "url": "https://en.wikipedia.org/wiki/Nabi_Musa"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.4311,
+          31.7864
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ramla-white-tower",
+        "name_he": "המגדל הלבן (מסגד רמלה)",
+        "name_en": "White Tower, Ramla",
+        "periods": [
+          "mamluk"
+        ],
+        "religions": [],
+        "temple_era": null,
+        "region": null,
+        "description_he": "המגדל הלבן הוא מינרט מרשים בגובה כ-30 מטר שנבנה בשנת 1318 בידי הסולטאן הממלוכי א-נאצר מוחמד, כחלק מהמסגד הלבן שראשיתו בתקופה האומיית. המגדל שימש גם כמצפה צבאי ולתצפית על שיירות הצליינים בדרך מדמשק למצרים, ומדגים את מדיניות הבנייה הממלוכית שנועדה לחזק את מעמד האסלאם בערי החוף לאחר גירוש הצלבנים. מהמגדל, שניתן לטפס עליו, נשקף מבט פנורמי על השפלה.",
+        "sources": [
+          {
+            "title": "המסגד הלבן (רמלה) – ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/המסגד_הלבן_(רמלה)"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.8658,
+          31.928
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "lod-great-mosque",
+        "name_he": "המסגד הגדול (אל-עומרי) בלוד",
+        "name_en": "Great Mosque of Lod (al-Omari Mosque)",
+        "periods": [
+          "mamluk"
+        ],
+        "religions": [],
+        "temple_era": null,
+        "region": null,
+        "description_he": "המסגד הגדול בלוד, הידוע גם כמסגד אל-עומרי, נוסד בשנת 1267 בידי הסולטאן הממלוכי בייברס לאחר כיבוש לוד וחורבן כנסיית גאורגיוס הקדוש הצלבנית שעמדה במקום. בבניית המסגד שולבו אבנים, עמודי גרניט ואלמנטים אדריכליים שנלקחו מהכנסייה ההרוסה, שריד המדגים המחשי את מעבר השליטה מהצלבנים לממלוכים. הכנסייה שוקמה מאוחר יותר לצדו של המסגד, וכיום שני המבנים עומדים זה לצד זה במרכז לוד העתיקה.",
+        "sources": [
+          {
+            "title": "מסגד אל-עומרי (לוד) – ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/מסגד_אל-עומרי_(לוד)"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.8908,
+          31.9515
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "safed-citadel",
+        "name_he": "מצודת צפת",
+        "name_en": "Safed Citadel",
+        "periods": [
+          "mamluk"
+        ],
+        "religions": [],
+        "temple_era": null,
+        "region": null,
+        "description_he": "לאחר כיבוש צפת מהצלבנים ב-1266, ציווה הסולטאן הממלוכי בייברס לשקם ולחזק את המצודה שעל הגבעה במרכז העיר, ולהקים בה מגדל עגול בן שלוש קומות עם מחסנים ובור מים. צפת הפכה למרכז מחוז ממלוכי (\"ממלכת צפד\"), אחד משבעה מחוזות בסוריה הממלוכית שתחומו התרחב לכל הגליל. בייברס גם יזם פיתוח עירוני נרחב בצפת – חאנים, שווקים ומרחצאות – והפך כנסייה לשעבר למסגד האדום. רוב השרידים הנראים כיום במצודה הם מהתקופות הצלבנית, הממלוכית והעות׳מאנית גם יחד.",
+        "sources": [
+          {
+            "title": "מצודת צפת – ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/מצודת_צפת"
+          },
+          {
+            "title": "Safed – Wikipedia",
+            "url": "https://en.wikipedia.org/wiki/Safed"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.4983,
+          32.9658
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "jerusalem-ottoman-walls",
+        "name_he": "חומות ירושלים העות׳מאניות (שער יפו)",
+        "name_en": "Ottoman Walls of Jerusalem – Jaffa Gate",
+        "periods": [
+          "ottoman"
+        ],
+        "religions": [],
+        "temple_era": null,
+        "region": null,
+        "description_he": "החומה המקיפה כיום את העיר העתיקה נבנתה בשנות ה-30 של המאה ה-16 ביוזמת הסולטאן העות׳מאני סולימאן המפואר, לאחר כ-300 שנה שבהן עמדה ירושלים ללא חומה מאז חורבנה בידי האיובים. החומה, הנמשכת על פני כ-4.5 ק\"מ ובה שמונה שערים, נבנתה לרוב על תוואי החומות הקודמות ומשקפת את מדיניות סולימאן לביסוס ולביצור ירושלים כעיר קדושה באימפריה העות׳מאנית. שער יפו, אחד השערים המרכזיים, קרוי כיום גם על שמו של סולימאן ברחוב הסמוך.",
+        "sources": [
+          {
+            "title": "חומת ירושלים העות׳מאנית – ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/חומת_ירושלים_העות%27מאנית"
+          },
+          {
+            "title": "Jaffa Gate – Wikipedia",
+            "url": "https://en.wikipedia.org/wiki/Jaffa_Gate"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.2276,
+          31.7766
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "acre-ottoman-citadel",
+        "name_he": "מצודת עכו העות׳מאנית וחומותיה",
+        "name_en": "Acre – Ottoman Citadel and Walls",
+        "periods": [
+          "ottoman"
+        ],
+        "religions": [],
+        "temple_era": null,
+        "region": null,
+        "description_he": "בשלטונם של ט׳אהר אל-עומר ולאחריו אחמד אל-ג׳זאר פאשה במאה ה-18, נבנתה עכו מחדש כעיר מבוצרת רבת עוצמה, על גבי שרידי מצודת ההוספיטלרים הצלבנית. אל-ג׳זאר בנה חומות עבות, תעלת מגן ומגדלי תותחים שעמדו בהצלחה במצור נפוליאון בונפרטה ב-1799 – אירוע שנחשב לנקודת מפנה במסע נפוליאון למזרח. במצודה עצמה נבנה גם ארמון השלטון העות׳מאני ששימש מאוחר יותר ככלא הבריטי המנדטורי.",
+        "sources": [
+          {
+            "title": "היסטוריה של עכו – ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/היסטוריה_של_עכו"
+          },
+          {
+            "title": "Acre, Israel – Wikipedia",
+            "url": "https://en.wikipedia.org/wiki/Acre,_Israel"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.068,
+          32.9235
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "jaffa-clock-tower",
+        "name_he": "מגדל השעון ביפו",
+        "name_en": "Jaffa Clock Tower",
+        "periods": [
+          "ottoman"
+        ],
+        "religions": [],
+        "temple_era": null,
+        "region": null,
+        "description_he": "מגדל השעון ביפו נבנה בשנת 1903 מתרומות תושבי העיר, ערבים ויהודים, לציון 25 שנה לעלייתו לשלטון של הסולטאן העות׳מאני עבד אל-חמיד השני – אחד משישה מגדלי שעון כאלה שהוקמו בארץ ישראל ומעל מאה ברחבי האימפריה העות׳מאנית. הקמת מגדל שעון \"אזרחי\", בניגוד לפעמוני הכנסיות והמואזינים, סימנה שינוי תרבותי לקראת חברה אזרחית מודרנית. הכיכר סביב המגדל הפכה למוקד עירוני מרכזי לאחר הריסת חומות יפו במאה ה-19.",
+        "sources": [
+          {
+            "title": "מגדל השעון (יפו) – ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/מגדל_השעון_(יפו)"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.7517,
+          32.053
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "rosh-pina",
+        "name_he": "ראש פינה – המושבה ההיסטורית",
+        "name_en": "Rosh Pinna – Historic Colony",
+        "periods": [
+          "ottoman"
+        ],
+        "religions": [],
+        "temple_era": null,
+        "region": null,
+        "description_he": "ראש פינה נוסדה בחורף 1882 בידי עולי העלייה הראשונה מרומניה, על אדמות שנרכשו מתושבי הכפר הערבי ג׳אעונה, בעוד הארץ עדיין תחת שלטון עות׳מאני. המושבה נתמכה מאוחר יותר בידי הברון רוטשילד, ורחוב המייסדים ההיסטורי המשתמר עד היום משקף את אדריכלות המושבות הראשונות בגליל התחתון. האתר ממחיש את ראשית ההתיישבות הציונית החקלאית עוד בטרם שקיעת האימפריה העות׳מאנית ב-1918.",
+        "sources": [
+          {
+            "title": "ראש פינה – ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/ראש_פינה"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.5422,
+          32.97
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "tiberias-ottoman-walls",
+        "name_he": "חומות טבריה (ט׳אהר אל-עומר)",
+        "name_en": "Walls of Tiberias",
+        "periods": [
+          "ottoman"
+        ],
+        "religions": [],
+        "temple_era": null,
+        "region": null,
+        "description_he": "החומה המוכרת כיום סביב העיר העתיקה טבריה נבנתה בשנים 1738-1737 בידי השליט העות׳מאני האוטונומי של הגליל, ט׳אהר אל-עומר, ובנו, ככל הנראה על תוואי חומה צלבנית קדומה יותר. החומה, שהקיפה את העיר משלושת צדדיה היבשתיים וכללה מצודה גדולה בצפון-מערבה, שיקפה את חיזוק שלטונו העצמאי למעשה של ט׳אהר מול המרכז העות׳מאני באיסטנבול. ט׳אהר, שנחשב למייסד חיפה המודרנית, אף עודד התיישבות יהודית מחודשת בטבריה.",
+        "sources": [
+          {
+            "title": "חומות טבריה – ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/חומות_טבריה"
+          },
+          {
+            "title": "Tiberias – Wikipedia",
+            "url": "https://en.wikipedia.org/wiki/Tiberias"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.5333,
+          32.7944
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "tel-aviv-white-city",
+        "name_he": "העיר הלבנה – שדרות רוטשילד",
+        "name_en": "Tel Aviv White City – Rothschild Boulevard",
+        "periods": [
+          "mandate"
+        ],
+        "religions": [],
+        "temple_era": null,
+        "region": null,
+        "description_he": "בין השנים 1937-1931 נבנו בתל אביב כ-2,700 מבנים בסגנון הבינלאומי (\"באוהאוס\"), על ידי אדריכלים יהודים שהיגרו מגרמניה ומאירופה והושפעו מבתי הספר לאדריכלות מודרנית. שדרות רוטשילד, ציר ההתפתחות המרכזי של העיר בתקופת המנדט הבריטי, מרכזת ריכוז גבוה של מבנים אלו המסתגלים לאקלים הים-תיכוני. ב-2003 הוכרזה \"העיר הלבנה\" כאתר מורשת עולמית של אונסק\"ו כמכלול העירוני הגדול בעולם בסגנון הבינלאומי.",
+        "sources": [
+          {
+            "title": "העיר הלבנה – ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/העיר_הלבנה"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.7736,
+          32.0636
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "atlit-detention-camp",
+        "name_he": "מחנה המעצר/המעפילים בעתלית",
+        "name_en": "Atlit Detainee Camp",
+        "periods": [
+          "mandate"
+        ],
+        "religions": [],
+        "temple_era": null,
+        "region": null,
+        "description_he": "מחנה עתלית הוקם בידי הבריטים בינואר 1940 סמוך לכביש החוף, ושימש לכליאת עולים \"בלתי לגליים\" (מעפילים) שניסו להגיע לארץ ישראל בניגוד ל\"ספר הלבן\" שהגביל את העלייה היהודית. לאורך שנות המנדט נכלאו במחנה למעלה מ-40,000 מעפילים, וכן לוחמי מחתרות עבריות. פריצת המחנה בידי הפלמ\"ח באוקטובר 1945 (\"מבצע ביצה\") הייתה אחת הפעולות הידועות של תנועת המרי העברי, והמקום הוכרז ב-1987 לאתר לאומי המנציח את מורשת ההעפלה.",
+        "sources": [
+          {
+            "title": "מחנה המעצר בעתלית – ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/מחנה_המעצר_בעתלית"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.9491,
+          32.7125
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "king-david-hotel",
+        "name_he": "מלון המלך דוד",
+        "name_en": "King David Hotel",
+        "periods": [
+          "mandate"
+        ],
+        "religions": [],
+        "temple_era": null,
+        "region": null,
+        "description_he": "מלון המלך דוד, שנבנה ב-1931, שימש בתקופת המנדט הבריטי כמרכזו האזרחי-מנהלי של השלטון הבריטי בארץ ישראל, ובאגפו הדרומי שכן המזכירות הראשית של ממשלת המנדט. ב-22 ביולי 1946 פוצץ אגף זה בידי לוחמי האצ\"ל, במסגרת תנועת המרי העברי, ובפיצוץ נהרגו כ-91 בני אדם. האירוע נחשב לאחד המכריעים במאבק להחשת עזיבת הבריטים את הארץ.",
+        "sources": [
+          {
+            "title": "פיצוץ מלון המלך דוד – ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/פיצוץ_מלון_המלך_דוד"
+          },
+          {
+            "title": "King David Hotel – Wikipedia",
+            "url": "https://en.wikipedia.org/wiki/King_David_Hotel"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.2225,
+          31.7744
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "rosh-hanikra-tunnels",
+        "name_he": "מנהרות הרכבת בראש הנקרה",
+        "name_en": "Rosh HaNikra Railway Tunnels",
+        "periods": [
+          "mandate"
+        ],
+        "religions": [],
+        "temple_era": null,
+        "region": null,
+        "description_he": "בשנים 1942-1941, בעיצומה של מלחמת העולם השנייה, חצבו יחידות הנדסה דרום-אפריקאיות ובריטיות שתי מנהרות רכבת דרך צוק ראש הנקרה, כחלק מהרחבת מסילת הברזל שחיברה את חיפה ועכו ללבנון וחיברה למעשה בין מצרים לטורקיה ואירופה. בפברואר 1948 פוצץ הגשר במנהרות בידי לוחמי הפלמ\"ח כדי לשבש הברחת נשק מלבנון, והמנהרות נאטמו מאז – קו הגבול בין ישראל ללבנון עובר כיום דרך המנהרה הצפונית האטומה.",
+        "sources": [
+          {
+            "title": "מנהרות הרכבת בראש הנקרה – ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/מנהרות_הרכבת_בראש_הנקרה"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.1048,
+          33.0931
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "acre-prison",
+        "name_he": "כלא עכו (מוזיאון האסירים המחתרתיים)",
+        "name_en": "Acre Prison – Underground Prisoners Museum",
+        "periods": [
+          "mandate"
+        ],
+        "religions": [],
+        "temple_era": null,
+        "region": null,
+        "description_he": "בקומה התחתונה של מצודת ההוספיטלרים-העות׳מאנית בעכו הפעילו הבריטים בתקופת המנדט בית סוהר מרכזי, ובו נכלאו ונתלו לוחמי מחתרות עבריות מהאצ\"ל, הלח\"י וההגנה. ב-4 במאי 1947 ביצע האצ\"ל פריצה נועזת לכלא ושחרר עשרות אסירים – אחת הפעולות הנועזות והמפורסמות ביותר של תנועת המרי העברי. כיום פועל במקום \"מוזיאון האסירים המחתרתיים – עכו\", המנציח את סיפור הלוחמים והוצאתם להורג בגרדום.",
+        "sources": [
+          {
+            "title": "כלא עכו – ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/כלא_עכו"
+          },
+          {
+            "title": "הפריצה לכלא עכו – ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/הפריצה_לכלא_עכו"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.0691,
+          32.9245
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "independence-hall-tel-aviv",
+        "name_he": "בית העצמאות (בית דיזנגוף)",
+        "name_en": "Independence Hall, Tel Aviv",
+        "periods": [
+          "israeli"
+        ],
+        "religions": [],
+        "temple_era": null,
+        "region": null,
+        "description_he": "בבניין זה בשדרות רוטשילד, ביתו לשעבר של ראש העיר הראשון מאיר דיזנגוף, הכריז דוד בן-גוריון ביום שישי ה׳ באייר תש\"ח (14 במאי 1948) על הקמת מדינת ישראל בפני 350 קרואים, שעות ספורות לפני פקיעת המנדט הבריטי. אולם ההכרזה שוחזר במדויק למראהו באותו יום, וניתן לשמוע בו את ההקלטה המקורית של קריאת מגילת העצמאות. האתר, המנוהל כיום כמוזיאון \"בית העצמאות\", הוא אחד ממוקדי הזיכרון המכוננים ביותר של המדינה.",
+        "sources": [
+          {
+            "title": "בית העצמאות – ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/בית_העצמאות"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.7715,
+          32.0645
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ammunition-hill",
+        "name_he": "גבעת התחמושת",
+        "name_en": "Ammunition Hill",
+        "periods": [
+          "israeli"
+        ],
+        "religions": [],
+        "temple_era": null,
+        "region": null,
+        "description_he": "גבעת התחמושת, מוצב ירדני מבוצר בצפון ירושלים, נכבשה בקרב עקוב מדם בלילה שבין 5 ל-6 ביוני 1967 בידי חטיבת הצנחנים, כחלק מהקרב על ירושלים במלחמת ששת הימים. הקרב, שנחשב לאחד הקשים והעקובים מדם במלחמה, פתח את הדרך לחיבור ירושלים המערבית עם הר הצופים ולכיבוש העיר העתיקה. כיום פועל במקום אתר הנצחה לאומי, שהוקם ביוזמת הורים שכולים, המשמר את שוחות הקרב המקוריות.",
+        "sources": [
+          {
+            "title": "גבעת התחמושת (אתר הנצחה) – ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/גבעת_התחמושת_(אתר_הנצחה)"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.2281,
+          31.7994
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "yad-vashem",
+        "name_he": "יד ושם",
+        "name_en": "Yad Vashem",
+        "periods": [
+          "israeli"
+        ],
+        "religions": [],
+        "temple_era": null,
+        "region": null,
+        "description_he": "יד ושם, רשות הזיכרון לשואה ולגבורה, נוסד בהר הזיכרון בירושלים בשנת 1953 מכוח חוק שחוקקה הכנסת, כמרכז העולמי של העם היהודי לתיעוד קורות השואה ולהנצחת ששת מיליוני הנספים. המוסד משלב מוזיאון היסטורי, אנדרטאות (כגון אוהל יזכור ואנדרטת ילדים), ארכיון ומרכז מחקר, ומהווה אתר מרכזי בטקסי המדינה, ובהם יום הזיכרון לשואה ולגבורה. יד ושם עיצב במידה רבה את האופן שבו מונחלת מורשת השואה בישראל ובעולם.",
+        "sources": [
+          {
+            "title": "יד ושם – ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/יד_ושם"
+          },
+          {
+            "title": "יד ושם – רשות הזיכרון לשואה ולגבורה (אתר רשמי)",
+            "url": "https://www.yadvashem.org/"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.1756,
+          31.7742
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "latrun-yad-lashiryon",
+        "name_he": "לטרון – יד לשריון",
+        "name_en": "Latrun – Yad La-Shiryon",
+        "periods": [
+          "israeli"
+        ],
+        "religions": [],
+        "temple_era": null,
+        "region": null,
+        "description_he": "במשטרת לטרון, מבנה טגארט בריטי השולט על צומת הדרכים לירושלים, ניטשו בין 25-24 במאי 1948 ולאחר מכן ב-31 במאי קרבות עקובים מדם וכושלים של צה\"ל נגד הלגיון הערבי, שבהם נפצע אריאל שרון. כישלון כיבוש לטרון הכריח את הכוחות הישראליים לסלול את \"דרך בורמה\" העוקפת, שהפרה את המצור על ירושלים הנצורה ביוני 1948. כיום פועל במקום \"יד לשריון\" – אתר הנצחה ומוזיאון לחיל השריון הכולל את אחת מאוספי הטנקים המגוונים בעולם.",
+        "sources": [
+          {
+            "title": "יד לשריון – ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/יד_לשריון"
+          },
+          {
+            "title": "לטרון – ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/לטרון"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.9814,
+          31.8319
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "western-wall-liberation",
+        "name_he": "הכותל המערבי – שחרור 1967",
+        "name_en": "Western Wall – 1967 Liberation",
+        "periods": [
+          "israeli"
+        ],
+        "religions": [],
+        "temple_era": null,
+        "region": null,
+        "description_he": "מאז מלחמת העצמאות ב-1948 ועד מלחמת ששת הימים, נותרה העיר העתיקה בשליטה ירדנית והיהודים נמנעו מגישה לכותל המערבי, השריד המרכזי של רחבת בית המקדש. בבוקר 7 ביוני 1967, לאחר קרבות עזים בשער האריות וברחבי העיר העתיקה, פרצו חיילי חטיבת הצנחנים אל הכותל – רגע שתועד בתצלום המפורסם של החיילים בוכים לרגלי הכותל. יום שחרור העיר העתיקה, כ\"ח באייר, נקבע מאז כ\"יום ירושלים\", חג לאומי בישראל.",
+        "sources": [
+          {
+            "title": "הכותל המערבי – ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/הכותל_המערבי"
+          },
+          {
+            "title": "תצלום הצנחנים בכותל המערבי – ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/תצלום_הצנחנים_בכותל_המערבי"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.2345,
+          31.7767
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "masada-modern-symbol",
+        "name_he": "מצדה כסמל לאומי מודרני",
+        "name_en": "Masada as a Modern National Symbol",
+        "periods": [
+          "israeli"
+        ],
+        "religions": [],
+        "temple_era": null,
+        "region": null,
+        "description_he": "מעבר להיותה אתר מבצר הורדוסי מהתקופה הרומית, הפכה מצדה במאה ה-20 לסמל לאומי ישראלי מרכזי, בעיקר בעקבות החפירות הארכיאולוגיות המקיפות שניהל יגאל ידין בשנים 1965-1963 שזכו לתהודה עולמית. סיפור העמידה האחרונה של הקנאים מול הצבא הרומי (73-74 לספירה), כפי שתואר בידי יוסף בן מתתיהו, אומץ כמיתוס מכונן של עצמאות וגבורה, וסיסמת \"מצדה לא תיפול שנית\" נקשרה לטקסי השבעה של חיילי צה\"ל שהתקיימו בראש ההר. ב-2001 הוכרזה מצדה לאתר מורשת עולמית של אונסק\"ו.",
+        "sources": [
+          {
+            "title": "מצדה – ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/מצדה"
+          },
+          {
+            "title": "Masada – Wikipedia",
+            "url": "https://en.wikipedia.org/wiki/Masada"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.3539,
+          31.3156
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "western-wall",
+        "name_he": "הכותל המערבי",
+        "name_en": "Western Wall",
+        "periods": [],
+        "religions": [
+          "judaism"
+        ],
+        "temple_era": null,
+        "region": null,
+        "description_he": "הכותל המערבי הוא קטע משרידי חומת התמך שבנה הורדוס סביב הר הבית במאה ה-1 לפני הספירה, והוא נחשב למקום התפילה הקדוש ביותר ליהודים כיום מאחר שהוא הקרוב ביותר שנותר למקום בית המקדש. במשך מאות שנים משמש הכותל כאתר עלייה לרגל, תפילה והנחת פתקים בין אבניו. הרחבה שלפניו הפכה למוקד טקסים לאומיים ודתיים מרכזיים בישראל.",
+        "sources": [
+          {
+            "title": "הכותל המערבי – ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/%D7%94%D7%9B%D7%95%D7%AA%D7%9C_%D7%94%D7%9E%D7%A2%D7%A8%D7%91%D7%99"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.2345,
+          31.7767
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "temple-mount",
+        "name_he": "הר הבית",
+        "name_en": "Temple Mount",
+        "periods": [],
+        "religions": [
+          "judaism"
+        ],
+        "temple_era": null,
+        "region": null,
+        "description_he": "הר הבית הוא המקום הקדוש ביותר ביהדות, המזוהה עם מקום העקדה ועם מיקומם של בית המקדש הראשון והשני. לפי המסורת היהודית, ממנו החל תהליך בריאת העולם, ובו ניצבה קודש הקודשים. לאחר חורבן הבית בשנת 70 לספירה הפך ההר לסמל מרכזי בתפילה ובכיסופים היהודיים לגאולה, אף שהעלייה הפיזית אליו כפופה כיום להלכות ולמגבלות מיוחדות.",
+        "sources": [
+          {
+            "title": "הר הבית – ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/%D7%94%D7%A8_%D7%94%D7%91%D7%99%D7%AA"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.2354,
+          31.778
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "cave-of-patriarchs-hebron",
+        "name_he": "מערת המכפלה (הר״ם אל-אבראהימי)",
+        "name_en": "Cave of the Patriarchs / Ibrahimi Mosque, Hebron",
+        "periods": [],
+        "religions": [
+          "judaism",
+          "islam"
+        ],
+        "temple_era": null,
+        "region": null,
+        "description_he": "מערת המכפלה בחברון מזוהה במסורת היהודית והמוסלמית כמקום קבורתם של אברהם ושרה, יצחק ורבקה, ויעקב ולאה. לפי סיפור המקרא, אברהם רכש את המערה והשדה סביבה מעפרון החתי לשם קבורת שרה. המבנה ההרודיאני שמעליה משמש כיום הן כבית כנסת (מערת המכפלה) והן כמסגד (אל-חרם אל-אבראהימי), ומהווה מקום תפילה חשוב ורגיש לשתי הדתות.",
+        "sources": [
+          {
+            "title": "מערת המכפלה – ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/%D7%9E%D7%A2%D7%A8%D7%AA_%D7%94%D7%9E%D7%9B%D7%A4%D7%9C%D7%94"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.1092,
+          31.5253
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "rachels-tomb",
+        "name_he": "קבר רחל",
+        "name_en": "Rachel's Tomb",
+        "periods": [],
+        "religions": [
+          "judaism"
+        ],
+        "temple_era": null,
+        "region": null,
+        "description_he": "קבר רחל, הממוקם בכניסה הצפונית לבית לחם, מזוהה במסורת היהודית כאתר קבורתה של רחל אמנו, אשת יעקב אבינו, שנפטרה בלדתה את בנימין 'בדרך' לבית לחם כמתואר בספר בראשית. המבנה הנוכחי מאוחר לתקופת המקרא ועבר שיפוצים והרחבות במאות האחרונות. האתר משמש כמוקד עלייה לרגל ותפילה, בייחוד עבור נשים המבקשות ברכה לזרע ולידה קלה.",
+        "sources": [
+          {
+            "title": "קבר רחל – ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/%D7%A7%D7%91%D7%A8_%D7%A8%D7%97%D7%9C"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.2008,
+          31.7196
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "mount-of-olives-jewish-cemetery",
+        "name_he": "בית הקברות היהודי בהר הזיתים",
+        "name_en": "Mount of Olives Jewish Cemetery",
+        "periods": [],
+        "religions": [
+          "judaism"
+        ],
+        "temple_era": null,
+        "region": null,
+        "description_he": "בית הקברות היהודי בהר הזיתים הוא בית העלמין היהודי העתיק והמשמעותי ביותר בעולם, עם קברים המתוארכים לתקופת בית ראשון ושני ועד ימינו. על פי המסורת, מי שנקבר בהר הזיתים, המשקיף על הר הבית, יזכה להיות הראשון לתחיית המתים בעת בוא המשיח. בבית הקברות טמונים דמויות מרכזיות בהיסטוריה היהודית, ובהן רבנים, מנהיגים ואישי ציבור.",
+        "sources": [
+          {
+            "title": "בית הקברות היהודי בהר הזיתים – ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/%D7%91%D7%99%D7%AA_%D7%94%D7%A7%D7%91%D7%A8%D7%95%D7%AA_%D7%94%D7%99%D7%94%D7%95%D7%93%D7%99_%D7%91%D7%94%D7%A8_%D7%94%D7%96%D7%99%D7%AA%D7%99%D7%9D"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.2453,
+          31.7788
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "tomb-rabbi-meir-baal-hanes",
+        "name_he": "קבר רבי מאיר בעל הנס",
+        "name_en": "Tomb of Rabbi Meir Baal HaNess, Tiberias",
+        "periods": [],
+        "religions": [
+          "judaism"
+        ],
+        "temple_era": null,
+        "region": null,
+        "description_he": "האתר בדרום טבריה, שמעליו נבנה בית כנסת גדול, מיוחס לרבי מאיר בעל הנס, תנא מן המאה ה-2. מן המאה ה-18, לאחר שרבי חיים אבולעפיה חידש את היישוב היהודי בטבריה, התפרסם הקבר בעולם היהודי בזכות קופות צדקה שנקראו על שמו ושימשו לתמיכה בעניי ארץ ישראל. יש מחלוקת מחקרית באשר לזהותו המדויקת של הקבור באתר, אך הוא נותר יעד עלייה לרגל פופולרי.",
+        "sources": [
+          {
+            "title": "קבר רבי מאיר בעל הנס – ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/%D7%A7%D7%91%D7%A8_%D7%A8%D7%91%D7%99_%D7%9E%D7%90%D7%99%D7%A8_%D7%91%D7%A2%D7%9C_%D7%94%D7%A0%D7%A1"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.5312,
+          32.7791
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "safed-ari-synagogues",
+        "name_he": "בתי הכנסת האר״י בצפת",
+        "name_en": "Ari Synagogues (Ashkenazi and Sephardic), Safed",
+        "periods": [],
+        "religions": [
+          "judaism"
+        ],
+        "temple_era": null,
+        "region": null,
+        "description_he": "צפת התפתחה במאה ה-16 למרכז העולמי ללימוד קבלה, בעיקר סביב דמותו של רבי יצחק לוריא (האר״י הקדוש) ותלמידיו. שני בתי הכנסת הנקראים על שמו, הספרדי והאשכנזי, נמצאים ברובע היהודי העתיק ומיוחסים למקומות תפילתו ולימודו. העיר, על בתי הכנסת ההיסטוריים שבה ובני קהילת המקובלים שפעלה בה, נותרה עד היום מוקד משיכה ללימוד תורת הנסתר.",
+        "sources": [
+          {
+            "title": "בית הכנסת האר\"י האשכנזי – ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/%D7%91%D7%99%D7%AA_%D7%94%D7%9B%D7%A0%D7%A1%D7%AA_%D7%94%D7%90%D7%A8%22%D7%99_%D7%94%D7%90%D7%A9%D7%9B%D7%A0%D7%96%D7%99"
+          },
+          {
+            "title": "בית הכנסת האר\"י הספרדי – ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/%D7%91%D7%99%D7%AA_%D7%94%D7%9B%D7%A0%D7%A1%D7%AA_%D7%94%D7%90%D7%A8%22%D7%99_%D7%94%D7%A1%D7%A4%D7%A8%D7%93%D7%99"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.496,
+          32.9646
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "masada-2",
+        "name_he": "מצדה",
+        "name_en": "Masada",
+        "periods": [],
+        "religions": [
+          "judaism"
+        ],
+        "temple_era": null,
+        "region": null,
+        "description_he": "מצדה היא מבצר הררי מעל ים המלח שהקים המלך הורדוס, אשר בשנות 66-73 לספירה שימש מעוז אחרון של לוחמי הסיקריים במרד הגדול נגד רומא. לפי תיאורו של יוסף בן מתתיהו, בתום המצור הרומי בחרו המגינים, בהנהגת אלעזר בן יאיר, למות מוות עצמי ולא ליפול בשבי. מצדה הפכה לסמל בתודעה הישראלית והיהודית לגבורה, לחירות ולהתנגדות, והיא אתר מורשת עולמית של אונסק״ו.",
+        "sources": [
+          {
+            "title": "מצדה – ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/%D7%9E%D7%A6%D7%93%D7%94"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.3536,
+          31.3157
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "tomb-of-maimonides-tiberias",
+        "name_he": "קבר הרמב״ם",
+        "name_en": "Tomb of Maimonides, Tiberias",
+        "periods": [],
+        "religions": [
+          "judaism"
+        ],
+        "temple_era": null,
+        "region": null,
+        "description_he": "האתר בטבריה מיוחס לרבי משה בן מימון (הרמב״ם), מגדולי הפוסקים והפילוסופים היהודים בימי הביניים, שנפטר במצרים ב-1204. לפי המסורת נקברה גופתו בטבריה בהתאם לצוואתו. הכיתוב על המצבה, 'ממשה עד משה לא קם כמשה', מבטא את מעמדו המרכזי בתולדות ההגות וההלכה היהודית, והאתר משמש כיום מוקד עלייה לרגל.",
+        "sources": [
+          {
+            "title": "קבר הרמב\"ם – ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/%D7%A7%D7%91%D7%A8_%D7%94%D7%A8%D7%9E%D7%91%22%D7%9D"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.5307,
+          32.7841
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "beit-shearim",
+        "name_he": "בית שערים",
+        "name_en": "Beit She'arim Necropolis",
+        "periods": [],
+        "religions": [
+          "judaism"
+        ],
+        "temple_era": null,
+        "region": null,
+        "description_he": "בית שערים בגליל התחתון היה מרכז יהודי משגשג בתקופת המשנה, ובין המאות ה-2 וה-4 לספירה שימש מקום מושבה של הסנהדרין בראשות רבי יהודה הנשיא, עורך המשנה, שנקבר בו. מתחת ליישוב מצוי בית הקברות הצפוף והגדול ביותר בעולם היהודי הקדום, הכולל כשלושים מערות קבורה מעוטרות בכתובות ודימויים. בית שערים הוכר בשנת 2015 כאתר מורשת עולמית של אונסק״ו.",
+        "sources": [
+          {
+            "title": "בית שערים – ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/%D7%91%D7%99%D7%AA_%D7%A9%D7%A2%D7%A8%D7%99%D7%9D"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.1294,
+          32.6975
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "tomb-rashbi-meron",
+        "name_he": "קבר רבי שמעון בר יוחאי, מירון",
+        "name_en": "Tomb of Rabbi Shimon bar Yochai, Meron",
+        "periods": [],
+        "religions": [
+          "judaism"
+        ],
+        "temple_era": null,
+        "region": null,
+        "description_he": "האתר בהר מירון מיוחס לרבי שמעון בר יוחאי (רשב״י), תנא מן המאה ה-2 שהמסורת מייחסת לו את חיבור ספר הזוהר, יסוד תורת הקבלה. הקבר נחשב לאחד האתרים הדתיים המבוקרים ביותר בישראל אחרי הכותל המערבי, ובייחוד בחג ל״ג בעומר, יום ההילולה המסורתי של רשב״י, עולים אליו מדי שנה מאות אלפי מתפללים ומדליקים מדורות לזכרו.",
+        "sources": [
+          {
+            "title": "קבר רבי שמעון בר יוחאי – ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/%D7%A7%D7%91%D7%A8_%D7%A8%D7%91%D7%99_%D7%A9%D7%9E%D7%A2%D7%95%D7%9F_%D7%91%D7%A8_%D7%99%D7%95%D7%97%D7%90%D7%99"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.4491,
+          32.9878
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "nabi-samwil",
+        "name_he": "נבי סמואל (קבר שמואל הנביא)",
+        "name_en": "Nabi Samwil (Tomb of Samuel the Prophet)",
+        "periods": [],
+        "religions": [
+          "judaism",
+          "islam"
+        ],
+        "temple_era": null,
+        "region": null,
+        "description_he": "נבי סמואל, על פסגת הר צפונית-מערבית לירושלים, מזוהה במסורות היהודית והמוסלמית כמקום קבורתו של שמואל הנביא. בתוך המצודה הצלבנית שעל ההר פועלים כיום גם בית כנסת וגם מסגד, המשקפים את קדושת המקום לשתי הדתות. האתר משמש מוקד עלייה לרגל ותפילה, וכן מספק תצפית פנורמית על ירושלים וסביבותיה.",
+        "sources": [
+          {
+            "title": "נבי סמואל – ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/%D7%A0%D7%91%D7%99_%D7%A1%D7%9E%D7%95%D7%90%D7%9C"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.1789,
+          31.8378
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "church-holy-sepulchre",
+        "name_he": "כנסיית הקבר (כנסיית תחיית המשיח)",
+        "name_en": "Church of the Holy Sepulchre",
+        "periods": [],
+        "religions": [
+          "christianity"
+        ],
+        "temple_era": null,
+        "region": null,
+        "description_he": "כנסיית הקבר ברובע הנוצרי של העיר העתיקה בירושלים נבנתה לראשונה בשנת 325 לספירה ביוזמת הקיסר הביזנטי קונסטנטינוס, על מקום שזוהה כגבעת הגולגותא. על פי המסורת הנוצרית, במקום זה נצלב ישו, נקבר, וקם לתחייה, מה שהופך אותו לאתר הקדוש ביותר בנצרות. הכנסייה מנוהלת בשיתוף בין כמה עדות נוצריות ומהווה יעד עיקרי לעולי רגל ולתיירים מכל העולם.",
+        "sources": [
+          {
+            "title": "כנסיית הקבר – ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/%D7%9B%D7%A0%D7%A1%D7%99%D7%99%D7%AA_%D7%94%D7%A7%D7%91%D7%A8"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.2298,
+          31.7784
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "church-of-nativity-bethlehem",
+        "name_he": "כנסיית המולד, בית לחם",
+        "name_en": "Church of the Nativity, Bethlehem",
+        "periods": [],
+        "religions": [
+          "christianity"
+        ],
+        "temple_era": null,
+        "region": null,
+        "description_he": "כנסיית המולד בבית לחם נבנתה לראשונה במאה ה-4 ביוזמת הלנה, אמו של הקיסר קונסטנטינוס, מעל מערה שלפי המסורת הנוצרית נולד בה ישו. המבנה הנוכחי, שעבר שיקומים לאורך הדורות, נחשב לאחת הכנסיות העתיקות בעולם הפועלות ברציפות. הכנסייה, המנוהלת בשיתוף כמה עדות נוצריות, הוכרזה על ידי אונסק״ו כאתר מורשת עולמית והיא יעד עיקרי לעליית רגל, בעיקר סביב חג המולד.",
+        "sources": [
+          {
+            "title": "כנסיית המולד – ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/%D7%9B%D7%A0%D7%A1%D7%99%D7%99%D7%AA_%D7%94%D7%9E%D7%95%D7%9C%D7%93"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.2076,
+          31.7043
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "church-of-annunciation-nazareth",
+        "name_he": "כנסיית הבשורה, נצרת",
+        "name_en": "Church of the Annunciation, Nazareth",
+        "periods": [],
+        "religions": [
+          "christianity"
+        ],
+        "temple_era": null,
+        "region": null,
+        "description_he": "כנסיית הבשורה בנצרת, שהמבנה הנוכחי שלה נבנה בשנים 1955–1968 מעל שרידי כנסיות קדומות יותר, מציינת לפי המסורת הקתולית את המקום שבו בישר המלאך גבריאל למרים כי תלד את ישו. הכנסייה, הגדולה מסוגה במזרח התיכון, נחשבת לאחד האתרים הנוצריים החשובים בגליל. סמוך אליה פועלת גם הכנסייה היוונית-אורתודוקסית של גבריאל הקדוש, המזהה מיקום שונה לאירוע הבשורה.",
+        "sources": [
+          {
+            "title": "כנסיית הבשורה – ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/%D7%9B%D7%A0%D7%A1%D7%99%D7%99%D7%AA_%D7%94%D7%91%D7%A9%D7%95%D7%A8%D7%94"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.2977,
+          32.7019
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "mount-of-beatitudes",
+        "name_he": "הר האושר (הר נחום)",
+        "name_en": "Mount of Beatitudes",
+        "periods": [],
+        "religions": [
+          "christianity"
+        ],
+        "temple_era": null,
+        "region": null,
+        "description_he": "הר האושר, הצופה על הכנרת ליד כפר נחום, מזוהה במסורת הנוצרית כמקום שבו נשא ישו את 'דרשת ההר', ובה נכללות ה'אושרות' (Beatitudes) המהוות בסיס מרכזי לאתיקה הנוצרית. במקום ניצבת כנסייה קתולית משמונת הצלעות שנבנתה בשנות ה-30 של המאה ה-20. האתר, בשל נופו השליו ומיקומו לצד ימת הכנרת, נחשב לאחד המוקדים המרכזיים בסיורי 'עקבות ישו' בגליל.",
+        "sources": [
+          {
+            "title": "הר נחום – ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/%D7%94%D7%A8_%D7%A0%D7%97%D7%95%D7%9D"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.5453,
+          32.8721
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "capernaum",
+        "name_he": "כפר נחום",
+        "name_en": "Capernaum",
+        "periods": [],
+        "religions": [
+          "christianity"
+        ],
+        "temple_era": null,
+        "region": null,
+        "description_he": "כפר נחום, יישוב עתיק על חוף הכנרת הצפוני שהתקיים מתקופת החשמונאים ועד התקופה הביזנטית, מתואר בברית החדשה כמרכז פעילותו של ישו בגליל ומקום מגוריהם של כמה משליחיו, ובהם פטרוס. באתר נחשפו שרידי בית כנסת יהודי עתיק וכן שרידי בית שזוהה כביתו של פטרוס, שמעליהם נבנתה כנסייה קתולית מודרנית. האתר מנוהל כיום כגן לאומי ומהווה תחנה מרכזית בסיורי הגליל הנוצרי.",
+        "sources": [
+          {
+            "title": "כפר נחום – ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/%D7%9B%D7%A4%D7%A8_%D7%A0%D7%97%D7%95%D7%9D"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.575,
+          32.8806
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "yardenit",
+        "name_he": "ירדנית",
+        "name_en": "Yardenit",
+        "periods": [],
+        "religions": [
+          "christianity"
+        ],
+        "temple_era": null,
+        "region": null,
+        "description_he": "ירדנית הוא אתר טבילה מודרני על גדות נהר הירדן ביציאתו מהכנרת, שהוקם בשנות ה-80 של המאה ה-20 כדי לאפשר לעולי רגל נוצרים לקיים את טקס הטבילה בקרבת המקום המסורתי בו הטביל יוחנן המטביל את ישו. האתר, המצויד בתשתיות לטבילה המונית, הפך ליעד תיירות דתית פופולרי במיוחד בקרב קבוצות נוצריות מהעולם, למרות שהזיהוי ההיסטורי המדויק של מקום הטבילה נוטה לאתר קסר אל-יהוד שליד יריחו.",
+        "sources": [
+          {
+            "title": "ירדנית – ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/%D7%99%D7%A8%D7%93%D7%A0%D7%99%D7%AA"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.571,
+          32.7167
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "qasr-al-yahud",
+        "name_he": "קסר אל-יהוד",
+        "name_en": "Qasr al-Yahud",
+        "periods": [],
+        "religions": [
+          "christianity"
+        ],
+        "temple_era": null,
+        "region": null,
+        "description_he": "קסר אל-יהוד, הממוקם על נהר הירדן ממזרח ליריחו, מזוהה במסורת הנוצרית כמקום שבו הטביל יוחנן המטביל את ישו. כבר בתקופה הביזנטית, במאה ה-5 או ה-6, הוקמה במקום כנסיית יוחנן המטביל הראשונה, ומאז המאה ה-12 פועלים באתר מבנים ומנזרים של עדות נוצריות שונות. במקום מתקיימים טקסי טבילה שנתיים בחג הפסחא ובחג ההתגלות (אפיפניה), והוא נגיש לביקור לאחר הסרת שדות מוקשים היסטוריים מסביבתו.",
+        "sources": [
+          {
+            "title": "קסר אל-יהוד – ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/%D7%A7%D7%A1%D7%A8_%D7%90%D7%9C-%D7%99%D7%94%D7%95%D7%93"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.5464,
+          31.8378
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "mount-tabor",
+        "name_he": "הר תבור",
+        "name_en": "Mount Tabor",
+        "periods": [],
+        "religions": [
+          "christianity"
+        ],
+        "temple_era": null,
+        "region": null,
+        "description_he": "הר תבור בגליל התחתון מזוהה במסורת הנוצרית כמקום ההשתנות (הטרנספיגורציה) של ישו, אירוע המתואר בבשורות הסינופטיות שבו נגלה ישו לפני שלושה מתלמידיו בדמות קורנת אור לצד משה ואליהו. על פסגת ההר ניצבות כיום כנסיית ההשתנות הקתולית, שתוכננה בידי האדריכל אנטוניו ברלוצי, וכנסייה יוונית-אורתודוקסית סמוכה. ההר, בשל מיקומו ונופו, נזכר גם בהקשרים מקראיים ותיים קדומים יותר.",
+        "sources": [
+          {
+            "title": "הר תבור – ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/%D7%94%D7%A8_%D7%AA%D7%91%D7%95%D7%A8"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.3911,
+          32.6864
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "cana-kafr-kanna",
+        "name_he": "כפר כנא",
+        "name_en": "Cana (Kafr Kanna)",
+        "periods": [],
+        "religions": [
+          "christianity"
+        ],
+        "temple_era": null,
+        "region": null,
+        "description_he": "כפר כנא בגליל התחתון מזוהה במסורת הנוצרית עם קנה הגלילית, המקום שבו חולל ישו, לפי הבשורה על פי יוחנן, את נס הפיכת המים ליין בחתונה — הנס הראשון המיוחס לו בברית החדשה. הכנסייה הקתולית-פרנציסקנית במקום, 'כנסיית החתונה', נבנתה במאה ה-19 מעל שרידי כנסייה עתיקה מהמאה ה-6, ולצדה פועלת גם כנסייה יוונית-אורתודוקסית. הכפר משמש עד היום יעד לזוגות המחדשים בו את נדרי נישואיהם.",
+        "sources": [
+          {
+            "title": "כפר כנא – ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/%D7%9B%D7%A4%D7%A8_%D7%9B%D7%A0%D7%90"
+          },
+          {
+            "title": "החתונה בקנה – ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/%D7%94%D7%97%D7%AA%D7%95%D7%A0%D7%94_%D7%91%D7%A7%D7%A0%D7%94"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.3419,
+          32.7469
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "tabgha",
+        "name_he": "טבחה",
+        "name_en": "Tabgha",
+        "periods": [],
+        "religions": [
+          "christianity"
+        ],
+        "temple_era": null,
+        "region": null,
+        "description_he": "טבחה, על חוף הכנרת הצפוני-מערבי, מזוהה במסורת הנוצרית עם נס הכפלת הלחם והדגים שחולל ישו כדי להאכיל המונים, המתואר בכל ארבע הבשורות. באתר ניצבת כנסיית הכפלת הלחם והדגים, שהמבנה הנוכחי שלה נבנה בשנות ה-80 מעל שרידי כנסייה ביזנטית מן המאה ה-5 עם רצפת פסיפס מפורסמת. בסמוך אליה פועלת גם כנסיית פרימאט פטרוס, המציינת לפי המסורת את המקום שבו מינה ישו את פטרוס להנהיג את תלמידיו.",
+        "sources": [
+          {
+            "title": "כנסיית הר האושר / הר נחום - אבני מורשת",
+            "url": "https://makom.hamoreshet.org.il/landmark/mount-of-beatitudes-mount-nahum/"
+          },
+          {
+            "title": "טבחה – Tabgha (Church of the Multiplication)",
+            "url": "https://he.wikipedia.org/wiki/%D7%98%D7%91%D7%97%D7%94"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.5528,
+          32.8712
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "gethsemane-church-all-nations",
+        "name_he": "גת שמנים וכנסיית כל האומות",
+        "name_en": "Gethsemane and the Church of All Nations",
+        "periods": [],
+        "religions": [
+          "christianity"
+        ],
+        "temple_era": null,
+        "region": null,
+        "description_he": "גת שמנים, גן זיתים עתיק לרגלי הר הזיתים, מזוהה במסורת הנוצרית כמקום שבו התפלל ישו בערב הסגרתו לרומאים וחווה מצוקה נפשית עמוקה. כנסיית כל האומות (הידועה גם ככנסיית היגון), שתוכננה בידי האדריכל האיטלקי אנטוניו ברלוצי ונבנתה בשנים 1919–1924 במימון תרומות מרחבי העולם הקתולי, ניצבת על שטח הגן. האתר, הכולל עצי זית עתיקים, נמנה עם התחנות המרכזיות במסלול 'דרך היגון' בירושלים.",
+        "sources": [
+          {
+            "title": "כנסיית כל העמים – ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/%D7%9B%D7%A0%D7%A1%D7%99%D7%99%D7%AA_%D7%9B%D7%9C_%D7%94%D7%A2%D7%9E%D7%99%D7%9D"
+          },
+          {
+            "title": "גת שמנים – ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/%D7%92%D7%AA_%D7%A9%D7%9E%D7%A0%D7%99%D7%9D"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.241,
+          31.7791
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "emmaus-nicopolis",
+        "name_he": "אמאוס-ניקופוליס",
+        "name_en": "Emmaus Nicopolis, Latrun",
+        "periods": [],
+        "religions": [
+          "christianity"
+        ],
+        "temple_era": null,
+        "region": null,
+        "description_he": "אמאוס-ניקופוליס, סמוך למחלף לטרון, היא אחד המקומות שהמסורת הנוצרית העתיקה, כבר מימי אוסביוס איש קיסריה, זיהתה כ'עמאוס' הנזכרת בבשורת לוקאס — המקום שבו נגלה ישו המחיה לשניים מתלמידיו לאחר הצליבה. באתר משוקמים כיום שרידי כנסייה ביזנטית וכנסייה צלבנית קטנה שנבנתה על חורבותיה, לצד פסיפסים עתיקים. עם זאת, זהות 'עמאוס' המקראית שנויה במחלוקת, ומספר אתרים נוספים באזור ירושלים מזוהים עמה על ידי מסורות מאוחרות יותר, ובהם אבו גוש ואל-קוביבה.",
+        "sources": [
+          {
+            "title": "אמאוס ניקופוליס – ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/%D7%90%D7%9E%D7%90%D7%95%D7%A1_%D7%A0%D7%99%D7%A7%D7%95%D7%A4%D7%95%D7%9C%D7%99%D7%A1"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.9906,
+          31.8384
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "dome-of-the-rock-2",
+        "name_he": "כיפת הסלע",
+        "name_en": "Dome of the Rock",
+        "periods": [],
+        "religions": [
+          "islam"
+        ],
+        "temple_era": null,
+        "region": null,
+        "description_he": "כיפת הסלע, שנבנתה בין השנים 688–691 ביוזמת הח'ליף האומיי עבד אל-מלכ, ניצבת במרכז רחבת הר הבית מעל אבן השתייה. במסורת המוסלמית מזוהה המקום עם מסע הלילה (אל-איסרא ואל-מעראג') שבו עלה הנביא מוחמד השמימה. המבנה, המצטיין בכיפתו המוזהבת ובעיטוריו המרהיבים, נחשב לאחד ההישגים האדריכליים הבולטים באמנות האסלאמית הקדומה ומהווה סמל דתי ותרבותי מרכזי.",
+        "sources": [
+          {
+            "title": "כיפת הסלע – ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/%D7%9B%D7%99%D7%A4%D7%AA_%D7%94%D7%A1%D7%9C%D7%A2"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.2354,
+          31.778
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "al-aqsa-mosque-2",
+        "name_he": "מסגד אל-אקצא",
+        "name_en": "Al-Aqsa Mosque",
+        "periods": [],
+        "religions": [
+          "islam"
+        ],
+        "temple_era": null,
+        "region": null,
+        "description_he": "מסגד אל-אקצא, הממוקם בקצה הדרומי של רחבת הר הבית, הוא המסגד השלישי בקדושתו באסלאם לאחר המסגד הגדול במכה ומסגד הנביא במדינה. שמו נגזר מן הכינוי הקוראני 'אל-מסג'ד אל-אקצא' ('המסגד הקיצוני'), הקשור למסע הלילה של הנביא מוחמד. בשימוש רחב יותר, מכונה כך גם כלל רחבת הר הבית והמבנים שעליה. המסגד משמש כמוקד תפילה מרכזי לקהילה המוסלמית בירושלים ובעולם.",
+        "sources": [
+          {
+            "title": "מסגד אל-אקצא – ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/%D7%9E%D7%A1%D7%92%D7%93_%D7%90%D7%9C-%D7%90%D7%A7%D7%A6%D7%90"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.2358,
+          31.7761
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "nabi-musa-2",
+        "name_he": "נבי מוסא",
+        "name_en": "Nabi Musa",
+        "periods": [],
+        "religions": [
+          "islam"
+        ],
+        "temple_era": null,
+        "region": null,
+        "description_he": "נבי מוסא הוא מתחם מסגדים במדבר יהודה, כעשרה קילומטרים דרומית ליריחו, המזוהה במסורת המוסלמית כמקום קבורתו של הנביא מוסא (משה) או כמקום ממנו ניתן להתפלל לזכרו. המתחם, הכולל שני מסגדים מחוברים וח'אן ללינת עולי רגל, שימש במשך מאות שנים כמוקד לחגיגות עלייה לרגל שנתיות ('מוסם נבי מוסא') שנערכו בסמוך לחג הפסחא הנוצרי. המנהג, שהיה לו גם היבט של ביטוי סולידריות מוסלמית פוליטית, נמשך עד היום בהיקף מצומצם יותר.",
+        "sources": [
+          {
+            "title": "נבי מוסא – ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/%D7%A0%D7%91%D7%99_%D7%9E%D7%95%D7%A1%D7%90"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.4108,
+          31.7439
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "white-mosque-ramla",
+        "name_he": "המסגד הלבן, רמלה",
+        "name_en": "The White Mosque, Ramla",
+        "periods": [],
+        "religions": [
+          "islam"
+        ],
+        "temple_era": null,
+        "region": null,
+        "description_he": "המסגד הלבן ברמלה נבנה בתחילת המאה ה-8 בתקופת השלטון האומיי, ותוארו 'מסגד ארבעים הלוחמים' משקף מסורת המקשרת אותו לקבורת ארבעים לוחמים מוסלמים בשטחו. המסגד נהרס ברעידות אדמה ב-1033 וב-1068 ושוב בתקופה הצלבנית, ונבנה מחדש בתקופה הממלוכית, אז נוספה גם המינרט הידוע כ'המגדל הלבן'. המתחם, שנקרא 'הלבן' בשל ציפויו השיש, מהווה כיום אתר מורשת מרכזי בעיר רמלה.",
+        "sources": [
+          {
+            "title": "המסגד הלבן (רמלה) – ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/%D7%94%D7%9E%D7%A1%D7%92%D7%93_%D7%94%D7%9C%D7%91%D7%9F_(%D7%A8%D7%9E%D7%9C%D7%94)"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.8664,
+          31.9276
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "al-jazzar-mosque-akko",
+        "name_he": "מסגד אל-ג'זאר, עכו",
+        "name_en": "Al-Jazzar Mosque, Akko",
+        "periods": [],
+        "religions": [
+          "islam"
+        ],
+        "temple_era": null,
+        "region": null,
+        "description_he": "מסגד אל-ג'זאר בעיר העתיקה של עכו נבנה בשנת 1781 ביוזמת אחמד אל-ג'זאר, מושל האזור מטעם האימפריה העות'מאנית, על חורבות כנסייה צלבנית. עד כיבוש העיר העתיקה בירושלים ב-1967 היה המסגד הגדול בישראל, וכיום הוא נחשב לשלישי בגודלו בישראל אחרי מסגד אל-אקצא. המסגד, המצטיין בכיפתו הירוקה ובחצרו המרשימה, משמש בית התפילה המרכזי לקהילה המוסלמית בעכו.",
+        "sources": [
+          {
+            "title": "מסגד אל-ג'זאר – ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/%D7%9E%D7%A1%D7%92%D7%93_%D7%90%D7%9C-%D7%92'%D7%96%D7%90%D7%A8"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.0684,
+          32.928
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "mahmoudiya-mosque-jaffa",
+        "name_he": "מסגד מחמודיה, יפו",
+        "name_en": "Mahmoudiya Mosque, Jaffa",
+        "periods": [],
+        "religions": [
+          "islam"
+        ],
+        "temple_era": null,
+        "region": null,
+        "description_he": "מסגד מחמודיה, הממוקם בפינה הצפונית-מזרחית של יפו העתיקה סמוך למגדל השעון, נוסד ב-1730 ונבנה מחדש בשנים 1812–1814 ביוזמת מוחמד אגא א-שאמי, מושל העיר בתקופה העות'מאנית. המסגד, המוערך כרביעי בגודלו בישראל, משמש עד היום בית תפילה פעיל ומרכזי לקהילה המוסלמית ביפו. מבנהו המשופץ והמתוחזק היטב הופך אותו לאחד מציוני הדרך הבולטים ברובע העתיק של העיר.",
+        "sources": [
+          {
+            "title": "מסגד מחמודיה – ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/%D7%9E%D7%A1%D7%92%D7%93_%D7%9E%D7%97%D7%9E%D7%95%D7%93%D7%99%D7%94"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.7514,
+          32.0533
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "mosque-of-omar-jerusalem",
+        "name_he": "מסגד עומר, ירושלים",
+        "name_en": "Mosque of Omar, Jerusalem",
+        "periods": [],
+        "religions": [
+          "islam"
+        ],
+        "temple_era": null,
+        "region": null,
+        "description_he": "מסגד עומר ניצב מול הכניסה הראשית לכנסיית הקבר ברובע הנוצרי של העיר העתיקה בירושלים. לפי המסורת, לאחר כיבוש ירושלים בידי המוסלמים בשנת 637 הוזמן הח'ליף עומר אבן אל-ח'טאב על ידי הפטריארך סופרוניוס לבקר בכנסיית הקבר, אך סירב להתפלל בתוכה כדי שלא תהפוך למקום קדוש גם לאסלאם, ויצא להתפלל מחוצה לה. שם המסגד ניתן לו רק בתקופה העות'מאנית, ויש חשיבות שלא לבלבל אותו עם כיפת הסלע שבהר הבית, המכונה בטעות לעיתים באותו שם.",
+        "sources": [
+          {
+            "title": "מסגד עומר – ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/%D7%9E%D7%A1%D7%92%D7%93_%D7%A2%D7%95%D7%9E%D7%A8"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.2296,
+          31.7783
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "chechen-mosque-abu-ghosh",
+        "name_he": "מסגד אחמד חאג'י קדירוב, אבו גוש",
+        "name_en": "Ahmad Kadyrov Mosque (Chechen Mosque), Abu Ghosh",
+        "periods": [],
+        "religions": [
+          "islam"
+        ],
+        "temple_era": null,
+        "region": null,
+        "description_he": "המסגד באבו גוש, שנחנך ב-2014 ונקרא על שם המנהיג הצ'צ'ני אחמד קדירוב, נבנה בסיוע ממשלת צ'צ'ניה ונחשב למסגד השני בגודלו בישראל אחרי מסגד אל-אקצא. הבנייה נועדה לחדש קשרים היסטוריים בין הצ'צ'נים לתושבי אבו גוש, שמוצאם מקווקז ושהתיישבו במקום לפני כמה מאות שנים. המסגד, המשתרע על כ-4,000 מ״ר ומצטיין בארבעה צריחים בעלי ראשים מוזהבים, משמש בית תפילה פעיל לתושבי הכפר.",
+        "sources": [
+          {
+            "title": "מסגד אחמד חאג'י קדירוב באבו גוש – ויקיפדיה",
+            "url": "https://he.wikipedia.org/wiki/%D7%9E%D7%A1%D7%92%D7%93_%D7%90%D7%97%D7%9E%D7%93_%D7%97%D7%90%D7%92'%D7%99_%D7%A7%D7%93%D7%99%D7%A8%D7%95%D7%91_%D7%91%D7%90%D7%91%D7%95_%D7%92%D7%95%D7%A9"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.1094,
+          31.8047
+        ]
+      }
+    }
+  ]
 }
