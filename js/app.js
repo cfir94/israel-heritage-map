@@ -1,5 +1,6 @@
 /* מפת מורשת ישראל — לוגיקת האפליקציה הראשית, על גבי מפה וקטורית עצמאית (MapLibre + PMTiles) */
 import * as maplibregl from '../vendor/maplibre/maplibre-gl.mjs';
+import mlcontour from '../vendor/maplibre/maplibre-contour.mjs';
 
 const ERA_COLORS = {
   prehistoric: '#A97142',
@@ -97,7 +98,7 @@ const state = {
   route: JSON.parse(localStorage.getItem('ihm_route') || '[]')
 };
 
-let map, nearbyMarker;
+let map, nearbyMarker, demSource, geolocate;
 
 function abs(path) {
   return new URL(path, window.location.href).href;
@@ -170,6 +171,15 @@ async function initMap() {
   const protocol = new pmtiles.Protocol();
   maplibregl.addProtocol('pmtiles', protocol.tile);
 
+  // One shared elevation source feeds both the hillshade and the contour lines.
+  demSource = new mlcontour.DemSource({
+    url: absDir() + 'data/terrain/{z}/{x}/{y}.png',
+    encoding: 'terrarium',
+    maxzoom: 11,
+    worker: true
+  });
+  demSource.setupMaplibre(maplibregl);
+
   if (maplibregl.getRTLTextPluginStatus() === 'unavailable') {
     maplibregl.setRTLTextPlugin(abs('vendor/maplibre/mapbox-gl-rtl-text.js'), false);
   }
@@ -190,6 +200,17 @@ async function initMap() {
   window.__ihmMap = map;
 
   map.addControl(new maplibregl.NavigationControl(), 'top-left');
+
+  // Live position. trackUserLocation keeps following as you walk, and the
+  // heading indicator matters when you are orienting a group on a hilltop.
+  geolocate = new maplibregl.GeolocateControl({
+    positionOptions: { enableHighAccuracy: true, timeout: 10000 },
+    trackUserLocation: true,
+    showUserLocation: true,
+    showAccuracyCircle: true,
+    showUserHeading: true
+  });
+  map.addControl(geolocate, 'top-left');
   map.addControl(new maplibregl.AttributionControl({ compact: true }), 'bottom-right');
   map.on('error', e => console.warn('Map error:', e.error && e.error.message));
 
@@ -211,7 +232,7 @@ async function initMap() {
   // shading effect rather than something you read detail off.
   map.addSource('terrain', {
     type: 'raster-dem',
-    url: 'pmtiles://' + abs('data/israel-terrain.pmtiles'),
+    tiles: [absDir() + 'data/terrain/{z}/{x}/{y}.png'],
     encoding: 'terrarium',
     tileSize: 256,
     maxzoom: 11,
@@ -225,6 +246,54 @@ async function initMap() {
       'hillshade-shadow-color': '#6B5636',
       'hillshade-highlight-color': '#FFF6E4',
       'hillshade-accent-color': '#8A7350'
+    }
+  }, HILLSHADE_INSERT_BEFORE);
+
+  // Real contour lines, the thing that makes a hiking map a hiking map.
+  // maplibre-contour derives them in a worker from the same elevation tiles the
+  // hillshade uses, so this costs no extra download and still works offline.
+  map.addSource('contours', {
+    type: 'vector',
+    tiles: [demSource.contourProtocolUrl({
+      thresholds: {
+        // zoom: [minor interval, major (labelled) interval] in metres
+        9:  [100, 500],
+        11: [50, 250],
+        13: [20, 100],
+        14: [10, 50]
+      },
+      elevationKey: 'ele',
+      levelKey: 'level',
+      contourLayer: 'contours',
+      overzoom: 1
+    })],
+    maxzoom: 15
+  });
+  map.addLayer({
+    id: 'contour-lines', type: 'line', source: 'contours', 'source-layer': 'contours',
+    layout: { visibility: 'none', 'line-join': 'round' },
+    paint: {
+      'line-color': '#8A6B3F',
+      // major contours read heavier than the minor ones between them
+      'line-width': ['match', ['get', 'level'], 1, 1.3, 0.6],
+      'line-opacity': ['match', ['get', 'level'], 1, 0.65, 0.4]
+    }
+  }, HILLSHADE_INSERT_BEFORE);
+  map.addLayer({
+    id: 'contour-labels', type: 'symbol', source: 'contours', 'source-layer': 'contours',
+    filter: ['>', ['get', 'level'], 0],
+    layout: {
+      visibility: 'none',
+      'symbol-placement': 'line',
+      'text-field': ['concat', ['number-format', ['get', 'ele'], {}], ' מ׳'],
+      'text-font': ['Noto Sans Regular'],
+      'text-size': 10.5,
+      'text-max-angle': 25
+    },
+    paint: {
+      'text-color': '#6B5230',
+      'text-halo-color': '#FFFBF2',
+      'text-halo-width': 1.6
     }
   }, HILLSHADE_INSERT_BEFORE);
 
@@ -1037,6 +1106,11 @@ function wireUI() {
   document.getElementById('toggle-nature').addEventListener('change', e => {
     setLayerVisibility('nature-points', e.target.checked);
     document.getElementById('nature-filters').classList.toggle('hidden', !e.target.checked);
+  });
+
+  document.getElementById('toggle-contours').addEventListener('change', e => {
+    setLayerVisibility('contour-lines', e.target.checked);
+    setLayerVisibility('contour-labels', e.target.checked);
   });
 
   const topoStrong = document.getElementById('toggle-topo-strong');

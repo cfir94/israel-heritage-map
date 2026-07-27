@@ -1,8 +1,8 @@
-const CACHE_NAME = 'ihm-cache-v8';
+const CACHE_NAME = 'ihm-cache-v9';
 const MAP_CACHE_NAME = 'ihm-map-v1';
 // Every self-hosted tile archive. These are the only files served by Range
 // request, so they take the byte-slicing path below rather than plain caching.
-const PMTILES_FILES = ['data/israel.pmtiles', 'data/israel-terrain.pmtiles'];
+const PMTILES_FILES = ['data/israel.pmtiles'];
 const isPmtilesUrl = url => PMTILES_FILES.some(f => url.endsWith('/' + f));
 
 const APP_SHELL = [
@@ -18,6 +18,8 @@ const APP_SHELL = [
   'js/data/geology_advanced.geojson',
   'js/data/nature.geojson',
   'js/data/visitor_sites.geojson',
+  'data/terrain-manifest.json',
+  'vendor/maplibre/maplibre-contour.mjs',
   'vendor/maplibre/maplibre-gl.mjs',
   'vendor/maplibre/maplibre-gl-shared.mjs',
   'vendor/maplibre/maplibre-gl-worker.mjs',
@@ -113,18 +115,36 @@ async function cacheWholeMapFile(client) {
       const r = await fetch(new URL(f, self.registration.scope).href, { method: 'HEAD' });
       return Number(r.headers.get('content-length')) || 0;
     }));
+    // The elevation tiles are many small files rather than one archive, so they
+    // are counted as a flat share of the progress bar instead of by bytes.
+    const terrain = await fetch(new URL('data/terrain-manifest.json', self.registration.scope).href)
+      .then(r => r.ok ? r.json() : []).catch(() => []);
     const grandTotal = sizes.reduce((a, b) => a + b, 0);
+    const archiveShare = terrain.length ? 0.85 : 1;
     let done = 0;
     for (let i = 0; i < PMTILES_FILES.length; i++) {
       await cacheOneArchive(PMTILES_FILES[i], client, received => {
         if (client && grandTotal) {
           client.postMessage({
             type: 'cache-map-progress',
-            percent: Math.min(100, Math.round(((done + received) / grandTotal) * 100))
+            percent: Math.min(100, Math.round(((done + received) / grandTotal) * 100 * archiveShare))
           });
         }
       });
       done += sizes[i];
+    }
+    if (terrain.length) {
+      const cache = await caches.open(CACHE_NAME);
+      for (let i = 0; i < terrain.length; i++) {
+        const url = new URL(terrain[i], self.registration.scope).href;
+        try { await cache.add(url); } catch (e) { /* one missing tile must not fail the whole download */ }
+        if (client && i % 20 === 0) {
+          client.postMessage({
+            type: 'cache-map-progress',
+            percent: Math.min(100, Math.round((archiveShare + (1 - archiveShare) * (i / terrain.length)) * 100))
+          });
+        }
+      }
     }
     if (client) client.postMessage({ type: 'cache-map-done', ok: true });
   } catch (err) {
