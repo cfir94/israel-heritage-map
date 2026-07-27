@@ -181,6 +181,10 @@ function refreshReligionsLayer() {
 function openInfoPanel(props, context) {
   const panel = document.getElementById('info-panel');
   const content = document.getElementById('info-content');
+  if (window.innerWidth < 900) {
+    document.getElementById('sidebar').classList.add('collapsed');
+    document.getElementById('sidebar-backdrop').classList.add('hidden');
+  }
   let metaBits = [];
   if (props.periods && props.periods.length) {
     metaBits.push(props.periods.map(pid => {
@@ -260,6 +264,10 @@ function findNearby() {
 
     const content = document.getElementById('info-content');
     const panel = document.getElementById('info-panel');
+    if (window.innerWidth < 900) {
+      document.getElementById('sidebar').classList.add('collapsed');
+      document.getElementById('sidebar-backdrop').classList.add('hidden');
+    }
     if (!nearby.length) {
       content.innerHTML = '<h3>מה יש כאן?</h3><p>לא נמצאו אתרים מתועדים ברדיוס 5 ק"מ מהמיקום הנוכחי.</p>';
     } else {
@@ -351,12 +359,25 @@ function wireUI() {
     document.getElementById('info-panel').classList.add('hidden');
   });
 
+  const sidebar = document.getElementById('sidebar');
+  const backdrop = document.getElementById('sidebar-backdrop');
+
+  function openSidebar() {
+    sidebar.classList.remove('collapsed');
+    if (window.innerWidth < 900) backdrop.classList.remove('hidden');
+  }
+  function closeSidebar() {
+    sidebar.classList.add('collapsed');
+    backdrop.classList.add('hidden');
+  }
+
   document.getElementById('btn-toggle-sidebar').addEventListener('click', () => {
-    document.getElementById('sidebar').classList.toggle('collapsed');
+    if (sidebar.classList.contains('collapsed')) openSidebar(); else closeSidebar();
   });
+  backdrop.addEventListener('click', closeSidebar);
 
   document.getElementById('btn-toggle-route').addEventListener('click', () => {
-    document.getElementById('sidebar').classList.remove('collapsed');
+    openSidebar();
     document.getElementById('route-list').scrollIntoView({ behavior: 'smooth' });
   });
 
@@ -371,8 +392,8 @@ function wireUI() {
   document.getElementById('btn-nearby').addEventListener('click', findNearby);
   document.getElementById('btn-cache-area').addEventListener('click', cacheCurrentArea);
 
-  if (window.innerWidth < 720) {
-    document.getElementById('sidebar').classList.add('collapsed');
+  if (window.innerWidth < 900) {
+    closeSidebar();
   }
 
   window.addEventListener('online', () => document.getElementById('offline-indicator').classList.add('hidden'));
