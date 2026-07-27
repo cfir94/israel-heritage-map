@@ -17,6 +17,7 @@
     <button id="btn-toggle-sidebar" aria-label="תפריט שכבות" title="תפריט שכבות">☰</button>
     <img class="logo" src="icons/svg/logo.svg" alt="" />
     <h1>מפת מורשת ישראל</h1>
+    <button id="btn-search" aria-label="חיפוש" title="חיפוש">🔍</button>
     <div id="offline-indicator" class="hidden" title="את/ה במצב לא מקוון">אופליין</div>
     <button id="btn-toggle-route" aria-label="בניית מסלול" title="בניית מסלול">מסלול</button>
   </header>
@@ -133,6 +134,15 @@
     </aside>
 
     <main id="map"></main>
+
+    <div id="search-overlay" class="hidden" role="dialog" aria-label="חיפוש באפליקציה">
+      <div class="search-bar">
+        <input id="search-input" type="search" autocomplete="off" enterkeyhint="search"
+               placeholder="חפש אתר, שמורה, גן לאומי, יחידה גיאולוגית…" aria-label="חיפוש" />
+        <button id="btn-close-search" aria-label="סגור חיפוש">✕</button>
+      </div>
+      <div id="search-results" role="listbox"></div>
+    </div>
 
     <div id="info-panel" class="hidden">
       <button id="btn-close-info" aria-label="סגור">✕</button>

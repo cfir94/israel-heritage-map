@@ -222,6 +222,7 @@ async function initMap() {
   buildGeologyLegend();
   buildNatureFilters();
   buildVisitorFilters();
+  buildSearchIndex();
   renderRoute();
   wireUI();
 
@@ -454,32 +455,10 @@ async function initMap() {
   map.on('click', 'visitor-points', e => openVisitorPanel(e.features[0].properties));
 
   map.on('click', 'nature-points', e => {
-    const p = e.features[0].properties;
-    const species = parseMaybeJSON(p.species_he);
-    const speciesHtml = species.length
-      ? `<div class="species-list">${species.map(s => `<span class="species-chip">${s}</span>`).join('')}</div>`
-      : '';
-    openInfoPanel({
-      id: p.id,
-      name_he: p.name_he,
-      name_en: p.name_en,
-      extra_html: `${speciesHtml}${p.season_he ? `<div class="season">מתי לראות: ${p.season_he}</div>` : ''}`,
-      description_he: p.description_he || '',
-      sources: parseMaybeJSON(p.sources)
-    }, 'nature');
+    openNaturePanel(e.features[0].properties);
   });
 
-  map.on('click', 'geology-fill', e => {
-    const props = e.features[0].properties;
-    openInfoPanel({
-      id: props.id,
-      name_he: props.name_he,
-      name_en: props.name_en,
-      description_he: `<strong>${props.rock_summary_he || ''}</strong><br>${props.description_he || ''}`,
-      rock_photo: props.rock_photo,
-      sources: parseMaybeJSON(props.sources)
-    }, 'geology');
-  });
+  map.on('click', 'geology-fill', e => openGeologyPanel(e.features[0].properties));
 
   refreshSitesLayer();
   refreshReligionsLayer();
@@ -719,6 +698,244 @@ function openInfoPanel(props, context) {
   `;
   content.querySelector('.add-route-btn').addEventListener('click', () => addToRoute(props));
   panel.classList.remove('hidden');
+}
+
+/* ---- Search -------------------------------------------------------------
+   Everything is already in memory and the app must work with no signal, so
+   search runs entirely locally over all the layers at once. */
+
+const SEARCH_KINDS = {
+  site:    { label: 'אתרים היסטוריים', color: '#B23A48' },
+  visitor: { label: 'שמורות וגנים',    color: '#2F7D5B' },
+  nature:  { label: 'חי וצומח',        color: '#5E8C3A' },
+  geology: { label: 'יחידות גיאולוגיות', color: '#C98A3A' },
+  region:  { label: 'אזורים',          color: '#12968A' }
+};
+
+// Hebrew typed in a hurry rarely matches stored text character for character:
+// niqqud, geresh/gershayim variants, maqaf and quotes all differ. Fold them all
+// away so "מסגד אל גזאר" still finds "מסגד אל-ג'זאר".
+function normalizeHe(str) {
+  return (str || '')
+    .toString()
+    .replace(/[֑-ׇ]/g, '')          // niqqud & cantillation
+    .replace(/[׳״'"`’”“]/g, '')                // geresh, gershayim, quotes
+    .replace(/[-–—_־]/g, ' ')             // hyphens and maqaf
+    .replace(/[()[\],.:;!?]/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim()
+    .toLowerCase();
+}
+
+let searchIndex = [];
+
+function buildSearchIndex() {
+  const add = (kind, name_he, name_en, extra, payload) => {
+    if (!name_he) return;
+    searchIndex.push({
+      kind, name_he, name_en: name_en || '', extra: extra || '',
+      hay: normalizeHe([name_he, name_en, extra].filter(Boolean).join(' ')),
+      hayName: normalizeHe(name_he + ' ' + (name_en || '')),
+      payload
+    });
+  };
+
+  state.sitesGeoJSON.features.forEach(f => {
+    const p = f.properties;
+    const periodNames = (p.periods || []).map(id => {
+      const per = state.periods.find(x => x.id === id);
+      return per ? per.name_he : id;
+    }).join(' ');
+    add('site', p.name_he, p.name_en, periodNames,
+        { coords: f.geometry.coordinates, props: p, sub: periodNames });
+  });
+
+  state.visitorGeoJSON.features.forEach(f => {
+    const p = f.properties;
+    const op = VISITOR_OPERATORS[p.operator];
+    add('visitor', p.name_he, '', op ? op.label : '',
+        { coords: f.geometry.coordinates, props: p, sub: op ? op.label : '' });
+  });
+
+  state.natureGeoJSON.features.forEach(f => {
+    const p = f.properties;
+    const species = (p.species_he || []).join(' ');
+    add('nature', p.name_he, p.name_en, species,
+        { coords: f.geometry.coordinates, props: p, sub: species.slice(0, 60) });
+  });
+
+  ['basic', 'advanced'].forEach(level => {
+    const fc = state.geologyGeoJSON[level];
+    if (!fc) return;
+    fc.features.forEach(f => {
+      const p = f.properties;
+      if (level === 'advanced' && searchIndex.some(e => e.kind === 'geology' && e.name_he === p.name_he)) return;
+      add('geology', p.name_he, p.name_en, p.rock_summary_he,
+          { center: polygonCenter(f.geometry), props: p, level, sub: p.rock_summary_he || '' });
+    });
+  });
+
+  if (state.regionsGeoJSON) {
+    state.regionsGeoJSON.features.forEach(f => {
+      const p = f.properties;
+      add('region', p.name_he, p.name_en, '',
+          { center: polygonCenter(f.geometry), props: p, sub: 'אזור גיאוגרפי' });
+    });
+  }
+}
+
+// Rough centroid, good enough to fly to a polygon.
+function polygonCenter(geom) {
+  let sx = 0, sy = 0, n = 0;
+  const walk = c => {
+    if (typeof c[0] === 'number') { sx += c[0]; sy += c[1]; n++; }
+    else c.forEach(walk);
+  };
+  walk(geom.coordinates);
+  return n ? [sx / n, sy / n] : null;
+}
+
+function runSearch(query) {
+  const q = normalizeHe(query);
+  if (q.length < 2) return [];
+  const tokens = q.split(' ').filter(Boolean);
+  const scored = [];
+  for (const entry of searchIndex) {
+    let score = 0;
+    if (entry.hayName === q) score = 100;
+    else if (entry.hayName.startsWith(q)) score = 85;
+    else if (entry.hayName.includes(q)) score = 70;
+    else if (entry.hay.includes(q)) score = 50;
+    else if (tokens.length > 1 && tokens.every(t => entry.hay.includes(t))) score = 35;
+    if (!score) continue;
+    // shorter names are usually the thing you meant
+    score -= Math.min(10, entry.name_he.length / 12);
+    scored.push({ entry, score });
+  }
+  scored.sort((a, b) => b.score - a.score);
+  return scored.slice(0, 40).map(s => s.entry);
+}
+
+function renderSearchResults(results, query) {
+  const box = document.getElementById('search-results');
+  box.innerHTML = '';
+  if (!query || query.trim().length < 2) {
+    box.innerHTML = `<p class="search-hint">הקלד לפחות שתי אותיות. החיפוש עובר על כל השכבות — אתרים היסטוריים, שמורות וגנים, חי וצומח, גיאולוגיה ואזורים — ועובד גם בלי אינטרנט.</p>`;
+    return;
+  }
+  if (!results.length) {
+    box.innerHTML = `<p class="search-hint">לא נמצאו תוצאות עבור «${query}».</p>`;
+    return;
+  }
+  const byKind = {};
+  results.forEach(r => (byKind[r.kind] = byKind[r.kind] || []).push(r));
+  Object.keys(SEARCH_KINDS).forEach(kind => {
+    const items = byKind[kind];
+    if (!items) return;
+    const meta = SEARCH_KINDS[kind];
+    const group = document.createElement('div');
+    group.className = 'search-group';
+    group.innerHTML = `<h4><span class="dot" style="background:${meta.color}"></span>${meta.label} <span class="count">${items.length}</span></h4>`;
+    items.forEach(entry => {
+      const btn = document.createElement('button');
+      btn.className = 'search-result';
+      btn.type = 'button';
+      btn.setAttribute('role', 'option');
+      btn.innerHTML = `<span class="r-name">${entry.name_he}</span>` +
+        (entry.payload.sub ? `<span class="r-sub">${entry.payload.sub}</span>` : '');
+      btn.addEventListener('click', () => selectSearchResult(entry));
+      group.appendChild(btn);
+    });
+    box.appendChild(group);
+  });
+}
+
+// Flying to a marker on a layer that is switched off would land on empty map,
+// so picking a result turns its layer on first.
+function ensureLayerVisibleFor(kind) {
+  const check = id => {
+    const el = document.getElementById(id);
+    if (el && !el.checked) { el.checked = true; el.dispatchEvent(new Event('change', { bubbles: true })); }
+  };
+  if (kind === 'visitor') check('toggle-visitor');
+  if (kind === 'nature') check('toggle-nature');
+  if (kind === 'geology') check('toggle-geology');
+  if (kind === 'region') check('toggle-regions');
+  if (kind === 'site') check('toggle-periods');
+}
+
+function selectSearchResult(entry) {
+  closeSearch();
+  ensureLayerVisibleFor(entry.kind);
+  const target = entry.payload.coords || entry.payload.center;
+  if (target) {
+    map.flyTo({ center: target, zoom: entry.kind === 'geology' || entry.kind === 'region' ? 9.5 : 14, duration: 1200 });
+  }
+  const p = entry.payload.props;
+  if (entry.kind === 'visitor') openVisitorPanel(p);
+  else if (entry.kind === 'nature') openNaturePanel(p);
+  else if (entry.kind === 'geology') openGeologyPanel(p);
+  else if (entry.kind === 'site') openInfoPanel(p, 'period');
+  else if (entry.kind === 'region') {
+    openInfoPanel({ id: p.id, name_he: p.name_he, name_en: p.name_en,
+                    description_he: p.description_he || '', sources: p.sources || [] }, 'region');
+  }
+  // A historical site is only drawn on its own period, so jump the timeline
+  // there — otherwise you fly to a marker that is filtered out. If the period
+  // already selected shows this site, leave it alone rather than yanking the
+  // timeline out from under whoever is mid-tour.
+  if (entry.kind === 'site' && (p.periods || []).length) {
+    const current = state.periods[state.periodIndex];
+    if (current && p.periods.includes(current.id)) return;
+    const idx = state.periods.findIndex(x => x.id === p.periods[0]);
+    if (idx >= 0) {
+      state.periodIndex = idx;
+      const slider = document.getElementById('period-slider');
+      if (slider) slider.value = String(idx);
+      updatePeriodLabel();
+      refreshSitesLayer();
+    }
+  }
+}
+
+function openSearch() {
+  document.getElementById('search-overlay').classList.remove('hidden');
+  document.getElementById('sidebar').classList.add('collapsed');
+  document.getElementById('sidebar-backdrop').classList.add('hidden');
+  const input = document.getElementById('search-input');
+  input.value = '';
+  renderSearchResults([], '');
+  setTimeout(() => input.focus(), 30);
+}
+
+function closeSearch() {
+  document.getElementById('search-overlay').classList.add('hidden');
+}
+
+function openNaturePanel(p) {
+  const species = parseMaybeJSON(p.species_he);
+  const speciesHtml = species.length
+    ? `<div class="species-list">${species.map(s => `<span class="species-chip">${s}</span>`).join('')}</div>`
+    : '';
+  openInfoPanel({
+    id: p.id,
+    name_he: p.name_he,
+    name_en: p.name_en,
+    extra_html: `${speciesHtml}${p.season_he ? `<div class="season">מתי לראות: ${p.season_he}</div>` : ''}`,
+    description_he: p.description_he || '',
+    sources: parseMaybeJSON(p.sources)
+  }, 'nature');
+}
+
+function openGeologyPanel(props) {
+  openInfoPanel({
+    id: props.id,
+    name_he: props.name_he,
+    name_en: props.name_en,
+    description_he: `<strong>${props.rock_summary_he || ''}</strong><br>${props.description_he || ''}`,
+    rock_photo: props.rock_photo,
+    sources: parseMaybeJSON(props.sources)
+  }, 'geology');
 }
 
 /* ---- Official visitor sites (INPA / KKL) --------------------------------
@@ -1094,6 +1311,26 @@ function wireUI() {
     setLayerVisibility('regions-line', e.target.checked);
     document.getElementById('regions-legend').classList.toggle('hidden', !e.target.checked);
     updateBaseMapDeclutter();
+  });
+
+  const searchInput = document.getElementById('search-input');
+  let searchTimer;
+  document.getElementById('btn-search').addEventListener('click', openSearch);
+  document.getElementById('btn-close-search').addEventListener('click', closeSearch);
+  searchInput.addEventListener('input', () => {
+    clearTimeout(searchTimer);
+    const q = searchInput.value;
+    searchTimer = setTimeout(() => renderSearchResults(runSearch(q), q), 120);
+  });
+  searchInput.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeSearch();
+    if (e.key === 'Enter') {
+      const first = document.querySelector('#search-results .search-result');
+      if (first) first.click();
+    }
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeSearch();
   });
 
   document.getElementById('toggle-visitor').addEventListener('change', e => {
