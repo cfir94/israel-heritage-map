@@ -1,4 +1,4 @@
-const CACHE_NAME = 'ihm-cache-v3';
+const CACHE_NAME = 'ihm-cache-v4';
 const MAP_CACHE_NAME = 'ihm-map-v1';
 const PMTILES_URL_SUFFIX = '/data/israel.pmtiles';
 
@@ -19,6 +19,7 @@ const APP_SHELL = [
   'vendor/maplibre/maplibre-gl.css',
   'vendor/maplibre/pmtiles.js',
   'vendor/maplibre/style.json',
+  'vendor/maplibre/mapbox-gl-rtl-text.js',
   'vendor/fonts/rubik/rubik.css',
   'vendor/fonts/rubik/rubik-400-hebrew.woff2',
   'vendor/fonts/rubik/rubik-400-latin.woff2',
