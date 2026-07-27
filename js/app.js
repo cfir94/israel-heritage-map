@@ -1,4 +1,5 @@
-/* מפת מורשת ישראל — לוגיקת האפליקציה הראשית (ללא build step, JS פשוט) */
+/* מפת מורשת ישראל — לוגיקת האפליקציה הראשית, על גבי מפה וקטורית עצמאית (MapLibre + PMTiles) */
+import * as maplibregl from '../vendor/maplibre/maplibre-gl.mjs';
 
 const ERA_COLORS = {
   prehistoric: '#A97142',
@@ -18,6 +19,10 @@ const ERA_ICONS = {
   modern: 'icons/svg/era-modern.svg'
 };
 
+// Israel's real extent, used to keep the map focused (no wandering into
+// neighboring countries) and to build the era-color match expression.
+const ISRAEL_BOUNDS = [[33.9, 28.9], [36.3, 33.8]];
+
 const state = {
   periods: [],
   regionsGeoJSON: null,
@@ -32,7 +37,11 @@ const state = {
   route: JSON.parse(localStorage.getItem('ihm_route') || '[]')
 };
 
-let map, regionsLayer, sitesLayer, religionsLayer, geologyLayer, nearbyMarker;
+let map, nearbyMarker;
+
+function abs(path) {
+  return new URL(path, window.location.href).href;
+}
 
 async function loadData() {
   const empty = { type: 'FeatureCollection', features: [] };
@@ -53,36 +62,126 @@ async function loadData() {
   state.activeReligions = new Set(religions.map(r => r.id));
 }
 
-function initMap() {
-  map = L.map('map', { zoomControl: true }).setView([31.6, 35.1], 8);
-  const osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 18,
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-  }).addTo(map);
+function eraColorMatchExpression() {
+  const expr = ['match', ['at', 0, ['get', 'periods']]];
+  state.periods.forEach(p => {
+    expr.push(p.id, ERA_COLORS[p.era] || '#12968A');
+  });
+  expr.push('#12968A');
+  return expr;
+}
 
-  regionsLayer = L.geoJSON(state.regionsGeoJSON, {
-    style: f => ({
-      color: f.properties.color,
-      weight: 2,
-      fillColor: f.properties.color,
-      fillOpacity: 0.35
-    }),
-    onEachFeature: (f, layer) => {
-      layer.bindTooltip(f.properties.name_he, { sticky: true });
+function religionColorMatchExpression() {
+  const expr = ['match', ['at', 0, ['get', 'religions']]];
+  state.religions.forEach(r => expr.push(r.id, r.color));
+  expr.push('#12968A');
+  return expr;
+}
+
+async function initMap() {
+  const styleObj = await fetch('vendor/maplibre/style.json').then(r => r.json());
+  styleObj.sources.openmaptiles.url = 'pmtiles://' + abs('data/israel.pmtiles');
+  styleObj.glyphs = abs('vendor/maplibre/fonts/{fontstack}/{range}.pbf');
+
+  const protocol = new pmtiles.Protocol();
+  maplibregl.addProtocol('pmtiles', protocol.tile);
+
+  map = new maplibregl.Map({
+    container: 'map',
+    style: styleObj,
+    center: [35.1, 31.6],
+    zoom: 7.3,
+    minZoom: 6.5,
+    maxZoom: 18,
+    maxBounds: ISRAEL_BOUNDS,
+    attributionControl: false
+  });
+  map.addControl(new maplibregl.NavigationControl(), 'top-left');
+  map.addControl(new maplibregl.AttributionControl({ compact: true }), 'bottom-right');
+
+  await new Promise(resolve => map.on('load', resolve));
+
+  map.addSource('regions', { type: 'geojson', data: state.regionsGeoJSON });
+  map.addLayer({
+    id: 'regions-fill', type: 'fill', source: 'regions',
+    layout: { visibility: 'none' },
+    paint: { 'fill-color': ['get', 'color'], 'fill-opacity': 0.4 }
+  });
+  map.addLayer({
+    id: 'regions-line', type: 'line', source: 'regions',
+    layout: { visibility: 'none' },
+    paint: { 'line-color': ['get', 'color'], 'line-width': 1.5 }
+  });
+
+  map.addSource('geology', { type: 'geojson', data: state.geologyGeoJSON.basic });
+  map.addLayer({
+    id: 'geology-fill', type: 'fill', source: 'geology',
+    layout: { visibility: 'none' },
+    paint: { 'fill-color': ['get', 'color'], 'fill-opacity': 0.6 }
+  });
+  map.addLayer({
+    id: 'geology-line', type: 'line', source: 'geology',
+    layout: { visibility: 'none' },
+    paint: { 'line-color': '#5A4325', 'line-width': 1 }
+  });
+
+  map.addSource('sites', { type: 'geojson', data: state.sitesGeoJSON });
+  map.addLayer({
+    id: 'sites-periods', type: 'circle', source: 'sites',
+    filter: ['==', ['literal', false], ['literal', true]],
+    paint: {
+      'circle-radius': 8,
+      'circle-color': eraColorMatchExpression(),
+      'circle-stroke-color': '#FFFBF2',
+      'circle-stroke-width': 2.5
+    }
+  });
+  map.addLayer({
+    id: 'sites-religions', type: 'circle', source: 'sites',
+    filter: ['==', ['literal', false], ['literal', true]],
+    paint: {
+      'circle-radius': 9,
+      'circle-color': religionColorMatchExpression(),
+      'circle-stroke-color': '#FFFBF2',
+      'circle-stroke-width': 2.5
     }
   });
 
-  sitesLayer = L.layerGroup();
-  religionsLayer = L.layerGroup();
-  geologyLayer = L.layerGroup();
+  ['regions-fill', 'geology-fill', 'sites-periods', 'sites-religions'].forEach(id => {
+    map.on('mouseenter', id, () => { map.getCanvas().style.cursor = 'pointer'; });
+    map.on('mouseleave', id, () => { map.getCanvas().style.cursor = ''; });
+  });
+
+  map.on('click', 'sites-periods', e => openInfoPanel(e.features[0].properties, 'period'));
+  map.on('click', 'sites-religions', e => openInfoPanel(e.features[0].properties, 'religion'));
+  map.on('click', 'geology-fill', e => {
+    const props = e.features[0].properties;
+    openInfoPanel({
+      id: props.id,
+      name_he: props.name_he,
+      name_en: props.name_en,
+      description_he: `<strong>${props.rock_summary_he || ''}</strong><br>${props.description_he || ''}`,
+      sources: parseMaybeJSON(props.sources)
+    }, 'geology');
+  });
 
   buildRegionsLegend();
   buildReligionFilters();
   buildPeriodSlider();
   refreshSitesLayer();
   refreshReligionsLayer();
-  refreshGeologyLayer();
+  buildGeologyLegend();
   renderRoute();
+}
+
+// GeoJSON sources round-trip array/object properties as JSON strings once
+// MapLibre serializes them internally in some code paths; normalize defensively.
+function parseMaybeJSON(v) {
+  if (Array.isArray(v) || (v && typeof v === 'object')) return v;
+  if (typeof v === 'string') {
+    try { return JSON.parse(v); } catch (e) { return []; }
+  }
+  return [];
 }
 
 function buildRegionsLegend() {
@@ -148,80 +247,36 @@ function siteMatchesTempleFilter(props) {
 }
 
 function refreshSitesLayer() {
-  sitesLayer.clearLayers();
+  if (!map.getLayer('sites-periods')) return;
   const templeFilterActive = state.showFirstTemple || state.showSecondTemple;
   const currentPeriod = state.periods[state.periodIndex];
-  const era = currentPeriod.era;
 
-  state.sitesGeoJSON.features.forEach(f => {
-    const props = f.properties;
-    if (!props.periods || !props.periods.length) return;
-    const matches = templeFilterActive
-      ? siteMatchesTempleFilter(props)
-      : props.periods.includes(currentPeriod.id);
-    if (!matches) return;
-
-    const [lng, lat] = f.geometry.coordinates;
-    const color = ERA_COLORS[era] || '#12968A';
-    const icon = L.divIcon({
-      html: `<div style="width:20px;height:20px;border-radius:50%;background:${color};border:2.5px solid #FFFBF2;box-shadow:0 2px 6px rgba(46,36,24,0.35);"></div>`,
-      className: '',
-      iconSize: [20, 20]
-    });
-    const marker = L.marker([lat, lng], { icon });
-    marker.on('click', () => openInfoPanel(props, 'period'));
-    marker.bindTooltip(props.name_he);
-    sitesLayer.addLayer(marker);
-  });
+  let filter;
+  if (templeFilterActive) {
+    const wanted = [];
+    if (state.showFirstTemple) wanted.push('first-temple');
+    if (state.showSecondTemple) wanted.push('second-temple');
+    filter = ['in', ['get', 'temple_era'], ['literal', wanted]];
+  } else {
+    filter = ['in', currentPeriod.id, ['get', 'periods']];
+  }
+  map.setFilter('sites-periods', filter);
 }
 
 function refreshReligionsLayer() {
-  religionsLayer.clearLayers();
-  state.sitesGeoJSON.features.forEach(f => {
-    const props = f.properties;
-    if (!props.religions || !props.religions.length) return;
-    const active = props.religions.filter(r => state.activeReligions.has(r));
-    if (!active.length) return;
-
-    const [lng, lat] = f.geometry.coordinates;
-    const primary = state.religions.find(r => r.id === active[0]);
-    const icon = L.divIcon({
-      html: `<div style="background:${primary.color};color:#fff;border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-size:13px;border:2.5px solid #FFFBF2;box-shadow:0 2px 6px rgba(46,36,24,0.35);">${primary.icon}</div>`,
-      className: '',
-      iconSize: [24, 24]
-    });
-    const marker = L.marker([lat, lng], { icon });
-    marker.on('click', () => openInfoPanel(props, 'religion'));
-    marker.bindTooltip(props.name_he);
-    religionsLayer.addLayer(marker);
-  });
+  if (!map.getLayer('sites-religions')) return;
+  const active = [...state.activeReligions];
+  if (!active.length) {
+    map.setFilter('sites-religions', ['==', ['literal', false], ['literal', true]]);
+    return;
+  }
+  map.setFilter('sites-religions', ['any', ...active.map(rid => ['in', rid, ['get', 'religions']])]);
 }
 
 function refreshGeologyLayer() {
-  geologyLayer.clearLayers();
   const data = state.geologyGeoJSON[state.geologyLevel];
-  if (!data) return;
-  L.geoJSON(data, {
-    style: f => ({
-      color: '#5A4325',
-      weight: 1.2,
-      fillColor: f.properties.color,
-      fillOpacity: 0.55
-    }),
-    onEachFeature: (f, layer) => {
-      layer.bindTooltip(f.properties.name_he, { sticky: true });
-      layer.on('click', () => {
-        const props = f.properties;
-        openInfoPanel({
-          id: props.id,
-          name_he: props.name_he,
-          name_en: props.name_en,
-          description_he: `<strong>${props.rock_summary_he || ''}</strong><br>${props.description_he || ''}`,
-          sources: props.sources || []
-        }, 'geology');
-      });
-    }
-  }).addTo(geologyLayer);
+  if (!data || !map.getSource('geology')) return;
+  map.getSource('geology').setData(data);
   buildGeologyLegend();
 }
 
@@ -248,15 +303,19 @@ function openInfoPanel(props, context) {
     document.getElementById('sidebar').classList.add('collapsed');
     document.getElementById('sidebar-backdrop').classList.add('hidden');
   }
+  const periods = parseMaybeJSON(props.periods);
+  const religions = parseMaybeJSON(props.religions);
+  const sources = parseMaybeJSON(props.sources);
+
   let metaBits = [];
-  if (props.periods && props.periods.length) {
-    metaBits.push(props.periods.map(pid => {
+  if (periods.length) {
+    metaBits.push(periods.map(pid => {
       const p = state.periods.find(x => x.id === pid);
       return p ? p.name_he : pid;
     }).join(', '));
   }
-  if (props.religions && props.religions.length) {
-    metaBits.push(props.religions.map(rid => {
+  if (religions.length) {
+    metaBits.push(religions.map(rid => {
       const r = state.religions.find(x => x.id === rid);
       return r ? r.name_he : rid;
     }).join(', '));
@@ -264,7 +323,7 @@ function openInfoPanel(props, context) {
   if (props.temple_era === 'first-temple') metaBits.push('תקופת בית ראשון');
   if (props.temple_era === 'second-temple') metaBits.push('תקופת בית שני');
 
-  const sourcesHtml = (props.sources || [])
+  const sourcesHtml = sources
     .map(s => `<a href="${s.url}" target="_blank" rel="noopener">${s.title}</a>`)
     .join('');
 
@@ -316,9 +375,9 @@ function findNearby() {
   }
   navigator.geolocation.getCurrentPosition(pos => {
     const { latitude, longitude } = pos.coords;
-    map.setView([latitude, longitude], 13);
-    if (nearbyMarker) map.removeLayer(nearbyMarker);
-    nearbyMarker = L.marker([latitude, longitude]).addTo(map).bindPopup('המיקום שלך').openPopup();
+    map.flyTo({ center: [longitude, latitude], zoom: 13 });
+    if (nearbyMarker) nearbyMarker.remove();
+    nearbyMarker = new maplibregl.Marker({ color: '#EF6F53' }).setLngLat([longitude, latitude]).addTo(map);
 
     const nearby = state.sitesGeoJSON.features
       .map(f => ({ f, dist: haversine(latitude, longitude, f.geometry.coordinates[1], f.geometry.coordinates[0]) }))
@@ -350,68 +409,45 @@ function findNearby() {
   });
 }
 
-/* ---- Offline tile caching ---- */
-function lngLatToTile(lng, lat, z) {
-  const x = Math.floor((lng + 180) / 360 * Math.pow(2, z));
-  const y = Math.floor((1 - Math.log(Math.tan(lat * Math.PI / 180) + 1 / Math.cos(lat * Math.PI / 180)) / Math.PI) / 2 * Math.pow(2, z));
-  return { x, y };
-}
-
-async function cacheCurrentArea() {
+/* ---- Offline: cache the whole self-hosted map (single pmtiles file) ---- */
+async function cacheWholeMap() {
   const status = document.getElementById('cache-status');
-  const bounds = map.getBounds();
-  const zBase = map.getZoom();
-  const zooms = [zBase, Math.min(zBase + 1, 17), Math.min(zBase + 2, 18)];
-  const subdomains = ['a', 'b', 'c'];
-  const urls = [];
-
-  zooms.forEach(z => {
-    const min = lngLatToTile(bounds.getWest(), bounds.getNorth(), z);
-    const max = lngLatToTile(bounds.getEast(), bounds.getSouth(), z);
-    for (let x = min.x; x <= max.x; x++) {
-      for (let y = min.y; y <= max.y; y++) {
-        const s = subdomains[(x + y) % subdomains.length];
-        urls.push(`https://${s}.tile.openstreetmap.org/${z}/${x}/${y}.png`);
-      }
-    }
-  });
-
-  if (urls.length > 500) {
-    status.textContent = `האזור גדול מדי (${urls.length} אריחים). התקרב/י יותר ונסה/י שוב (מגבלה למניעת עומס על שרת המפות).`;
+  if (!navigator.serviceWorker.controller) {
+    status.textContent = 'ה-Service Worker עדיין לא פעיל, נסה/י לרענן את הדף ולנסות שוב.';
     return;
   }
-
-  status.textContent = `שומר ${urls.length} אריחים לשימוש אופליין...`;
-  let done = 0;
-  for (const url of urls) {
-    try {
-      await fetch(url, { mode: 'cors' });
-    } catch (e) { /* ignore individual tile failures */ }
-    done++;
-    status.textContent = `שומר אריחים: ${done}/${urls.length}`;
-  }
-  status.textContent = `הושלם! ${urls.length} אריחים נשמרים לשימוש אופליין באזור הנוכחי.`;
+  status.textContent = 'מוריד את המפה (כ-95MB, פעם אחת בלבד)...';
+  navigator.serviceWorker.addEventListener('message', function handler(e) {
+    if (e.data && e.data.type === 'cache-map-progress') {
+      status.textContent = `מוריד את המפה... ${e.data.percent}%`;
+    }
+    if (e.data && e.data.type === 'cache-map-done') {
+      status.textContent = e.data.ok
+        ? 'הושלם! כל המפה שמורה לשימוש אופליין מלא.'
+        : 'משהו השתבש בהורדה: ' + e.data.error;
+      navigator.serviceWorker.removeEventListener('message', handler);
+    }
+  });
+  navigator.serviceWorker.controller.postMessage({ type: 'cache-map' });
 }
 
 /* ---- UI wiring ---- */
 function wireUI() {
   document.getElementById('toggle-regions').addEventListener('change', e => {
-    if (e.target.checked) { regionsLayer.addTo(map); document.getElementById('regions-legend').classList.remove('hidden'); }
-    else { map.removeLayer(regionsLayer); document.getElementById('regions-legend').classList.add('hidden'); }
+    const vis = e.target.checked ? 'visible' : 'none';
+    map.setLayoutProperty('regions-fill', 'visibility', vis);
+    map.setLayoutProperty('regions-line', 'visibility', vis);
+    document.getElementById('regions-legend').classList.toggle('hidden', !e.target.checked);
   });
 
   document.getElementById('toggle-geology').addEventListener('change', e => {
     const subtoggle = document.getElementById('geology-subtoggle');
     const legend = document.getElementById('geology-legend');
-    if (e.target.checked) {
-      geologyLayer.addTo(map);
-      subtoggle.classList.remove('hidden');
-      legend.classList.remove('hidden');
-    } else {
-      map.removeLayer(geologyLayer);
-      subtoggle.classList.add('hidden');
-      legend.classList.add('hidden');
-    }
+    const vis = e.target.checked ? 'visible' : 'none';
+    map.setLayoutProperty('geology-fill', 'visibility', vis);
+    map.setLayoutProperty('geology-line', 'visibility', vis);
+    subtoggle.classList.toggle('hidden', !e.target.checked);
+    legend.classList.toggle('hidden', !e.target.checked);
   });
 
   const geoBasicBtn = document.getElementById('btn-geology-basic');
@@ -430,12 +466,11 @@ function wireUI() {
   });
 
   document.getElementById('toggle-periods').addEventListener('change', e => {
-    if (e.target.checked) sitesLayer.addTo(map); else map.removeLayer(sitesLayer);
+    map.setLayoutProperty('sites-periods', 'visibility', e.target.checked ? 'visible' : 'none');
   });
-  sitesLayer.addTo(map);
 
   document.getElementById('toggle-religions').addEventListener('change', e => {
-    if (e.target.checked) religionsLayer.addTo(map); else map.removeLayer(religionsLayer);
+    map.setLayoutProperty('sites-religions', 'visibility', e.target.checked ? 'visible' : 'none');
   });
 
   document.getElementById('toggle-first-temple').addEventListener('change', e => {
@@ -482,7 +517,7 @@ function wireUI() {
   });
 
   document.getElementById('btn-nearby').addEventListener('click', findNearby);
-  document.getElementById('btn-cache-area').addEventListener('click', cacheCurrentArea);
+  document.getElementById('btn-cache-area').addEventListener('click', cacheWholeMap);
 
   if (window.innerWidth < 900) {
     closeSidebar();
@@ -495,7 +530,7 @@ function wireUI() {
 
 async function main() {
   await loadData();
-  initMap();
+  await initMap();
   wireUI();
 
   if ('serviceWorker' in navigator) {
