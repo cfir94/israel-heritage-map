@@ -23,20 +23,36 @@ const ERA_ICONS = {
 // neighboring countries) and to build the era-color match expression.
 const ISRAEL_BOUNDS = [[33.9, 28.9], [36.3, 33.8]];
 
-// Base-style layers that make the map read as "a generic street map" (building
-// footprints, minor roads, transit, secondary place names). When a thematic
-// layer (regions/geology) is on, these are hidden so the theme's own colors —
-// not the street grid — are what the eye reads, like a real illustrated map.
+// Base-style layers that make the map read as "a generic street map" — the road
+// grid, buildings, landcover, road names. When a thematic layer (regions/geology)
+// is on, these are hidden so the theme's own colors are what the eye reads, like
+// a printed thematic map.
+//
+// Deliberately NOT in this list: water, waterway and every `place_*` label. The
+// coastline, the Kinneret and the Dead Sea are what make the shape legible, and
+// place names are how you know where you are — a thematic map without them is a
+// pretty picture, not a tool you can navigate by.
 const THEMATIC_DECLUTTER_LAYERS = [
   'building', 'landuse_residential', 'landcover_wood', 'landcover_ice_shelf', 'landcover_glacier', 'park',
   'highway_minor', 'highway_path', 'road_area_pier', 'road_pier',
+  'highway_major_casing', 'highway_major_inner', 'highway_major_subtle',
+  'highway_motorway_casing', 'highway_motorway_inner', 'highway_motorway_subtle',
   'aeroway-taxiway', 'aeroway-runway-casing', 'aeroway-area', 'aeroway-runway',
   'railway_transit', 'railway_transit_dashline', 'railway_service', 'railway_service_dashline', 'railway', 'railway_dashline',
   'tunnel_motorway_casing', 'tunnel_motorway_inner',
   'highway_motorway_bridge_casing', 'highway_motorway_bridge_inner',
-  'highway_name_other', 'highway_name_motorway',
-  'place_suburb', 'place_village', 'place_other'
+  'highway_name_other', 'highway_name_motorway'
 ];
+
+// Thematic fills are inserted directly above the base background and below
+// `water`, so lakes, the sea and every label in the style still draw on top of
+// them. Without this the fills land at the top of the stack and bury the very
+// city names the map is meant to be read by.
+const THEMATIC_INSERT_BEFORE = 'water';
+
+// Place labels sit on saturated fills once a thematic layer is on, so the halo
+// has to work harder than it does over plain paper.
+const PLACE_LABEL_LAYERS = ['place_other', 'place_suburb', 'place_village', 'place_town', 'place_city', 'place_capital', 'place_city_large'];
 
 const state = {
   periods: [],
@@ -121,6 +137,11 @@ async function initMap() {
     maxBounds: ISRAEL_BOUNDS,
     attributionControl: false
   });
+  // Exposed so the map can be inspected from the browser console / automated
+  // checks (layer order, which labels actually rendered) without reaching into
+  // module scope. Read-only as far as the app is concerned.
+  window.__ihmMap = map;
+
   map.addControl(new maplibregl.NavigationControl(), 'top-left');
   map.addControl(new maplibregl.AttributionControl({ compact: true }), 'bottom-right');
   map.on('error', e => console.warn('Map error:', e.error && e.error.message));
@@ -141,24 +162,24 @@ async function initMap() {
     id: 'regions-fill', type: 'fill', source: 'regions',
     layout: { visibility: 'none' },
     paint: { 'fill-color': ['get', 'color'], 'fill-opacity': 0.78 }
-  });
+  }, THEMATIC_INSERT_BEFORE);
   map.addLayer({
     id: 'regions-line', type: 'line', source: 'regions',
     layout: { visibility: 'none' },
     paint: { 'line-color': ['get', 'color'], 'line-width': 2 }
-  });
+  }, THEMATIC_INSERT_BEFORE);
 
   map.addSource('geology', { type: 'geojson', data: state.geologyGeoJSON.basic });
   map.addLayer({
     id: 'geology-fill', type: 'fill', source: 'geology',
     layout: { visibility: 'none' },
     paint: { 'fill-color': ['get', 'color'], 'fill-opacity': 0.85 }
-  });
+  }, THEMATIC_INSERT_BEFORE);
   map.addLayer({
     id: 'geology-line', type: 'line', source: 'geology',
     layout: { visibility: 'none' },
-    paint: { 'line-color': '#5A4325', 'line-width': 1.2 }
-  });
+    paint: { 'line-color': '#5A4325', 'line-width': 1.2, 'line-opacity': 0.55 }
+  }, THEMATIC_INSERT_BEFORE);
 
   map.addSource('sites', { type: 'geojson', data: state.sitesGeoJSON });
   map.addLayer({
@@ -470,11 +491,18 @@ function setLayerVisibility(id, visible) {
 // Whenever a thematic layer (regions/geology) is on, hide the base map's
 // street-map clutter so the theme's own colors read as the map itself
 // changing — not as blocks painted over an unrelated street map underneath.
+// Place names stay put throughout, and get a heavier halo so they stay legible
+// once they are sitting on saturated rock colors instead of pale paper.
 function updateBaseMapDeclutter() {
   const regionsOn = document.getElementById('toggle-regions').checked;
   const geologyOn = document.getElementById('toggle-geology').checked;
-  const declutter = regionsOn || geologyOn;
-  THEMATIC_DECLUTTER_LAYERS.forEach(id => setLayerVisibility(id, !declutter));
+  const thematic = regionsOn || geologyOn;
+  THEMATIC_DECLUTTER_LAYERS.forEach(id => setLayerVisibility(id, !thematic));
+  PLACE_LABEL_LAYERS.forEach(id => {
+    if (!map.getLayer(id)) return;
+    map.setPaintProperty(id, 'text-halo-width', thematic ? 2.4 : 1.4);
+    map.setPaintProperty(id, 'text-halo-blur', thematic ? 0.4 : 1);
+  });
 }
 
 /* ---- UI wiring ---- */
