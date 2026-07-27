@@ -266,6 +266,32 @@ button, input { font-family: inherit; }
   color: #7A6A52;
 }
 
+.filters { display: flex; flex-direction: column; gap: 6px; margin-top: 8px; }
+.filter-item { display: flex; align-items: center; gap: 8px; font-size: 0.85rem; min-height: 38px; cursor: pointer; }
+.filter-item input[type="checkbox"] { width: 20px; height: 20px; accent-color: var(--accent); flex-shrink: 0; }
+.filter-item .swatch { width: 14px; height: 14px; border-radius: 50%; flex-shrink: 0; }
+
+.operator-tag {
+  display: inline-block; color: #fff; font-size: 0.72rem; font-weight: 600;
+  padding: 3px 10px; border-radius: 999px; margin: 8px 0 4px;
+}
+#info-content h4 { margin: 12px 0 4px; font-size: 0.9rem; }
+.hours-table, .price-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+.hours-table td, .price-table td { padding: 4px 2px; border-bottom: 1px solid var(--border); }
+.hours-table td.p, .price-table td.p { text-align: left; font-variant-numeric: tabular-nums; white-space: nowrap; font-weight: 600; }
+.price-table .note-row td { font-size: 0.72rem; color: var(--text-dim); border-bottom: none; padding-top: 0; }
+.price-block { margin-bottom: 10px; }
+.hours-special { font-size: 0.78rem; color: var(--text-dim); margin: 6px 0 0; }
+.visitor-phone { font-size: 0.8rem; }
+
+.freshness {
+  margin: 10px 0 4px; padding: 8px 10px; border-radius: 10px;
+  font-size: 0.75rem; line-height: 1.45;
+}
+.freshness.stale { background: #FFF1D6; border: 1px solid #E8C98A; color: #7A5A1E; }
+.freshness.checking { background: var(--bg-panel-2); border: 1px solid var(--border); color: var(--text-dim); }
+.freshness.fresh { background: #E3F3EC; border: 1px solid #A8D3C0; color: #1F6B4C; }
+
 .species-list { display: flex; flex-wrap: wrap; gap: 6px; margin: 10px 0 6px; }
 .species-chip {
   background: var(--bg-panel-2);

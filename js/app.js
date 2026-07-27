@@ -65,6 +65,16 @@ const NATURE_KINDS = {
   mixed:   { color: '#7C6AA8', label: 'חי וצומח יחד' }
 };
 
+// Official visitor sites, by the body that runs them.
+const VISITOR_OPERATORS = {
+  inpa: { color: '#2F7D5B', label: 'רשות הטבע והגנים' },
+  kkl:  { color: '#3E7DA8', label: 'קק״ל' }
+};
+// parks.org.il serves its REST API with Access-Control-Allow-Origin: *, so the
+// app can re-check a site's prices and hours against the official source at the
+// moment you open it. The bundled copy is what makes it work with no signal.
+const INPA_API = 'https://www.parks.org.il/wp-json/wp/v2/rp/';
+
 // Place labels sit on saturated fills once a thematic layer is on, so the halo
 // has to work harder than it does over plain paper.
 const PLACE_LABEL_LAYERS = ['place_other', 'place_suburb', 'place_village', 'place_town', 'place_city', 'place_capital', 'place_city_large'];
@@ -76,6 +86,8 @@ const state = {
   sitesGeoJSON: { type: 'FeatureCollection', features: [] },
   geologyGeoJSON: { basic: null, advanced: null },
   natureGeoJSON: { type: 'FeatureCollection', features: [] },
+  visitorGeoJSON: { type: 'FeatureCollection', features: [] },
+  activeOperators: new Set(['inpa', 'kkl']),
   activeNatureKinds: new Set(Object.keys({ birds:1, mammals:1, plants:1, mixed:1 })),
   geologyLevel: 'basic',
   periodIndex: 0,
@@ -99,14 +111,15 @@ function absDir() {
 
 async function loadData() {
   const empty = { type: 'FeatureCollection', features: [] };
-  const [periods, regions, religions, sites, geologyBasic, geologyAdvanced, nature] = await Promise.all([
+  const [periods, regions, religions, sites, geologyBasic, geologyAdvanced, nature, visitor] = await Promise.all([
     fetch('js/data/periods.json').then(r => r.json()),
     fetch('js/data/regions.geojson').then(r => r.json()),
     fetch('js/data/religions.json').then(r => r.json()),
     fetch('js/data/sites.geojson').then(r => r.json()).catch(() => empty),
     fetch('js/data/geology_basic.geojson').then(r => r.json()).catch(() => empty),
     fetch('js/data/geology_advanced.geojson').then(r => r.json()).catch(() => empty),
-    fetch('js/data/nature.geojson').then(r => r.json()).catch(() => empty)
+    fetch('js/data/nature.geojson').then(r => r.json()).catch(() => empty),
+    fetch('js/data/visitor_sites.geojson').then(r => r.json()).catch(() => empty)
   ]);
   state.periods = periods.sort((a, b) => a.order - b.order);
   state.regionsGeoJSON = regions;
@@ -115,6 +128,7 @@ async function loadData() {
   state.geologyGeoJSON.basic = geologyBasic;
   state.geologyGeoJSON.advanced = geologyAdvanced;
   state.natureGeoJSON = nature;
+  state.visitorGeoJSON = visitor;
   state.activeReligions = new Set(religions.map(r => r.id));
 }
 
@@ -131,6 +145,13 @@ function religionColorMatchExpression() {
   const expr = ['match', ['at', 0, ['get', 'religions']]];
   state.religions.forEach(r => expr.push(r.id, r.color));
   expr.push('#12968A');
+  return expr;
+}
+
+function operatorColorMatchExpression() {
+  const expr = ['match', ['get', 'operator']];
+  Object.entries(VISITOR_OPERATORS).forEach(([k, v]) => expr.push(k, v.color));
+  expr.push('#8A7A63');
   return expr;
 }
 
@@ -179,6 +200,7 @@ async function initMap() {
   buildPeriodSlider();
   buildGeologyLegend();
   buildNatureFilters();
+  buildVisitorFilters();
   renderRoute();
   wireUI();
 
@@ -269,6 +291,47 @@ async function initMap() {
     }
   });
 
+  // Official visitor sites. 777 points would be an unreadable smear at country
+  // zoom, so they cluster until you zoom into an area.
+  map.addSource('visitor', {
+    type: 'geojson', data: state.visitorGeoJSON,
+    cluster: true, clusterRadius: 46, clusterMaxZoom: 12
+  });
+  map.addLayer({
+    id: 'visitor-clusters', type: 'circle', source: 'visitor',
+    filter: ['has', 'point_count'],
+    layout: { visibility: 'none' },
+    paint: {
+      'circle-color': '#2F7D5B',
+      'circle-opacity': 0.9,
+      'circle-radius': ['step', ['get', 'point_count'], 15, 10, 20, 40, 26],
+      'circle-stroke-color': '#FFFBF2',
+      'circle-stroke-width': 2.5
+    }
+  });
+  map.addLayer({
+    id: 'visitor-cluster-count', type: 'symbol', source: 'visitor',
+    filter: ['has', 'point_count'],
+    layout: {
+      visibility: 'none',
+      'text-field': ['get', 'point_count_abbreviated'],
+      'text-font': ['Noto Sans Regular'],
+      'text-size': 12
+    },
+    paint: { 'text-color': '#FFFBF2' }
+  });
+  map.addLayer({
+    id: 'visitor-points', type: 'circle', source: 'visitor',
+    filter: ['!', ['has', 'point_count']],
+    layout: { visibility: 'none' },
+    paint: {
+      'circle-radius': 7,
+      'circle-color': operatorColorMatchExpression(),
+      'circle-stroke-color': '#FFFBF2',
+      'circle-stroke-width': 2
+    }
+  });
+
   // Nature sightings — vulture lookouts, blooms, wildlife reserves.
   map.addSource('nature', { type: 'geojson', data: state.natureGeoJSON });
   map.addLayer({
@@ -304,13 +367,23 @@ async function initMap() {
     paint: { 'text-color': '#FFFBF2' }
   });
 
-  ['regions-fill', 'geology-fill', 'sites-periods', 'sites-religions', 'nature-points'].forEach(id => {
+  ['regions-fill', 'geology-fill', 'sites-periods', 'sites-religions', 'nature-points', 'visitor-points', 'visitor-clusters'].forEach(id => {
     map.on('mouseenter', id, () => { map.getCanvas().style.cursor = 'pointer'; });
     map.on('mouseleave', id, () => { map.getCanvas().style.cursor = ''; });
   });
 
   map.on('click', 'sites-periods', e => openInfoPanel(e.features[0].properties, 'period'));
   map.on('click', 'sites-religions', e => openInfoPanel(e.features[0].properties, 'religion'));
+  map.on('click', 'visitor-clusters', e => {
+    const f = map.queryRenderedFeatures(e.point, { layers: ['visitor-clusters'] })[0];
+    if (!f) return;
+    map.getSource('visitor').getClusterExpansionZoom(f.properties.cluster_id).then(z => {
+      map.easeTo({ center: f.geometry.coordinates, zoom: z });
+    }).catch(() => {});
+  });
+
+  map.on('click', 'visitor-points', e => openVisitorPanel(e.features[0].properties));
+
   map.on('click', 'nature-points', e => {
     const p = e.features[0].properties;
     const species = parseMaybeJSON(p.species_he);
@@ -453,6 +526,37 @@ function refreshGeologyLayer() {
   buildGeologyLegend();
 }
 
+function buildVisitorFilters() {
+  const el = document.getElementById('visitor-filters');
+  if (!el) return;
+  el.innerHTML = '';
+  const counts = {};
+  state.visitorGeoJSON.features.forEach(f => {
+    const o = f.properties.operator;
+    counts[o] = (counts[o] || 0) + 1;
+  });
+  Object.entries(VISITOR_OPERATORS).forEach(([op, meta]) => {
+    if (!counts[op]) return;
+    const label = document.createElement('label');
+    label.className = 'filter-item';
+    label.innerHTML = `<input type="checkbox" value="${op}" checked />
+      <span class="swatch" style="background:${meta.color}"></span>${meta.label} (${counts[op]})`;
+    label.querySelector('input').addEventListener('change', e => {
+      if (e.target.checked) state.activeOperators.add(op);
+      else state.activeOperators.delete(op);
+      refreshVisitorLayer();
+    });
+    el.appendChild(label);
+  });
+}
+
+function refreshVisitorLayer() {
+  if (!map || !map.getSource('visitor')) return;
+  const active = [...state.activeOperators];
+  const features = state.visitorGeoJSON.features.filter(f => active.includes(f.properties.operator));
+  map.getSource('visitor').setData({ type: 'FeatureCollection', features });
+}
+
 function buildNatureFilters() {
   const el = document.getElementById('nature-filters');
   if (!el) return;
@@ -546,6 +650,122 @@ function openInfoPanel(props, context) {
   `;
   content.querySelector('.add-route-btn').addEventListener('click', () => addToRoute(props));
   panel.classList.remove('hidden');
+}
+
+/* ---- Official visitor sites (INPA / KKL) --------------------------------
+   Prices and opening hours are the one kind of fact in this app that goes
+   stale on its own, and a guide quoting last year's price to a paying group
+   is a real problem. So the bundled copy is always labelled with the date it
+   was captured, the official page is one tap away, and when there is a
+   connection the panel re-checks the live source and says so. */
+
+function priceTableHtml(prices) {
+  if (!prices || !prices.length) return '';
+  return prices.map(tab => `
+    <div class="price-block">
+      <strong>${tab.title}</strong>
+      <table class="price-table">
+        ${tab.rows.map(r => `<tr><td>${r.type}</td><td class="p">${r.price}</td></tr>
+          ${r.note ? `<tr class="note-row"><td colspan="2">${r.note}</td></tr>` : ''}`).join('')}
+      </table>
+    </div>`).join('');
+}
+
+function hoursHtml(hours, special) {
+  let out = '';
+  if (hours && hours.length) {
+    out += `<table class="hours-table">${hours.map(h =>
+      `<tr><td>${h.label}</td><td class="p">${h.open || '—'}${h.close ? '–' + h.close : ''}</td></tr>`).join('')}</table>`;
+  }
+  if (special) out += `<p class="hours-special">${special.replace(/\n/g, '<br>')}</p>`;
+  return out;
+}
+
+function renderVisitorBody(props, freshness) {
+  const prices = parseMaybeJSON(props.prices);
+  const hours = parseMaybeJSON(props.hours);
+  const attrs = parseMaybeJSON(props.attrs);
+  const op = VISITOR_OPERATORS[props.operator] || { label: '' };
+  const attrHtml = attrs && !Array.isArray(attrs) && Object.keys(attrs).length
+    ? `<div class="species-list">${Object.entries(attrs).map(([k, v]) => `<span class="species-chip">${k}: ${v}</span>`).join('')}</div>`
+    : '';
+  return `
+    <div class="operator-tag" style="background:${op.color || '#8A7A63'}">${op.label}</div>
+    ${attrHtml}
+    ${hours.length || props.hours_special ? `<h4>שעות פתיחה</h4>${hoursHtml(hours, props.hours_special)}` : ''}
+    ${prices.length ? `<h4>מחירים</h4>${priceTableHtml(prices)}` : ''}
+    <div class="freshness ${freshness.state}">${freshness.text}</div>
+    ${props.phone ? `<p class="visitor-phone">${props.phone.replace(/\n/g, '<br>')}</p>` : ''}
+    ${props.highlights ? `<h4>נגישות ומידע</h4><p>${props.highlights.replace(/\n/g, '<br>')}</p>` : ''}
+    ${props.info ? `<p>${props.info}</p>` : ''}
+    ${props.link ? `<div class="sources"><a href="${props.link}" target="_blank" rel="noopener">העמוד הרשמי — מחירים ושעות מעודכנים</a></div>` : ''}`;
+}
+
+async function openVisitorPanel(props) {
+  const panel = document.getElementById('info-panel');
+  const content = document.getElementById('info-content');
+  if (window.innerWidth < 900) {
+    document.getElementById('sidebar').classList.add('collapsed');
+    document.getElementById('sidebar-backdrop').classList.add('hidden');
+  }
+  const stale = { state: 'stale', text: `המחירים והשעות כאן נשמרו בתאריך ${props.fetched_on} — יש לאמת מול העמוד הרשמי לפני שמוסרים ללקוח.` };
+  const render = (p, fresh) => {
+    content.innerHTML = `<h3>${p.name_he}</h3>${renderVisitorBody(p, fresh)}`;
+  };
+  const canCheck = navigator.onLine && props.operator === 'inpa' && props.source_id;
+  render(props, canCheck ? { state: 'checking', text: 'בודק מול האתר הרשמי…' } : stale);
+  panel.classList.remove('hidden');
+  if (!canCheck) return;
+
+  // Field reality: signal is often present but useless. Without a deadline the
+  // panel would sit on "checking…" indefinitely instead of falling back to the
+  // saved copy, which is the one thing that must never happen out on a tour.
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), 6000);
+  try {
+    const res = await fetch(INPA_API + props.source_id, { signal: controller.signal });
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    const live = await res.json();
+    const merged = Object.assign({}, props, normalizeInpaLive(live, props));
+    render(merged, { state: 'fresh', text: 'המחירים והשעות אומתו מול האתר הרשמי הרגע.' });
+  } catch (err) {
+    console.warn('Live INPA check failed, showing the saved copy:', err.name === 'AbortError' ? 'timeout' : err.message);
+    render(props, stale);
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
+// Reduce a live parks.org.il record down to the same shape the bundled copy uses.
+function normalizeInpaLive(live, fallback) {
+  const strip = v => {
+    if (v === null || v === undefined || v === false) return '';
+    if (typeof v === 'object' && v.rendered !== undefined) v = v.rendered;
+    return String(v).replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+  };
+  const out = {};
+  const oh = live.Park_information_on_time;
+  if (oh && typeof oh === 'object') {
+    const pairs = [
+      ['Summer_Opening_Hours_s', 'Summer_Closing_Hours_s', 'קיץ א׳-ה׳'],
+      ['Opening_Hours_Summer_Time_Friday', 'Closing_Hours_Summer_Time_Friday', 'קיץ שישי/ערב חג'],
+      ['Winter_Opening_Hours_s', 'Winter_Closing_Hours_s', 'חורף א׳-ה׳'],
+      ['Opening_Hours_Winter_Time_Friday', 'Closing_Hours_Winter_Time_Friday', 'חורף שישי/ערב חג']
+    ];
+    const hours = pairs.map(([o, c, label]) => ({ label, open: strip(oh[o]), close: strip(oh[c]) }))
+                       .filter(h => h.open || h.close);
+    if (hours.length) out.hours = hours;
+    out.hours_special = strip(oh.Special_Opening_hours_s);
+  }
+  if (Array.isArray(live.price_list)) {
+    const prices = live.price_list.map(tab => ({
+      title: strip(tab.rp_sales_tab_title) || 'מחירון',
+      rows: (tab.table || []).map(r => ({ type: strip(r.type), price: strip(r.price), note: strip(r.note) }))
+                             .filter(r => r.type)
+    })).filter(t => t.rows.length);
+    if (prices.length) out.prices = prices;
+  }
+  return Object.keys(out).length ? out : fallback;
 }
 
 // Photo of the rock itself. The caption names what the picture actually shows,
@@ -805,6 +1025,13 @@ function wireUI() {
     setLayerVisibility('regions-line', e.target.checked);
     document.getElementById('regions-legend').classList.toggle('hidden', !e.target.checked);
     updateBaseMapDeclutter();
+  });
+
+  document.getElementById('toggle-visitor').addEventListener('change', e => {
+    ['visitor-clusters', 'visitor-cluster-count', 'visitor-points']
+      .forEach(id => setLayerVisibility(id, e.target.checked));
+    document.getElementById('visitor-filters').classList.toggle('hidden', !e.target.checked);
+    document.getElementById('visitor-note').classList.toggle('hidden', !e.target.checked);
   });
 
   document.getElementById('toggle-nature').addEventListener('change', e => {

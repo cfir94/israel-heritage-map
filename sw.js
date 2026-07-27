@@ -1,4 +1,4 @@
-const CACHE_NAME = 'ihm-cache-v7';
+const CACHE_NAME = 'ihm-cache-v8';
 const MAP_CACHE_NAME = 'ihm-map-v1';
 // Every self-hosted tile archive. These are the only files served by Range
 // request, so they take the byte-slicing path below rather than plain caching.
@@ -17,6 +17,7 @@ const APP_SHELL = [
   'js/data/geology_basic.geojson',
   'js/data/geology_advanced.geojson',
   'js/data/nature.geojson',
+  'js/data/visitor_sites.geojson',
   'vendor/maplibre/maplibre-gl.mjs',
   'vendor/maplibre/maplibre-gl-shared.mjs',
   'vendor/maplibre/maplibre-gl-worker.mjs',
@@ -46,6 +47,7 @@ const APP_SHELL = [
   'icons/svg/layer-geology.svg',
   'icons/svg/layer-topo.svg',
   'icons/svg/layer-nature.svg',
+  'icons/svg/layer-visitor.svg',
   'assets/rocks/arava-eilat-mountains.jpg',
   'assets/rocks/central-mountain-backbone.jpg',
   'assets/rocks/coastal-plain-kurkar.jpg',
