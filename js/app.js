@@ -43,6 +43,12 @@ function abs(path) {
   return new URL(path, window.location.href).href;
 }
 
+// Base directory URL, safe to string-concatenate with URL templates
+// (new URL() would percent-encode the literal "{fontstack}"/"{range}" tokens).
+function absDir() {
+  return new URL('.', window.location.href).href;
+}
+
 async function loadData() {
   const empty = { type: 'FeatureCollection', features: [] };
   const [periods, regions, religions, sites, geologyBasic, geologyAdvanced] = await Promise.all([
@@ -81,10 +87,14 @@ function religionColorMatchExpression() {
 async function initMap() {
   const styleObj = await fetch('vendor/maplibre/style.json').then(r => r.json());
   styleObj.sources.openmaptiles.url = 'pmtiles://' + abs('data/israel.pmtiles');
-  styleObj.glyphs = abs('vendor/maplibre/fonts/{fontstack}/{range}.pbf');
+  styleObj.glyphs = absDir() + 'vendor/maplibre/fonts/{fontstack}/{range}.pbf';
 
   const protocol = new pmtiles.Protocol();
   maplibregl.addProtocol('pmtiles', protocol.tile);
+
+  if (maplibregl.getRTLTextPluginStatus() === 'unavailable') {
+    maplibregl.setRTLTextPlugin(abs('vendor/maplibre/mapbox-gl-rtl-text.js'), false);
+  }
 
   map = new maplibregl.Map({
     container: 'map',
