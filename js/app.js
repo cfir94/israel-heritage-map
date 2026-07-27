@@ -98,6 +98,16 @@ async function initMap() {
   });
   map.addControl(new maplibregl.NavigationControl(), 'top-left');
   map.addControl(new maplibregl.AttributionControl({ compact: true }), 'bottom-right');
+  map.on('error', e => console.warn('Map error:', e.error && e.error.message));
+
+  // UI (sidebar, buttons, legends, slider) must work immediately, independent
+  // of how long the base map itself takes to finish loading over the network.
+  buildRegionsLegend();
+  buildReligionFilters();
+  buildPeriodSlider();
+  buildGeologyLegend();
+  renderRoute();
+  wireUI();
 
   await new Promise(resolve => map.on('load', resolve));
 
@@ -165,13 +175,8 @@ async function initMap() {
     }, 'geology');
   });
 
-  buildRegionsLegend();
-  buildReligionFilters();
-  buildPeriodSlider();
   refreshSitesLayer();
   refreshReligionsLayer();
-  buildGeologyLegend();
-  renderRoute();
 }
 
 // GeoJSON sources round-trip array/object properties as JSON strings once
@@ -431,21 +436,25 @@ async function cacheWholeMap() {
   navigator.serviceWorker.controller.postMessage({ type: 'cache-map' });
 }
 
+// The base map can still be loading tiles when the user starts clicking, so
+// every layer-touching call is guarded against the layer not existing yet.
+function setLayerVisibility(id, visible) {
+  if (map.getLayer(id)) map.setLayoutProperty(id, 'visibility', visible ? 'visible' : 'none');
+}
+
 /* ---- UI wiring ---- */
 function wireUI() {
   document.getElementById('toggle-regions').addEventListener('change', e => {
-    const vis = e.target.checked ? 'visible' : 'none';
-    map.setLayoutProperty('regions-fill', 'visibility', vis);
-    map.setLayoutProperty('regions-line', 'visibility', vis);
+    setLayerVisibility('regions-fill', e.target.checked);
+    setLayerVisibility('regions-line', e.target.checked);
     document.getElementById('regions-legend').classList.toggle('hidden', !e.target.checked);
   });
 
   document.getElementById('toggle-geology').addEventListener('change', e => {
     const subtoggle = document.getElementById('geology-subtoggle');
     const legend = document.getElementById('geology-legend');
-    const vis = e.target.checked ? 'visible' : 'none';
-    map.setLayoutProperty('geology-fill', 'visibility', vis);
-    map.setLayoutProperty('geology-line', 'visibility', vis);
+    setLayerVisibility('geology-fill', e.target.checked);
+    setLayerVisibility('geology-line', e.target.checked);
     subtoggle.classList.toggle('hidden', !e.target.checked);
     legend.classList.toggle('hidden', !e.target.checked);
   });
@@ -466,11 +475,11 @@ function wireUI() {
   });
 
   document.getElementById('toggle-periods').addEventListener('change', e => {
-    map.setLayoutProperty('sites-periods', 'visibility', e.target.checked ? 'visible' : 'none');
+    setLayerVisibility('sites-periods', e.target.checked);
   });
 
   document.getElementById('toggle-religions').addEventListener('change', e => {
-    map.setLayoutProperty('sites-religions', 'visibility', e.target.checked ? 'visible' : 'none');
+    setLayerVisibility('sites-religions', e.target.checked);
   });
 
   document.getElementById('toggle-first-temple').addEventListener('change', e => {
@@ -531,11 +540,24 @@ function wireUI() {
 async function main() {
   await loadData();
   await initMap();
-  wireUI();
 
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('sw.js').catch(err => console.warn('SW registration failed', err));
   }
 }
 
-main();
+function showFatalError(message) {
+  document.getElementById('sidebar').classList.add('collapsed');
+  document.getElementById('sidebar-backdrop').classList.add('hidden');
+  const mapEl = document.getElementById('map');
+  mapEl.innerHTML = `<div style="padding:24px;text-align:center;color:#2E2418;">
+    <p style="font-weight:700;margin-bottom:8px;">משהו השתבש בטעינת המפה</p>
+    <p style="font-size:0.85rem;color:#5C4E3A;">${message}</p>
+    <button onclick="location.reload()" style="margin-top:12px;padding:10px 16px;border-radius:999px;border:none;background:#F2A93B;font-weight:700;">רענן את הדף</button>
+  </div>`;
+}
+
+main().catch(err => {
+  console.error(err);
+  showFatalError(err.message || String(err));
+});
