@@ -56,6 +56,15 @@ const THEMATIC_INSERT_BEFORE = 'water';
 // while the hills across the border stayed dramatic.
 const HILLSHADE_INSERT_BEFORE = 'boundary_state';
 
+// Nature layer: colour per kind of sighting, so birds/mammals/plants read apart
+// at a glance without needing the legend.
+const NATURE_KINDS = {
+  birds:   { color: '#3E7DA8', label: 'ציפורים ותצפיות נדידה' },
+  mammals: { color: '#B06A2C', label: 'יונקים' },
+  plants:  { color: '#5E8C3A', label: 'צמחים ופריחה' },
+  mixed:   { color: '#7C6AA8', label: 'חי וצומח יחד' }
+};
+
 // Place labels sit on saturated fills once a thematic layer is on, so the halo
 // has to work harder than it does over plain paper.
 const PLACE_LABEL_LAYERS = ['place_other', 'place_suburb', 'place_village', 'place_town', 'place_city', 'place_capital', 'place_city_large'];
@@ -66,6 +75,8 @@ const state = {
   religions: [],
   sitesGeoJSON: { type: 'FeatureCollection', features: [] },
   geologyGeoJSON: { basic: null, advanced: null },
+  natureGeoJSON: { type: 'FeatureCollection', features: [] },
+  activeNatureKinds: new Set(Object.keys({ birds:1, mammals:1, plants:1, mixed:1 })),
   geologyLevel: 'basic',
   periodIndex: 0,
   showFirstTemple: false,
@@ -88,13 +99,14 @@ function absDir() {
 
 async function loadData() {
   const empty = { type: 'FeatureCollection', features: [] };
-  const [periods, regions, religions, sites, geologyBasic, geologyAdvanced] = await Promise.all([
+  const [periods, regions, religions, sites, geologyBasic, geologyAdvanced, nature] = await Promise.all([
     fetch('js/data/periods.json').then(r => r.json()),
     fetch('js/data/regions.geojson').then(r => r.json()),
     fetch('js/data/religions.json').then(r => r.json()),
     fetch('js/data/sites.geojson').then(r => r.json()).catch(() => empty),
     fetch('js/data/geology_basic.geojson').then(r => r.json()).catch(() => empty),
-    fetch('js/data/geology_advanced.geojson').then(r => r.json()).catch(() => empty)
+    fetch('js/data/geology_advanced.geojson').then(r => r.json()).catch(() => empty),
+    fetch('js/data/nature.geojson').then(r => r.json()).catch(() => empty)
   ]);
   state.periods = periods.sort((a, b) => a.order - b.order);
   state.regionsGeoJSON = regions;
@@ -102,6 +114,7 @@ async function loadData() {
   state.sitesGeoJSON = sites;
   state.geologyGeoJSON.basic = geologyBasic;
   state.geologyGeoJSON.advanced = geologyAdvanced;
+  state.natureGeoJSON = nature;
   state.activeReligions = new Set(religions.map(r => r.id));
 }
 
@@ -117,6 +130,13 @@ function eraColorMatchExpression() {
 function religionColorMatchExpression() {
   const expr = ['match', ['at', 0, ['get', 'religions']]];
   state.religions.forEach(r => expr.push(r.id, r.color));
+  expr.push('#12968A');
+  return expr;
+}
+
+function natureColorMatchExpression() {
+  const expr = ['match', ['get', 'kind']];
+  Object.entries(NATURE_KINDS).forEach(([k, v]) => expr.push(k, v.color));
   expr.push('#12968A');
   return expr;
 }
@@ -158,6 +178,7 @@ async function initMap() {
   buildReligionFilters();
   buildPeriodSlider();
   buildGeologyLegend();
+  buildNatureFilters();
   renderRoute();
   wireUI();
 
@@ -248,6 +269,19 @@ async function initMap() {
     }
   });
 
+  // Nature sightings — vulture lookouts, blooms, wildlife reserves.
+  map.addSource('nature', { type: 'geojson', data: state.natureGeoJSON });
+  map.addLayer({
+    id: 'nature-points', type: 'circle', source: 'nature',
+    layout: { visibility: 'none' },
+    paint: {
+      'circle-radius': 9,
+      'circle-color': natureColorMatchExpression(),
+      'circle-stroke-color': '#FFFBF2',
+      'circle-stroke-width': 2.5
+    }
+  });
+
   // Numbered stops, drawn last so they stay on top of every other layer.
   map.addSource('route-stops', { type: 'geojson', data: EMPTY_FC });
   map.addLayer({
@@ -270,13 +304,29 @@ async function initMap() {
     paint: { 'text-color': '#FFFBF2' }
   });
 
-  ['regions-fill', 'geology-fill', 'sites-periods', 'sites-religions'].forEach(id => {
+  ['regions-fill', 'geology-fill', 'sites-periods', 'sites-religions', 'nature-points'].forEach(id => {
     map.on('mouseenter', id, () => { map.getCanvas().style.cursor = 'pointer'; });
     map.on('mouseleave', id, () => { map.getCanvas().style.cursor = ''; });
   });
 
   map.on('click', 'sites-periods', e => openInfoPanel(e.features[0].properties, 'period'));
   map.on('click', 'sites-religions', e => openInfoPanel(e.features[0].properties, 'religion'));
+  map.on('click', 'nature-points', e => {
+    const p = e.features[0].properties;
+    const species = parseMaybeJSON(p.species_he);
+    const speciesHtml = species.length
+      ? `<div class="species-list">${species.map(s => `<span class="species-chip">${s}</span>`).join('')}</div>`
+      : '';
+    openInfoPanel({
+      id: p.id,
+      name_he: p.name_he,
+      name_en: p.name_en,
+      extra_html: `${speciesHtml}${p.season_he ? `<div class="season">מתי לראות: ${p.season_he}</div>` : ''}`,
+      description_he: p.description_he || '',
+      sources: parseMaybeJSON(p.sources)
+    }, 'nature');
+  });
+
   map.on('click', 'geology-fill', e => {
     const props = e.features[0].properties;
     openInfoPanel({
@@ -284,12 +334,14 @@ async function initMap() {
       name_he: props.name_he,
       name_en: props.name_en,
       description_he: `<strong>${props.rock_summary_he || ''}</strong><br>${props.description_he || ''}`,
+      rock_photo: props.rock_photo,
       sources: parseMaybeJSON(props.sources)
     }, 'geology');
   });
 
   refreshSitesLayer();
   refreshReligionsLayer();
+  refreshNatureLayer();
   // The saved route was rendered into the sidebar before the map finished
   // loading, so draw it now that the route layers actually exist.
   updateRouteOnMap();
@@ -401,6 +453,34 @@ function refreshGeologyLayer() {
   buildGeologyLegend();
 }
 
+function buildNatureFilters() {
+  const el = document.getElementById('nature-filters');
+  if (!el) return;
+  el.innerHTML = '';
+  const present = new Set(state.natureGeoJSON.features.map(f => f.properties.kind));
+  Object.entries(NATURE_KINDS).forEach(([kind, meta]) => {
+    if (!present.has(kind)) return;
+    const label = document.createElement('label');
+    label.className = 'filter-item';
+    label.innerHTML = `<input type="checkbox" value="${kind}" checked />
+      <span class="swatch" style="background:${meta.color}"></span>${meta.label}`;
+    label.querySelector('input').addEventListener('change', e => {
+      if (e.target.checked) state.activeNatureKinds.add(kind);
+      else state.activeNatureKinds.delete(kind);
+      refreshNatureLayer();
+    });
+    el.appendChild(label);
+  });
+}
+
+function refreshNatureLayer() {
+  if (!map || !map.getLayer('nature-points')) return;
+  const active = [...state.activeNatureKinds];
+  map.setFilter('nature-points', active.length
+    ? ['in', ['get', 'kind'], ['literal', active]]
+    : ['==', ['literal', false], ['literal', true]]);
+}
+
 function buildGeologyLegend() {
   const el = document.getElementById('geology-legend');
   const data = state.geologyGeoJSON[state.geologyLevel];
@@ -458,12 +538,30 @@ function openInfoPanel(props, context) {
   content.innerHTML = `
     <h3>${props.name_he}</h3>
     <div class="meta">${props.name_en || ''}${metaBits.length ? ' • ' + metaBits.join(' • ') : ''}</div>
+    ${rockPhotoHtml(parseMaybeJSON(props.rock_photo))}
+    ${props.extra_html || ''}
     <p>${props.description_he || ''}</p>
     ${sourcesHtml ? `<div class="sources"><strong>מקורות:</strong>${sourcesHtml}</div>` : ''}
     <button class="add-route-btn" data-id="${props.id}">➕ הוסף למסלול</button>
   `;
   content.querySelector('.add-route-btn').addEventListener('click', () => addToRoute(props));
   panel.classList.remove('hidden');
+}
+
+// Photo of the rock itself. The caption names what the picture actually shows,
+// because one photo can illustrate several units that share a rock type — the
+// reader should never assume it was taken inside the unit they tapped.
+function rockPhotoHtml(photo) {
+  if (!photo || !photo.file) return '';
+  const credit = [photo.author, photo.license].filter(Boolean).join(' · ');
+  const creditHtml = photo.source_url
+    ? `<a href="${photo.source_url}" target="_blank" rel="noopener">${credit}</a>`
+    : credit;
+  return `
+    <figure class="rock-photo">
+      <img src="${photo.file}" alt="${photo.title || 'סלע אופייני'}" loading="lazy" />
+      <figcaption>${photo.title || ''}<span class="credit">${creditHtml}</span></figcaption>
+    </figure>`;
 }
 
 function addToRoute(props) {
@@ -707,6 +805,11 @@ function wireUI() {
     setLayerVisibility('regions-line', e.target.checked);
     document.getElementById('regions-legend').classList.toggle('hidden', !e.target.checked);
     updateBaseMapDeclutter();
+  });
+
+  document.getElementById('toggle-nature').addEventListener('change', e => {
+    setLayerVisibility('nature-points', e.target.checked);
+    document.getElementById('nature-filters').classList.toggle('hidden', !e.target.checked);
   });
 
   const topoStrong = document.getElementById('toggle-topo-strong');
