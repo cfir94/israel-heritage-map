@@ -574,6 +574,12 @@ function refreshGeologyLayer() {
   buildGeologyLegend();
 }
 
+// One chip per operating body. Tapping a chip shows only that body's sites —
+// the common case is wanting INPA parks or KKL forests on their own, not both
+// at once — and long-pressing is not a thing on a map panel, so a second tap
+// adds the other body back. The chips also switch the layer on by themselves,
+// because having to find the master toggle first was the reason nobody found
+// these filters at all.
 function buildVisitorFilters() {
   const el = document.getElementById('visitor-filters');
   if (!el) return;
@@ -585,16 +591,53 @@ function buildVisitorFilters() {
   });
   Object.entries(VISITOR_OPERATORS).forEach(([op, meta]) => {
     if (!counts[op]) return;
-    const label = document.createElement('label');
-    label.className = 'filter-item';
-    label.innerHTML = `<input type="checkbox" value="${op}" checked />
-      <span class="swatch" style="background:${meta.color}"></span>${meta.label} (${counts[op]})`;
-    label.querySelector('input').addEventListener('change', e => {
-      if (e.target.checked) state.activeOperators.add(op);
-      else state.activeOperators.delete(op);
-      refreshVisitorLayer();
-    });
-    el.appendChild(label);
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'operator-chip';
+    btn.dataset.op = op;
+    btn.setAttribute('aria-pressed', 'true');
+    btn.innerHTML = `<span class="dot" style="background:${meta.color}"></span>
+      <span class="op-label">${meta.label}</span><span class="op-count">${counts[op]}</span>`;
+    btn.addEventListener('click', () => toggleOperator(op));
+    el.appendChild(btn);
+  });
+  syncOperatorChips();
+}
+
+function toggleOperator(op) {
+  const others = Object.keys(VISITOR_OPERATORS).filter(o => o !== op);
+  const onlyThis = state.activeOperators.has(op) && others.every(o => !state.activeOperators.has(o));
+  if (onlyThis) {
+    // already isolated — tapping again brings everything back
+    Object.keys(VISITOR_OPERATORS).forEach(o => state.activeOperators.add(o));
+  } else {
+    state.activeOperators = new Set([op]);
+  }
+  const master = document.getElementById('toggle-visitor');
+  if (master && !master.checked) {
+    master.checked = true;
+    master.dispatchEvent(new Event('change', { bubbles: true }));
+  }
+  refreshVisitorLayer();
+  syncOperatorChips();
+}
+
+function showAllOperators() {
+  state.activeOperators = new Set(Object.keys(VISITOR_OPERATORS));
+  const master = document.getElementById('toggle-visitor');
+  if (master && !master.checked) {
+    master.checked = true;
+    master.dispatchEvent(new Event('change', { bubbles: true }));
+  }
+  refreshVisitorLayer();
+  syncOperatorChips();
+}
+
+function syncOperatorChips() {
+  document.querySelectorAll('#visitor-filters .operator-chip').forEach(btn => {
+    const on = state.activeOperators.has(btn.dataset.op);
+    btn.classList.toggle('active', on);
+    btn.setAttribute('aria-pressed', String(on));
   });
 }
 
@@ -1336,9 +1379,11 @@ function wireUI() {
   document.getElementById('toggle-visitor').addEventListener('change', e => {
     ['visitor-clusters', 'visitor-cluster-count', 'visitor-points']
       .forEach(id => setLayerVisibility(id, e.target.checked));
-    document.getElementById('visitor-filters').classList.toggle('hidden', !e.target.checked);
     document.getElementById('visitor-note').classList.toggle('hidden', !e.target.checked);
+    document.getElementById('visitor-filters').classList.toggle('dimmed', !e.target.checked);
+    document.querySelector('.operator-actions').classList.toggle('dimmed', !e.target.checked);
   });
+  document.getElementById('btn-visitor-all').addEventListener('click', showAllOperators);
 
   document.getElementById('toggle-nature').addEventListener('change', e => {
     setLayerVisibility('nature-points', e.target.checked);

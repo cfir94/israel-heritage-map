@@ -1,4 +1,4 @@
-const CACHE_NAME = 'ihm-cache-v10';
+const CACHE_NAME = 'ihm-cache-v11';
 const MAP_CACHE_NAME = 'ihm-map-v1';
 // Every self-hosted tile archive. These are the only files served by Range
 // request, so they take the byte-slicing path below rather than plain caching.
