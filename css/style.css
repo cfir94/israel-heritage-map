@@ -257,6 +257,27 @@ button, input { font-family: inherit; }
 .legend { margin-top: 8px; display: flex; flex-direction: column; gap: 5px; max-height: 220px; overflow-y: auto; }
 .legend .legend-item { display: flex; align-items: center; gap: 8px; font-size: 0.8rem; }
 .legend .swatch { width: 15px; height: 15px; border-radius: 5px; display: inline-block; flex-shrink: 0; }
+.legend .legend-note {
+  margin: 10px 0 0;
+  padding-top: 8px;
+  border-top: 1px solid var(--border);
+  font-size: 0.72rem;
+  line-height: 1.5;
+  color: #7A6A52;
+}
+
+.route-summary {
+  margin: 8px 0 2px;
+  padding: 10px 12px;
+  background: var(--bg-panel-2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.route-summary strong { font-size: 0.95rem; color: var(--accent); }
+.route-summary .route-note { font-size: 0.72rem; line-height: 1.45; color: #7A6A52; }
 
 #route-list { list-style: none; margin: 6px 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
 #route-list li {
