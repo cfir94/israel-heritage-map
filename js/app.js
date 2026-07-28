@@ -166,6 +166,42 @@ const MAP_ICONS = {
   'ic-mixed':       'icons/svg/nature-mixed.svg'
 };
 
+/* Geological ornament. A printed geological map does not only tint its units,
+   it hatches them: brick for carbonate, chevrons for volcanics, stipple for
+   sand. Each pattern is an asset under assets/patterns/, rasterised here and
+   painted over the flat colour, so the layer says what the rock *is* and not
+   only where the boundary runs. */
+const ROCK_PATTERNS = ['limestone', 'dolomite', 'chalk', 'volcanic', 'sandstone',
+                       'loess', 'alluvium', 'evaporite', 'basement', 'conglomerate'];
+
+function rockPatternMatchExpression() {
+  const expr = ['match', ['get', 'rock_class']];
+  ROCK_PATTERNS.forEach(p => expr.push(p, 'pat-' + p));
+  expr.push('pat-limestone');
+  return expr;
+}
+
+// Tiles have to stay pixel-exact or the seams show, so these are rasterised at
+// their native 64 without the disc backing the point icons get.
+function loadFillPatterns() {
+  const dpr = Math.min(2, window.devicePixelRatio || 1);
+  const size = 64;
+  return Promise.all(ROCK_PATTERNS.map(name => new Promise(resolve => {
+    const img = new Image();
+    img.onload = () => {
+      const c = document.createElement('canvas');
+      c.width = c.height = Math.round(size * dpr);
+      const ctx = c.getContext('2d');
+      ctx.drawImage(img, 0, 0, c.width, c.height);
+      const id = 'pat-' + name;
+      if (!map.hasImage(id)) map.addImage(id, ctx.getImageData(0, 0, c.width, c.height), { pixelRatio: dpr });
+      resolve();
+    };
+    img.onerror = () => resolve();   // a missing pattern must only cost the hatch
+    img.src = abs(`assets/patterns/${name}.svg`);
+  })));
+}
+
 // SVG has to be rasterised before MapLibre can use it as a symbol image.
 function loadMapIcons() {
   const dpr = Math.min(2, window.devicePixelRatio || 1);
@@ -276,7 +312,7 @@ async function initMap() {
 
   // Icons make the map readable at a glance: a cross, a crescent, a Star of
   // David, an ibex or a tree says what a coloured dot cannot.
-  await loadMapIcons();
+  await Promise.all([loadMapIcons(), loadFillPatterns()]);
 
   // Terrain relief. Our own elevation tileset (terrarium-encoded, zoom 0-11);
   // MapLibre overzooms past 11, which is fine because hillshade is a soft
@@ -365,6 +401,16 @@ async function initMap() {
     id: 'geology-fill', type: 'fill', source: 'geology',
     layout: { visibility: 'none' },
     paint: { 'fill-color': ['get', 'color'], 'fill-opacity': 0.85 }
+  }, THEMATIC_INSERT_BEFORE);
+  map.addLayer({
+    id: 'geology-hatch', type: 'fill', source: 'geology',
+    layout: { visibility: 'none' },
+    paint: {
+      'fill-pattern': rockPatternMatchExpression(),
+      // strong enough to read the ornament, light enough that the unit colour
+      // still carries the legend
+      'fill-opacity': ['interpolate', ['linear'], ['zoom'], 6.5, 0.42, 9, 0.62, 12, 0.75]
+    }
   }, THEMATIC_INSERT_BEFORE);
   map.addLayer({
     id: 'geology-line', type: 'line', source: 'geology',
@@ -737,7 +783,18 @@ function buildGeologyLegend() {
     .forEach(f => {
       const item = document.createElement('div');
       item.className = 'legend-item';
-      item.innerHTML = `<span class="swatch" style="background:${f.properties.color}"></span>${f.properties.name_he}`;
+      // the swatch carries the unit's own ornament, so the legend matches the
+      // hatched map rather than only its colour
+      // the ornament layer has to come first: in CSS the first background-image
+      // paints on top, so listing the colour first would hide the hatch
+      const pat = f.properties.rock_class
+        ? `url(${abs('assets/patterns/' + f.properties.rock_class + '.svg')}),` : '';
+      item.innerHTML =
+        `<span class="swatch" style="background-image:${pat}linear-gradient(${f.properties.color},${f.properties.color});` +
+        `background-size:15px 15px,auto"></span>` +
+        `<span class="legend-text">${f.properties.name_he}` +
+        (f.properties.rock_class_he ? `<span class="legend-sub">${f.properties.rock_class_he}</span>` : '') +
+        `</span>`;
       el.appendChild(item);
     });
 
@@ -913,11 +970,12 @@ function renderSearchResults(results, query) {
   const box = document.getElementById('search-results');
   box.innerHTML = '';
   if (!query || query.trim().length < 2) {
-    box.innerHTML = `<p class="search-hint">הקלד לפחות שתי אותיות. החיפוש עובר על כל השכבות — אתרים היסטוריים, שמורות וגנים, חי וצומח, גיאולוגיה ואזורים — ועובד גם בלי אינטרנט.</p>`;
+    box.innerHTML = emptyStateHtml('empty-nearby',
+      'הקלד לפחות שתי אותיות. החיפוש עובר על כל השכבות — אתרים היסטוריים, שמורות וגנים, חי וצומח, גיאולוגיה ואזורים — ועובד גם בלי אינטרנט.');
     return;
   }
   if (!results.length) {
-    box.innerHTML = `<p class="search-hint">לא נמצאו תוצאות עבור «${query}».</p>`;
+    box.innerHTML = emptyStateHtml('empty-search', `לא נמצאו תוצאות עבור «${query}».`);
     return;
   }
   const byKind = {};
@@ -1080,7 +1138,10 @@ function openGeologyPanel(props) {
     id: props.id,
     name_he: props.name_he,
     name_en: props.name_en,
-    description_he: `<strong>${props.rock_summary_he || ''}</strong><br>${props.description_he || ''}`,
+    description_he:
+      (props.rock_class ? `<span class="rock-class"><img src="${abs('assets/patterns/' + props.rock_class + '.svg')}" alt="" />` +
+        `${props.rock_class_he || ''}</span>` : '') +
+      `<strong>${props.rock_summary_he || ''}</strong><br>${props.description_he || ''}`,
     rock_photo: props.rock_photo,
     sources: parseMaybeJSON(props.sources)
   }, 'geology');
@@ -1092,6 +1153,12 @@ function openGeologyPanel(props) {
    is a real problem. So the bundled copy is always labelled with the date it
    was captured, the official page is one tap away, and when there is a
    connection the panel re-checks the live source and says so. */
+
+// A card subheading with its utility icon — the small facts a guide reads off
+// a site card in the field are faster to find when each one has a glyph.
+function h4(icon, label) {
+  return `<h4><img src="${abs('icons/svg/ui-' + icon + '.svg')}" alt="" />${label}</h4>`;
+}
 
 function priceTableHtml(prices) {
   if (!prices || !prices.length) return '';
@@ -1124,15 +1191,17 @@ function renderVisitorBody(props, freshness) {
     ? `<div class="species-list">${Object.entries(attrs).map(([k, v]) => `<span class="species-chip">${k}: ${v}</span>`).join('')}</div>`
     : '';
   return `
-    <div class="operator-tag" style="background:${op.color || '#8A7A63'}">${op.label}</div>
+    <div class="operator-tag" style="background:${op.color || '#8A7A63'}">
+      <img src="${abs('icons/svg/op-' + props.operator + '.svg')}" alt="" />${op.label}</div>
     ${attrHtml}
-    ${hours.length || props.hours_special ? `<h4>שעות פתיחה</h4>${hoursHtml(hours, props.hours_special)}` : ''}
-    ${prices.length ? `<h4>מחירים</h4>${priceTableHtml(prices)}` : ''}
+    ${hours.length || props.hours_special ? `${h4('clock', 'שעות פתיחה')}${hoursHtml(hours, props.hours_special)}` : ''}
+    ${prices.length ? `${h4('price', 'מחירים')}${priceTableHtml(prices)}` : ''}
     <div class="freshness ${freshness.state}">${freshness.text}</div>
-    ${props.phone ? `<p class="visitor-phone">${props.phone.replace(/\n/g, '<br>')}</p>` : ''}
-    ${props.highlights ? `<h4>נגישות ומידע</h4><p>${props.highlights.replace(/\n/g, '<br>')}</p>` : ''}
+    ${props.phone ? `<p class="visitor-phone"><img src="${abs('icons/svg/ui-phone.svg')}" alt="" />${props.phone.replace(/\n/g, '<br>')}</p>` : ''}
+    ${props.highlights ? `${h4('accessibility', 'נגישות ומידע')}<p>${props.highlights.replace(/\n/g, '<br>')}</p>` : ''}
     ${props.info ? `<p>${props.info}</p>` : ''}
-    ${props.link ? `<div class="sources"><a href="${props.link}" target="_blank" rel="noopener">העמוד הרשמי — מחירים ושעות מעודכנים</a></div>` : ''}`;
+    ${props.link ? `<div class="sources"><a href="${props.link}" target="_blank" rel="noopener">
+      <img src="${abs('icons/svg/ui-website.svg')}" alt="" />העמוד הרשמי — מחירים ושעות מעודכנים</a></div>` : ''}`;
 }
 
 async function openVisitorPanel(props) {
@@ -1225,9 +1294,19 @@ function addToRoute(props) {
   renderRoute();
 }
 
+/* Empty states. An empty list is a moment the app has to say something, and a
+   drawing says it faster than a grey sentence. The art lives in
+   assets/illustrations/ so it can be redrawn without touching this file. */
+function emptyStateHtml(art, text) {
+  return `<div class="empty-state"><img src="${abs('assets/illustrations/' + art + '.svg')}" alt="" />` +
+         `<p>${text}</p></div>`;
+}
+
 function renderRoute() {
   const list = document.getElementById('route-list');
+  const empty = document.getElementById('route-empty');
   list.innerHTML = '';
+  if (empty) empty.classList.toggle('hidden', state.route.length > 0);
   state.route.forEach((item, idx) => {
     const li = document.createElement('li');
     li.innerHTML = `<span>${idx + 1}. ${item.name_he}</span><button class="remove-route-item" data-id="${item.id}">✕</button>`;
@@ -1389,7 +1468,8 @@ function findNearby() {
       document.getElementById('sidebar-backdrop').classList.add('hidden');
     }
     if (!nearby.length) {
-      content.innerHTML = '<h3>מה יש כאן?</h3><p>לא נמצאו אתרים מתועדים ברדיוס 5 ק"מ מהמיקום הנוכחי.</p>';
+      content.innerHTML = '<h3>מה יש כאן?</h3>' +
+        emptyStateHtml('empty-nearby', 'לא נמצאו אתרים מתועדים ברדיוס 5 ק"מ מהמיקום הנוכחי.');
     } else {
       content.innerHTML = `<h3>מה יש כאן? (${nearby.length} אתרים ברדיוס 5 ק"מ)</h3>` +
         nearby.map(x => `<p><strong>${x.f.properties.name_he}</strong> — ${x.dist.toFixed(1)} ק"מ<br><a href="#" class="jump-to-site" data-id="${x.f.properties.id}">הצג פרטים</a></p>`).join('');
@@ -1510,14 +1590,21 @@ function wireUI() {
     map.setPaintProperty('hillshade', 'hillshade-exaggeration', e.target.checked ? 0.85 : 0.45);
   });
 
+  const geologyHatch = document.getElementById('toggle-geology-hatch');
   document.getElementById('toggle-geology').addEventListener('change', e => {
     const subtoggle = document.getElementById('geology-subtoggle');
     const legend = document.getElementById('geology-legend');
     setLayerVisibility('geology-fill', e.target.checked);
     setLayerVisibility('geology-line', e.target.checked);
+    setLayerVisibility('geology-hatch', e.target.checked && geologyHatch.checked);
     subtoggle.classList.toggle('hidden', !e.target.checked);
     legend.classList.toggle('hidden', !e.target.checked);
+    document.getElementById('geology-hatch-row').classList.toggle('hidden', !e.target.checked);
     updateBaseMapDeclutter();
+  });
+  geologyHatch.addEventListener('change', e => {
+    setLayerVisibility('geology-hatch',
+      e.target.checked && document.getElementById('toggle-geology').checked);
   });
 
   const geoBasicBtn = document.getElementById('btn-geology-basic');
@@ -1596,11 +1683,40 @@ function wireUI() {
   window.addEventListener('online', () => document.getElementById('offline-indicator').classList.add('hidden'));
   window.addEventListener('offline', () => document.getElementById('offline-indicator').classList.remove('hidden'));
   if (!navigator.onLine) document.getElementById('offline-indicator').classList.remove('hidden');
+
+  wirePanelState();
+}
+
+/* A panel whose layer is on picks up that layer's colour on its border, so the
+   sheet shows at a glance what is currently drawn on the map. */
+function wirePanelState() {
+  document.querySelectorAll('#sidebar .panel').forEach(panel => {
+    const boxes = panel.querySelectorAll('.layer-toggle input[type="checkbox"]');
+    if (!boxes.length) return;
+    const sync = () => panel.classList.toggle('is-on', [...boxes].some(b => b.checked));
+    boxes.forEach(b => b.addEventListener('change', sync));
+    sync();
+  });
+}
+
+// The splash covers the gap before the first map frame, so the app never opens
+// on a blank grey rectangle. It is removed on idle, or on a timeout if the
+// tiles are slow, and never blocks interaction either way.
+function dismissSplash() {
+  const el = document.getElementById('splash');
+  if (!el || el.classList.contains('done')) return;
+  el.classList.add('done');
+  setTimeout(() => el.remove(), 600);
 }
 
 async function main() {
+  // A hard ceiling on the splash: whatever happens to the network, the map is
+  // interactive after four seconds rather than sitting behind a logo.
+  setTimeout(dismissSplash, 4000);
   await loadData();
   await initMap();
+  map.once('idle', dismissSplash);
+  dismissSplash();
 
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('sw.js').catch(err => console.warn('SW registration failed', err));
@@ -1620,5 +1736,6 @@ function showFatalError(message) {
 
 main().catch(err => {
   console.error(err);
+  dismissSplash();
   showFatalError(err.message || String(err));
 });

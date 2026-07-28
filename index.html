@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover" />
   <title>מפת מורשת ישראל</title>
   <meta name="description" content="מפה אינטראקטיבית של ישראל בחלוקה לשכבות: אזורים, ציר זמן היסטורי ואתרי דת — כלי עבודה למורי דרך" />
-  <meta name="theme-color" content="#12968A" />
+  <meta name="theme-color" content="#0E9C8E" />
   <link rel="manifest" href="manifest.webmanifest" />
   <link rel="icon" href="icons/icon-192.png" />
   <link rel="apple-touch-icon" href="icons/icon-192.png" />
@@ -13,11 +13,23 @@
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
+  <!-- Held up only until the map's first frame, so the app never opens on a
+       blank grey rectangle while the tiles come in. -->
+  <div id="splash">
+    <img src="icons/svg/logo.svg" alt="" />
+    <div class="splash-title">מפת מורשת ישראל</div>
+    <div class="splash-bar"></div>
+  </div>
+
   <header id="app-header">
-    <button id="btn-toggle-sidebar" aria-label="תפריט שכבות" title="תפריט שכבות">☰</button>
+    <button id="btn-toggle-sidebar" aria-label="תפריט שכבות" title="תפריט שכבות">
+      <img src="icons/svg/ui-menu.svg" alt="" />
+    </button>
     <img class="logo" src="icons/svg/logo.svg" alt="" />
-    <h1>מפת מורשת ישראל</h1>
-    <button id="btn-search" aria-label="חיפוש" title="חיפוש">🔍</button>
+    <h1>מפת מורשת<span class="long"> ישראל</span></h1>
+    <button id="btn-search" aria-label="חיפוש" title="חיפוש">
+      <img src="icons/svg/ui-search.svg" alt="" />
+    </button>
     <div id="offline-indicator" class="hidden" title="את/ה במצב לא מקוון">אופליין</div>
     <button id="btn-toggle-route" aria-label="בניית מסלול" title="בניית מסלול">מסלול</button>
   </header>
@@ -25,7 +37,10 @@
   <div id="app-body">
     <div id="sidebar-backdrop" class="hidden"></div>
     <aside id="sidebar">
-      <section class="panel">
+      <h3 class="group-label">מה רואים במפה</h3>
+
+      <section class="panel" style="--panel-color: var(--c-regions)">
+        <img class="panel-banner" src="assets/banners/regions.svg" alt="" />
         <h2><img src="icons/svg/layer-regions.svg" alt="" />אזורים</h2>
         <label class="layer-toggle">
           <input type="checkbox" id="toggle-regions" />
@@ -34,7 +49,8 @@
         <div id="regions-legend" class="legend hidden"></div>
       </section>
 
-      <section class="panel">
+      <section class="panel" style="--panel-color: var(--c-visitor)">
+        <img class="panel-banner" src="assets/banners/visitor.svg" alt="" />
         <h2><img src="icons/svg/layer-visitor.svg" alt="" />שמורות, גנים ואתרים</h2>
         <label class="layer-toggle">
           <input type="checkbox" id="toggle-visitor" />
@@ -47,7 +63,8 @@
         <p class="hint hidden" id="visitor-note">מחירים ושעות נשמרים לשימוש אופליין ומאומתים מול האתר הרשמי כשיש אינטרנט.</p>
       </section>
 
-      <section class="panel">
+      <section class="panel" style="--panel-color: var(--c-nature)">
+        <img class="panel-banner" src="assets/banners/nature.svg" alt="" />
         <h2><img src="icons/svg/layer-nature.svg" alt="" />חי וצומח</h2>
         <label class="layer-toggle">
           <input type="checkbox" id="toggle-nature" />
@@ -56,7 +73,8 @@
         <div id="nature-filters" class="filters hidden"></div>
       </section>
 
-      <section class="panel">
+      <section class="panel" style="--panel-color: var(--c-topo)">
+        <img class="panel-banner" src="assets/banners/topo.svg" alt="" />
         <h2><img src="icons/svg/layer-topo.svg" alt="" />טופוגרפיה</h2>
         <label class="layer-toggle">
           <input type="checkbox" id="toggle-topo" />
@@ -72,11 +90,16 @@
         </label>
       </section>
 
-      <section class="panel">
+      <section class="panel" style="--panel-color: var(--c-geology)">
+        <img class="panel-banner" src="assets/banners/geology.svg" alt="" />
         <h2><img src="icons/svg/layer-geology.svg" alt="" />מפה גיאולוגית</h2>
         <label class="layer-toggle">
           <input type="checkbox" id="toggle-geology" />
           <span>הצג שכבה גיאולוגית</span>
+        </label>
+        <label class="layer-toggle hidden" id="geology-hatch-row">
+          <input type="checkbox" id="toggle-geology-hatch" checked />
+          <span>סימון סוג הסלע (הצללה גיאולוגית)</span>
         </label>
         <div id="geology-subtoggle" class="geology-subtoggle hidden">
           <button id="btn-geology-basic" class="active" data-level="basic">בסיסי</button>
@@ -85,7 +108,8 @@
         <div id="geology-legend" class="legend hidden"></div>
       </section>
 
-      <section class="panel">
+      <section class="panel" style="--panel-color: var(--c-timeline)">
+        <img class="panel-banner" src="assets/banners/timeline.svg" alt="" />
         <h2><img src="icons/svg/layer-timeline.svg" alt="" />ציר זמן היסטורי</h2>
         <label class="layer-toggle">
           <input type="checkbox" id="toggle-periods" checked />
@@ -108,7 +132,8 @@
         </div>
       </section>
 
-      <section class="panel">
+      <section class="panel" style="--panel-color: var(--c-religion)">
+        <img class="panel-banner" src="assets/banners/religion.svg" alt="" />
         <h2><img src="icons/svg/layer-religion.svg" alt="" />אתרי דת</h2>
         <label class="layer-toggle">
           <input type="checkbox" id="toggle-religions" />
@@ -117,9 +142,14 @@
         <div id="religion-filters" class="religion-filters"></div>
       </section>
 
-      <section class="panel">
-        <h2>מסלול סיור</h2>
-        <p class="hint">לחץ על "הוסף למסלול" בכרטיס של כל אתר. הרשימה נשמרת גם ללא חיבור לאינטרנט.</p>
+      <h3 class="group-label">כלי שטח</h3>
+
+      <section class="panel" style="--panel-color: var(--c-route)">
+        <h2><img src="icons/svg/ui-navigate.svg" alt="" />מסלול סיור</h2>
+        <div class="empty-state" id="route-empty">
+          <img src="assets/illustrations/empty-route.svg" alt="" />
+          <p>המסלול ריק. לחץ על "הוסף למסלול" בכרטיס של כל אתר — הרשימה נשמרת גם ללא חיבור לאינטרנט.</p>
+        </div>
         <ol id="route-list"></ol>
         <div id="route-summary" class="route-summary hidden"></div>
         <div class="route-actions">
@@ -128,8 +158,10 @@
         </div>
       </section>
 
+      <h3 class="group-label">הגדרות</h3>
+
       <section class="panel">
-        <h2>מצב מפה</h2>
+        <h2><img src="icons/svg/ui-website.svg" alt="" />מצב מפה</h2>
         <p class="hint">המפה עצמה (רחובות, גבולות, שמות מקומות) בנויה על ידינו ומתארחת אצלנו — לא תלויה בגוגל/גורם חיצוני. הורדה חד-פעמית של כל המפה מאפשרת שימוש מלא בשטח בלי קליטה.</p>
         <button id="btn-cache-area" class="btn-primary">הורד את כל המפה לשימוש אופליין</button>
         <div id="cache-status" class="hint"></div>
